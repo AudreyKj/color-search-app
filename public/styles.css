@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Uncial+Antiqua&display=swap");
+@import-normalize;
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+img {
+    width: 500px;
+}
+
+div.dominantColor {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+div.logo {
+    background-image: radial-gradient(circle closest-side, yellow, whitesmoke);
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: 20px;
+}
+
+span.color-spot {
+    font-family: "Uncial Antiqua", cursive;
+    font-size: 6rem;
+    margin-left: 20px;
+}
+
+div.options-buttons {
+    width: 100%;
+    text-align: center;
+}
+
+span.options {
+    font-family: Arial;
+
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background: #d6d6d6;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+}

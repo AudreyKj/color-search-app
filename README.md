@@ -1,9 +1,6 @@
-# CORONA EMOTIONS CLUB - React app about COVID-19
+# COLOR SPOT - React app using color-thief API
 
-In this React app, users share their personal experiences of the COVID-19 outbreak and browse through others' submissions.<br />
-
-This project's intention is to collect personal, emotional, yet global, perspectives on the situation.
-When all this is over, I hope that it could serve as a digital archive reminding us of this very strange time.
+In this React app, users
 
 [visit live app](https://corona-emotions.club)
 
