@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Palette, Color } from "color-thief-react";
+import Dropzone from "react-dropzone";
 
 import axios from "./axios.js";
 
@@ -19,37 +20,13 @@ function ColorGraber() {
         setPalette(true);
     };
 
-    // useEffect(() => {
-    //     const formData = new FormData();
-    //     formData.append("file", file);
-    //     console.log("formData", formData);
-    //     axios
-    //         .post("/upload", file)
-    //         .then(({ data }) => {
-    //             console.log(data);
-    //         })
-    //         .catch(function(error) {
-    //             console.log(error);
-    //         });
-    // }, [file]);
+    const handledropped = acceptedFiles => {
+        console.log(acceptedFiles);
+        //const files = acceptedFiles.dataTransfer.files;
+        const localUrl = window.URL.createObjectURL(acceptedFiles[0]);
 
-    //handleChange for file upload
-    const handleChange2 = event => {
-        console.log("event.target.files[0]", event.target.files[0]);
-
-        setFile({ file: event.target.files[0] });
-
-        const formData = new FormData();
-        formData.append("file", file);
-        console.log("formData", formData);
-        axios
-            .post("/upload", file)
-            .then(({ data }) => {
-                console.log(data);
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+        setFile(localUrl);
+        setPalette(true);
     };
 
     return (
@@ -60,21 +37,27 @@ function ColorGraber() {
                     type="text"
                     placeholder="url of your image"
                 />
-                <input
-                    onChange={handleChange2}
-                    id="file-upload"
-                    className="file"
-                    type="file"
-                    name="file"
-                    accept="image/*"
-                />
                 <button onClick={handleClick}> GET COLOR PALETTE </button>
                 <input type="reset" value="Reset" />
             </form>
 
+            <Dropzone onDrop={acceptedFiles => handledropped(acceptedFiles)}>
+                {({ getRootProps, getInputProps }) => (
+                    <section>
+                        <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <p>
+                                Drag 'n' drop some files here, or click to
+                                select files
+                            </p>
+                        </div>
+                    </section>
+                )}
+            </Dropzone>
+
             {palette && (
                 <Palette
-                    src={url}
+                    src={file}
                     crossOrigin="Anonymous"
                     colorCount={5}
                     format="hex"

@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
+const { hash, compare } = require("./bc.js");
 const compression = require("compression");
 const cookieSession = require("cookie-session");
 const db = require("./db.js");
 const csurf = require("csurf");
+const multer = require("multer");
+const uidSafe = require("uid-safe");
+const path = require("path");
 
 app.use(compression());
 
@@ -50,65 +54,84 @@ if (process.env.NODE_ENV != "production") {
 }
 
 //multer for file upload
-const multer = require("multer");
-const uidSafe = require("uid-safe");
-const path = require("path");
-
-const diskStorage = multer.diskStorage({
-    destination: function(req, file, callback) {
-        callback(null, "./public" + "/uploads");
-    },
-    filename: function(req, file, callback) {
-        uidSafe(24).then(function(uid) {
-            callback(null, uid + path.extname(file.originalname));
-        });
-    }
-});
-
-const uploader = multer({
-    storage: diskStorage,
-    limits: {
-        fileSize: 800000
-    }
-});
+//
+// const diskStorage = multer.diskStorage({
+//     destination: function(req, file, callback) {
+//         callback(null, "./public" + "/uploads");
+//     },
+//     filename: function(req, file, callback) {
+//         uidSafe(24).then(function(uid) {
+//             callback(null, uid + path.extname(file.originalname));
+//         });
+//     }
+// });
+//
+// const uploader = multer({
+//     storage: diskStorage,
+//     limits: {
+//         fileSize: 800000
+//     }
+// });
 
 //GRABER
 app.get("/graber", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/upload", (req, res) => {
-    uploader.single("file")(req, res, function(err) {
-        if (err instanceof multer.MulterError) {
-            return res.json({ error: true });
-        } else if (err) {
-            return res.json({ error: true });
-        }
+//REGISTER
+app.post("/register", (req, res) => {
+    let { firstName, lastName, email, password } = req.body;
 
-        console.log(res);
+    console.log(
+        "first",
+        firstName,
+        "last",
+        lastName,
+        "email",
+        email,
+        "password",
+        password
+    );
 
-        if (req.file) {
-            console.log("req.file", req.file);
-            // let username = req.body.username;
-            // let title = req.body.title;
-            // let description = req.body.description;
-            //
-            // cloudinary.uploader.upload(req.file.path, function(result) {
-            //   const url = result.secure_url;
-            //
-            //   db.addImage(url, id)
-            //     .then(function(result) {
-            //       return res.json(url);
-            //     })
-            //     .catch(function(error) {
-            //       return res.json({ error: true });
-            //     });
-            //});
-        } else {
-            return res.json({ error: true });
-        }
+    hash(password).then(hashedpassword => {
+        password = hashedpassword;
+
+        db.registerUser(firstName, lastName, email, password)
+            .then(result => {
+                req.session.userId = result.rows[0].id;
+                return res.json(result);
+            })
+            .catch(error => {
+                console.log(error);
+                return res.json({ error: true });
+            });
     });
 });
+
+// app.post("/upload", (req, res) => {
+//     uploader.single("file")(req, res, function(err) {
+//         if (err instanceof multer.MulterError) {
+//             return res.json({ error: true });
+//         } else if (err) {
+//             return res.json({ error: true });
+//         }
+//
+//         console.log(res);
+//
+//         if (req.file) {
+//             // let username = req.body.username;
+//             // let title = req.body.title;
+//             // let description = req.body.description;
+//             //
+//             // cloudinary.uploader.upload(req.file.path, function(result) {
+//             //     const url = result.secure_url;
+//             //     console.log(url);
+//             // });
+//
+//             console.log("req.file", req.file);
+//         }
+//     });
+// });
 
 app.get("*", function(req, res) {
     res.redirect("/graber");

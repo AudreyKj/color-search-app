@@ -1,6 +1,6 @@
-# COLOR SPOT - React app using color-thief API
+# COLOR SPOT - React app to create color palettes from images
 
-In this React app, users
+In this React app, users can create color palettes from images. Using color-thief API.
 
 [visit live app](https://corona-emotions.club)
 

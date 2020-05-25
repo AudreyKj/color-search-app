@@ -45,7 +45,8 @@ div.options-buttons {
     text-align: center;
 }
 
-span.options {
+span.options,
+a.options {
     font-family: Arial;
 
     display: inline-block;
