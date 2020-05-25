@@ -13,4 +13,11 @@ function registerUser(first, last, email, password) {
     );
 }
 
+function verifyUser(email) {
+    return db.query(`SELECT password, id FROM register where email=$1`, [
+        email
+    ]);
+}
+
 exports.registerUser = registerUser;
+exports.verifyUser = verifyUser;

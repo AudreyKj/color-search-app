@@ -74,24 +74,13 @@ if (process.env.NODE_ENV != "production") {
 // });
 
 //GRABER
-app.get("/graber", function(req, res) {
+app.get("/spotter", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
 //REGISTER
 app.post("/register", (req, res) => {
     let { firstName, lastName, email, password } = req.body;
-
-    console.log(
-        "first",
-        firstName,
-        "last",
-        lastName,
-        "email",
-        email,
-        "password",
-        password
-    );
 
     hash(password).then(hashedpassword => {
         password = hashedpassword;
@@ -106,6 +95,35 @@ app.post("/register", (req, res) => {
                 return res.json({ error: true });
             });
     });
+});
+
+app.post("/login/submit", (req, res) => {
+    let { email, password } = req.body;
+
+    db.verifyUser(email)
+        .then(result => {
+            if (!result || result.rows.length === 0) {
+                return res.json({ error: true });
+            }
+
+            let passwordDB = result.rows[0].password;
+            compare(password, passwordDB)
+                .then(matchValue => {
+                    if (matchValue) {
+                        let id = result.rows[0].id;
+                        req.session.userId = id;
+                    } else {
+                        return res.json({ error: true });
+                    }
+                })
+                .catch(err => {
+                    return res.json({ error: true });
+                });
+        })
+        .catch(error => {
+            console.log("error", error);
+            return res.json({ error: true });
+        });
 });
 
 // app.post("/upload", (req, res) => {
@@ -134,7 +152,7 @@ app.post("/register", (req, res) => {
 // });
 
 app.get("*", function(req, res) {
-    res.redirect("/graber");
+    res.redirect("/spotter");
 });
 
 server.listen(process.env.PORT || 8080);
