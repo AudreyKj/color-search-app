@@ -2,6 +2,7 @@ import React from "react";
 import ColorGraber from "./color-graber.js";
 import Register from "./register";
 import Login from "./login";
+import Saved from "./saved";
 import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
                     <Link to="/spotter" className="options">
                         SPOTTER
                     </Link>
+                    <Link to="/saved" className="options">
+                        SAVED
+                    </Link>
                     <Link to="/login" className="options">
                         LOGIN
                     </Link>
@@ -29,6 +33,7 @@ function App() {
                 <Route path="/register" component={Register}></Route>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/spotter" component={ColorGraber}></Route>
+                <Route path="/saved" component={Saved}></Route>
             </BrowserRouter>
         </div>
     );

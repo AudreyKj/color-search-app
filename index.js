@@ -117,12 +117,68 @@ app.post("/login/submit", (req, res) => {
                     }
                 })
                 .catch(err => {
+                    console.log("error", error);
                     return res.json({ error: true });
                 });
         })
         .catch(error => {
             console.log("error", error);
             return res.json({ error: true });
+        });
+});
+
+app.post("/savepalette", (req, res) => {
+    let user_id = req.session.userId;
+
+    console.log("tag", req.body.tag);
+    console.log("colors", typeof req.body.colors);
+
+    const colorArr = Object.values(req.body.colors);
+    console.log("colorArr", colorArr);
+
+    db.savePalette(colorArr, req.body.tag, user_id)
+        .then(result => {
+            console.log("res", result);
+            return res.json({ result });
+        })
+        .catch(error => {
+            console.log("error", error);
+        });
+});
+
+app.get("/savedcolors", (req, res) => {
+    let user_id = req.session.userId;
+    db.getColors(user_id)
+        .then(result => {
+            console.log("result.rows", result.rows);
+
+            result.rows.map(elem => {
+                if (typeof elem.palette === "string" || elem.palette !== null) {
+                    elem.palette = elem.palette.replace(/[{}/"]/g, "");
+                    elem.palette = elem.palette.split(",");
+                }
+            });
+
+            return res.json(result.rows);
+        })
+        .catch(error => {
+            console.log("error", error);
+        });
+});
+
+app.post("/filter", (req, res) => {
+    console.log(req.body);
+
+    let element = req.body.filtering;
+    let user_id = req.session.userId;
+
+    db.filter(element, user_id)
+        .then(result => {
+            console.log("result.rows", result.rows[0]);
+            return res.json(result.rows[0]);
+        })
+        .catch(err => {
+            console.log("err", err);
         });
 });
 

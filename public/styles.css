@@ -11,6 +11,48 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+span.filter {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background: #333;
+    color: whitesmoke;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
+}
+
+div.filter {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+span.filter_title {
+    font-size: 2rem;
+}
+
+div.single-color {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+
 span.confirmation {
     font-size: 1.5rem;
     margin-top: 20px;
@@ -65,6 +107,14 @@ div.palette {
     width: 100%;
 }
 
+div.saved_palettes_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 50px;
+}
+
 ul {
     list-style-type: none;
 
@@ -81,7 +131,28 @@ li {
     align-items: center;
     justify-content: center;
 
-    margin-right: 15px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+button.save {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    color: #ccc;
+    background: #333;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+}
+
+span.palette_saved_confirmation {
+    text-align: center;
 }
 
 p.drop-graber {
