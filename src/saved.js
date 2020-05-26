@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 
-//pass logged in as props from Login: login pass to App,
-// APP pass to saved
-
-//if loggin: user can save color
-
-//integrate saved in color-graber?
-
 function Saved() {
     const [palettes, setPalettes] = useState();
     const [tag, setTags] = useState();
+    const [noResult, setNoResult] = useState(false);
 
     useEffect(() => {
         axios.get("/savedcolors").then(data => {
             setPalettes(data.data);
-
-            const palettes_tags = [];
-
-            data.data.map(elem => {
-                palettes_tags.push(elem.tag);
-            });
-            setTags(palettes_tags);
         });
     }, []);
 
-    const filter = item => {
-        console.log("item", item);
+    const handleChange = e => {
+        setTags(e.target.value);
+        setNoResult(false);
+    };
+
+    const filter = e => {
+        e.preventDefault();
         axios
-            .post("/filter", { filtering: item })
+            .post("/filter", { tag })
             .then(data => {
+                if (data.data === undefined || data.data.length === 0) {
+                    return setNoResult(true);
+                }
                 console.log("data", data);
+                setNoResult(false);
+                setPalettes(data.data);
             })
             .catch(error => {
                 console.log("error", error);
@@ -39,10 +36,29 @@ function Saved() {
 
     return (
         <div className="saved_palettes_container">
+            <div className="filtering">
+                <span className="filter_title">
+                    FILTER BY PALETTE TAG <br />
+                </span>
+                <form method="POST">
+                    <input type="text" onChange={handleChange} />
+                    <button className="filter-button" onClick={filter}>
+                        FILTER
+                    </button>
+                </form>
+
+                <span className="title">
+                    All the palettes you've saved are displayed here. <br />
+                    Please register or login to be able to save palettes and
+                    grow your collection.
+                </span>
+
+                {noResult && <span> No matched tags found </span>}
+            </div>
+
             {palettes &&
                 palettes.map(colorSet => {
                     if (colorSet.palette !== null) {
-                        console.log("colorSet.palette", colorSet.palette);
                         return colorSet.palette.map(name => (
                             <div className="saved_color">
                                 <div
@@ -54,6 +70,7 @@ function Saved() {
                                 >
                                     {name}
                                 </div>
+                                tag:{colorSet.tag}
                             </div>
                         ));
                     }

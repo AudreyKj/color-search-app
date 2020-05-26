@@ -33,9 +33,9 @@ function getColors(user_id) {
     );
 }
 
-function filter(element, user_id) {
+function filter(tag, user_id) {
     return db.query(`SELECT * FROM saved WHERE tag=$1 AND user_id= $2`, [
-        element,
+        tag,
         user_id
     ]);
 }

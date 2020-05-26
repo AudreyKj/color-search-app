@@ -11,6 +11,32 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+div.member-otions {
+    position: absolute;
+    top: right;
+    background-color: #333;
+}
+
+button.logout {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background: #d6d6d6;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
 span.filter {
     font-family: Arial;
     display: inline-block;
@@ -35,6 +61,18 @@ div.filter {
     justify-content: center;
     margin-bottom: 20px;
     margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.filtering {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 35px;
 }
 
 span.filter_title {
@@ -49,8 +87,12 @@ div.single-color {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-right: 50px;
+}
+
+div.saved_color {
+    margin-bottom: 50px;
 }
 
 span.confirmation {
@@ -94,6 +136,23 @@ button.submit {
     color: whitesmoke;
     border: 1px solid transparent;
     text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
+}
+
+.filter-button {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    color: #333;
+    border: 1px solid #333;
+    text-transform: uppercase;
+    background-color: whitesmoke;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
     cursor: pointer;
@@ -200,11 +259,16 @@ div.dominantColor {
 }
 
 div.logo {
-    background-image: radial-gradient(circle closest-side, red, whitesmoke);
-    width: 150px;
-    height: 150px;
+    /*background-image: radial-gradient(circle closest-side, red, whitesmoke);*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     position: absolute;
-    left: 20px;
+    top: 30px;
+    left: 40px;
+
+    background-color: red;
+    box-shadow: red 0px 0px 15px 10px;
 }
 
 span.color-spot {
@@ -214,7 +278,7 @@ span.color-spot {
 }
 
 div.options-buttons {
-    width: 100%;
+    width: 50%;
     text-align: center;
     margin-bottom: 20px;
 }

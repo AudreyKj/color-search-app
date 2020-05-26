@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
 
-function Register() {
+function Register(props) {
+    console.log("props", props);
+
     const [form, setForm] = useState(true);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -42,6 +44,8 @@ function Register() {
                     setErrorNames(false);
                     setErrorPw(false);
                     setErrorEmail(false);
+
+                    useState((props.loggedIn = false));
 
                     setConfirmation(true);
 

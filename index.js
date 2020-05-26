@@ -110,8 +110,10 @@ app.post("/login/submit", (req, res) => {
             compare(password, passwordDB)
                 .then(matchValue => {
                     if (matchValue) {
-                        let id = result.rows[0].id;
-                        req.session.userId = id;
+                        console.log("match value", matchValue);
+                        req.session.userId = result.rows[0].id;
+
+                        return res.json(result);
                     } else {
                         return res.json({ error: true });
                     }
@@ -128,6 +130,8 @@ app.post("/login/submit", (req, res) => {
 });
 
 app.post("/savepalette", (req, res) => {
+    console.log("req.session.userId -/savepalette", req.session.userId);
+
     let user_id = req.session.userId;
 
     console.log("tag", req.body.tag);
@@ -169,17 +173,31 @@ app.get("/savedcolors", (req, res) => {
 app.post("/filter", (req, res) => {
     console.log(req.body);
 
-    let element = req.body.filtering;
+    let tag = req.body.tag;
     let user_id = req.session.userId;
 
-    db.filter(element, user_id)
+    db.filter(tag, user_id)
         .then(result => {
+            result.rows.map(elem => {
+                if (typeof elem.palette === "string" || elem.palette !== null) {
+                    elem.palette = elem.palette.replace(/[{}/"]/g, "");
+                    elem.palette = elem.palette.split(",");
+                }
+            });
+
             console.log("result.rows", result.rows[0]);
-            return res.json(result.rows[0]);
+
+            return res.json(result.rows);
         })
         .catch(err => {
             console.log("err", err);
         });
+});
+
+//LOGOUT
+app.get("/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/spotter");
 });
 
 // app.post("/upload", (req, res) => {
