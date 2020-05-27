@@ -3,7 +3,7 @@ import { Palette, Color } from "color-thief-react";
 import Dropzone from "react-dropzone";
 import axios from "./axios";
 
-function ColorGraber() {
+function ColorGraber(props) {
     const [url, setUrl] = useState();
     const [palette, setPalette] = useState(false);
     const [file, setFile] = useState();
@@ -24,10 +24,12 @@ function ColorGraber() {
 
     const handledropped = acceptedFiles => {
         console.log(acceptedFiles);
+
         //const files = acceptedFiles.dataTransfer.files;
         const localUrl = window.URL.createObjectURL(acceptedFiles[0]);
 
         setFile(localUrl);
+        setConfirmation_saved(false);
         setPalette(true);
     };
 
@@ -66,6 +68,12 @@ function ColorGraber() {
 
             {palette && (
                 <div className="palette">
+                    {!props.loggedIn && (
+                        <span className="graber_instructions">
+                            Please register or login to be able to save palettes
+                        </span>
+                    )}
+
                     <Palette
                         src={file}
                         crossOrigin="Anonymous"
@@ -88,31 +96,34 @@ function ColorGraber() {
                                         </li>
                                     ))}
 
-                                    <div>
-                                        <form method="POST">
-                                            <input
-                                                type="text"
-                                                placeholder="palette tag"
-                                                value={tag}
-                                                onChange={e =>
-                                                    setTag(e.target.value)
-                                                }
-                                            />
-                                            <button
-                                                className="save"
-                                                onClick={savePalette}
-                                            >
-                                                SAVE PALETTE
-                                            </button>
-                                        </form>
-                                        {confirmation_saved && (
-                                            <span className="palette_saved_confirmation">
-                                                successfully saved! <br />
-                                                all the palettes you've saved
-                                                are in the SAVE section
-                                            </span>
-                                        )}
-                                    </div>
+                                    {props.loggedIn && (
+                                        <div>
+                                            <form method="POST">
+                                                <input
+                                                    type="text"
+                                                    placeholder="palette tag"
+                                                    value={tag}
+                                                    onChange={e =>
+                                                        setTag(e.target.value)
+                                                    }
+                                                />
+                                                <button
+                                                    className="save"
+                                                    onClick={savePalette}
+                                                >
+                                                    SAVE PALETTE
+                                                </button>
+                                            </form>
+                                            {confirmation_saved && (
+                                                <span className="palette_saved_confirmation">
+                                                    successfully saved! <br />
+                                                    all the palettes you've
+                                                    saved are in the SAVE
+                                                    section
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                 </ul>
                             );
                         }}

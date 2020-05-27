@@ -2,89 +2,71 @@ import React, { useState } from "react";
 import axios from "./axios.js";
 
 function Register(props) {
-    console.log("props", props);
-
     const [form, setForm] = useState(true);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [errorNames, setErrorNames] = useState(false);
+    const [userNameError, setErrorUserName] = useState("");
     const [errorPw, setErrorPw] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
 
     const handleClick = e => {
-        console.log(password);
         e.preventDefault();
 
-        if (firstName.length < 2 || lastName.length < 2) {
+        if (userName.length < 2) {
             return setErrorNames(true);
         }
 
         if (password.length < 5 || !/[0-9]/g.test(password)) {
-            console.log("password error");
             return setErrorPw(true);
         }
 
         if (email.length < 3 || !email.includes("@")) {
-            console.log("email error");
             return setErrorEmail(true);
         }
 
-        axios
-            .post("/register", { firstName, lastName, password, email })
-            .then(data => {
-                if (data.error) {
-                    setError(true);
-                } else {
-                    setForm(false);
-                    setError(false);
-                    setErrorNames(false);
-                    setErrorPw(false);
-                    setErrorEmail(false);
+        axios.post("/register", { userName, password, email }).then(data => {
+            console.log("data", data);
+            if (data.error) {
+                setError(true);
+            } else if (data.data.notUnique) {
+                setErrorUserName(true);
+            } else {
+                setErrorUserName(false);
+                setForm(false);
+                setError(false);
+                setErrorNames(false);
+                setErrorPw(false);
+                setErrorEmail(false);
+                setConfirmation(true);
 
-                    useState((props.loggedIn = false));
-
-                    setConfirmation(true);
-
-                    setFirstName("");
-                    setLastName("");
-                    setEmail("");
-                    setPassword("");
-                }
-            });
+                setUserName("");
+                setEmail("");
+                setPassword("");
+            }
+        });
     };
 
     return (
         <div>
             {form && (
                 <form className="auth" method="POST">
-                    <label htmlFor="firstName">
-                        FIRST NAME <br />
+                    <label htmlFor="userName">
+                        USERNAME <br />
                         <input
                             type="text"
-                            name="firstName"
-                            placeholder="first name"
-                            value={firstName}
-                            onChange={e => setFirstName(e.target.value)}
+                            name="username"
+                            placeholder="username"
+                            value={userName}
+                            onChange={e => setUserName(e.target.value)}
                             autoComplete="off"
                             required
                         />
                     </label>
-                    <label htmlFor="firstName">
-                        LAST NAME <br />
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="last name"
-                            value={lastName}
-                            onChange={e => setLastName(e.target.value)}
-                            autoComplete="off"
-                            required
-                        />
-                    </label>
+
                     <label htmlFor="email">
                         EMAIL <br />
                         <input
@@ -117,7 +99,7 @@ function Register(props) {
 
             {errorNames && (
                 <span className="error">
-                    Please make sure your names are entered correctly.
+                    Please make sure your username is correctly entered.
                 </span>
             )}
 
@@ -139,6 +121,11 @@ function Register(props) {
                     Error: something went wrong. Please try again.
                 </span>
             )}
+
+            {userNameError && (
+                <span className="error">This username already exists.</span>
+            )}
+
             {confirmation && (
                 <span className="confirmation">
                     Success! You're registered!

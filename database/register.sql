@@ -1,7 +1,6 @@
 CREATE TABLE register(
 id SERIAL PRIMARY KEY,
-first VARCHAR(255) NOT NULL CHECK (first != ''),
-last VARCHAR(255) NOT NULL CHECK (last != ''),
+username VARCHAR(255) NOT NULL UNIQUE CHECK (username != ''),
 email VARCHAR(255) NOT NULL UNIQUE CHECK (email != ''),
 password VARCHAR(255) NOT NULL CHECK (password != ''),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

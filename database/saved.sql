@@ -4,4 +4,4 @@ CREATE TABLE saved(
   tag VARCHAR,
   user_id INT NOT NULL REFERENCES register(id),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);

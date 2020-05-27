@@ -53,25 +53,10 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-//multer for file upload
-//
-// const diskStorage = multer.diskStorage({
-//     destination: function(req, file, callback) {
-//         callback(null, "./public" + "/uploads");
-//     },
-//     filename: function(req, file, callback) {
-//         uidSafe(24).then(function(uid) {
-//             callback(null, uid + path.extname(file.originalname));
-//         });
-//     }
-// });
-//
-// const uploader = multer({
-//     storage: diskStorage,
-//     limits: {
-//         fileSize: 800000
-//     }
-// });
+const {
+    requireLoggedOutUser,
+    requireLoggedInUser
+} = require("./middlewares.js");
 
 //GRABER
 app.get("/spotter", function(req, res) {
@@ -79,22 +64,43 @@ app.get("/spotter", function(req, res) {
 });
 
 //REGISTER
+app.get("/register", requireLoggedOutUser, (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
+
 app.post("/register", (req, res) => {
-    let { firstName, lastName, email, password } = req.body;
+    let { userName, email, password } = req.body;
+    let notUnique;
 
-    hash(password).then(hashedpassword => {
-        password = hashedpassword;
+    db.checkUsername(userName)
+        .then(result => {
+            console.log(result);
+            if (result.rows.length !== 0) {
+                return res.json({ notUnique: "notUnique" });
+            } else {
+                hash(password).then(hashedpassword => {
+                    password = hashedpassword;
 
-        db.registerUser(firstName, lastName, email, password)
-            .then(result => {
-                req.session.userId = result.rows[0].id;
-                return res.json(result);
-            })
-            .catch(error => {
-                console.log(error);
-                return res.json({ error: true });
-            });
-    });
+                    db.registerUser(userName, email, password)
+                        .then(result => {
+                            req.session.userId = result.rows[0].id;
+                            return res.json(result);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            return res.json({ error: true });
+                        });
+                });
+            }
+        })
+        .catch(error => {
+            return res.json({ error: true });
+        });
+});
+
+//LOGIN
+app.get("/login", requireLoggedOutUser, (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/login/submit", (req, res) => {
@@ -194,11 +200,151 @@ app.post("/filter", (req, res) => {
         });
 });
 
+//GET LOGGED IN
+app.get("/getloggedIn", (req, res) => {
+    let loggedIn = "logged";
+    let notLogged = "notlogged";
+
+    if (req.session.userId) {
+        return res.json(loggedIn);
+    } else {
+        return res.json(notLogged);
+    }
+});
+
+//PROFILE
+app.get("/profile", requireLoggedInUser, (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/getprofile", (req, res) => {
+    let user_id = req.session.userId;
+
+    db.getProfile(user_id)
+        .then(result => {
+            console.log("result.rows[0]", result.rows);
+            return res.json(result.rows);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+});
+
+//UPDATE PROFILE
+app.post("/updateprofile", (req, res) => {
+    let user_id = req.session.userId;
+
+    let { username, email, age, password, country, gender } = req.body;
+
+    hash(password)
+        .then(hashedPw => {
+            password = hashedPw;
+
+            db.updateUsers(username, email, password, user_id)
+                .then(result => {
+                    db.updateProfile(user_id, age, country, gender)
+                        .then(result => {
+                            return res.json(result);
+                        })
+                        .catch(error => {
+                            console.log("error", error);
+                            return res.json({ error: true });
+                        });
+                })
+                .catch(error => {
+                    console.log("error", error);
+                    return res.json({ error: true });
+                });
+        })
+        .catch(error => {
+            console.log("error", error);
+            return res.json({ error: true });
+        });
+});
+
+//DELETE ACCOUNT
+app.post("/delete", async (req, res) => {
+    let user_id = req.session.userId;
+
+    try {
+        const deleteSavedPalettes = await db.deleteSavedPalettes(user_id);
+        const deleteInfoProfile = await db.deleteInfoProfile(user_id);
+        const deleteUserInfo = await db.deleteUserInfo(user_id);
+        req.session.userId = null;
+        res.redirect("/spotter");
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 //LOGOUT
 app.get("/logout", (req, res) => {
     req.session.userId = null;
     res.redirect("/spotter");
 });
+
+//ADMIN - DATA VISUALIZATION
+app.get("/admin", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
+
+//DATA OF USERS
+app.get("/data", async (req, res) => {
+    try {
+        const getGender = await db.getGender();
+        const getAge = await db.getAge();
+        const getCountry = await db.getCountry();
+
+        console.log("getGender", getGender);
+        console.log("getAge", getAge);
+        console.log("getCountry", getCountry);
+
+        const result = [];
+
+        result.push(getGender.rows);
+        result.push(getAge.rows);
+        result.push(getCountry.rows);
+
+        console.log("result", result);
+
+        return res.json(result);
+    } catch (error) {
+        console.log("error", error);
+    }
+});
+
+// app.get("/getgender", (req, res) => {
+//     db.getGender()
+//         .then(result => {
+//             console.log(result);
+//             return res.json(result.rows);
+//         })
+//         .catch(error => {
+//             console.log("error", error);
+//         });
+// });
+//
+// app.get("/getage", (req, res) => {
+//     db.getAge()
+//         .then(result => {
+//             console.log(result);
+//             return res.json(result.rows);
+//         })
+//         .catch(error => {
+//             console.log("error", error);
+//         });
+// });
+//
+// app.get("/getcountry", (req, res) => {
+//     db.getCountry()
+//         .then(result => {
+//             console.log("country - results", result);
+//             return res.json(result.rows);
+//         })
+//         .catch(error => {
+//             console.log("error", error);
+//         });
+// });
 
 // app.post("/upload", (req, res) => {
 //     uploader.single("file")(req, res, function(err) {

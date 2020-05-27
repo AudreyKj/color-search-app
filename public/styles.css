@@ -4,11 +4,77 @@
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    outline: none;
 }
 
 body {
     background-color: whitesmoke;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+div.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* HOME */
+header {
+    display: flex;
+    width: 100%;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    width: 500px;
+}
+
+div.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+
+    background-color: red;
+    box-shadow: red 0px 0px 15px 10px;
+}
+
+span.color-spot {
+    font-size: 6rem;
+    margin-left: 20px;
+}
+
+div.options-buttons {
+    width: 50%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a,
+a:hover,
+a:active {
+    color: #333;
+    text-decoration: none;
+}
+
+span.options,
+a.options {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background: #d6d6d6;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
 }
 
 div.member-otions {
@@ -37,133 +103,21 @@ button.logout {
     cursor: pointer;
 }
 
-span.filter {
-    font-family: Arial;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    min-width: 1.5em;
-    border-radius: 10em;
-    background: #333;
-    color: whitesmoke;
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
-    cursor: pointer;
-}
-
-div.filter {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-
-div.filtering {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 15px;
-    margin-bottom: 35px;
-}
-
-span.filter_title {
-    font-size: 2rem;
-}
-
-div.single-color {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-right: 50px;
-}
-
-div.saved_color {
-    margin-bottom: 50px;
-}
-
-span.confirmation {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
-span.error {
-    margin-top: 20px;
-    font-size: 1.5rem;
-}
-
-form.auth {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 45px;
-    font-size: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input {
-    margin-top: 5px;
-    padding: 10px;
-}
-
-button.submit {
-    font-family: Arial;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    min-width: 1.5em;
-    border-radius: 10em;
-    background: #333;
-    color: whitesmoke;
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
-    cursor: pointer;
-}
-
-.filter-button {
-    font-family: Arial;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    min-width: 1.5em;
-    border-radius: 10em;
-    color: #333;
-    border: 1px solid #333;
-    text-transform: uppercase;
-    background-color: whitesmoke;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
-    cursor: pointer;
-}
-
+/* COLOR SPOTTER */
 div.color-graber {
     margin-top: 35px;
 }
 
+span.graber_instructions {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
 div.palette {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 div.saved_palettes_container {
@@ -217,8 +171,6 @@ span.palette_saved_confirmation {
 p.drop-graber {
     border: 1px solid #333;
     padding: 50px;
-    /* padding: 50px; */
-    /* width: 50%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,76 +178,173 @@ p.drop-graber {
     font-size: 2rem;
 }
 
-div.container {
+/* SAVED PALETTES */
+div.filtering {
     width: 100%;
+
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 35px;
 }
 
-a,
-a:hover,
-a:active {
-    color: #333;
-    text-decoration: none;
-}
-
-header {
-    display: flex;
-    width: 100%;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-}
-
-img {
-    width: 500px;
-}
-
-div.dominantColor {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
-
-div.logo {
-    /*background-image: radial-gradient(circle closest-side, red, whitesmoke);*/
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 30px;
-    left: 40px;
-
-    background-color: red;
-    box-shadow: red 0px 0px 15px 10px;
-}
-
-span.color-spot {
-    /* font-family: "Uncial Antiqua", cursive; */
-    font-size: 6rem;
-    margin-left: 20px;
-}
-
-div.options-buttons {
-    width: 50%;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-span.options,
-a.options {
+span.filter {
     font-family: Arial;
-
     display: inline-block;
     vertical-align: top;
     font-size: 1.3rem;
     letter-spacing: 0.04em;
     min-width: 1.5em;
     border-radius: 10em;
-    background: #d6d6d6;
+    background: #333;
+    color: whitesmoke;
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
+}
+
+.filter-button {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    color: #333;
+    border: 1px solid #333;
+    text-transform: uppercase;
+    background-color: whitesmoke;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
+}
+
+span.filter_title {
+    font-size: 2rem;
+}
+
+div.single-color {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+div.saved_color {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-right: 50px;
+    text-align: center;
+}
+
+/* AUTH */
+form.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1.3rem;
+}
+
+button.submit {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background: #333;
+    color: whitesmoke;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
+}
+
+span.error {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+span.confirmation {
+    font-size: 1.5rem;
+}
+
+/* INFO */
+p.info {
+    width: 50%;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+span.title {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+div.info-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* PROFILE */
+div.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+span.account-date {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* ADMIN: CHARTS */
+div.chart {
+    display: flex;
+    padding-top: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+}
+
+div.single-chart {
+    padding-right: 30px;
 }

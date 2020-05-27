@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 
-function Saved() {
+function Saved(props) {
     const [palettes, setPalettes] = useState();
     const [tag, setTags] = useState();
     const [noResult, setNoResult] = useState(false);
@@ -36,25 +36,31 @@ function Saved() {
 
     return (
         <div className="saved_palettes_container">
-            <div className="filtering">
-                <span className="filter_title">
-                    FILTER BY PALETTE TAG <br />
+            <span className="title">
+                All the palettes you've saved are displayed here.
+            </span>
+            {!props.loggedIn && (
+                <span className="graber_instructions">
+                    Please register or login to save palettes and grow
+                    collections.
                 </span>
-                <form method="POST">
-                    <input type="text" onChange={handleChange} />
-                    <button className="filter-button" onClick={filter}>
-                        FILTER
-                    </button>
-                </form>
+            )}
 
-                <span className="title">
-                    All the palettes you've saved are displayed here. <br />
-                    Please register or login to be able to save palettes and
-                    grow your collection.
-                </span>
+            {props.loggedIn && (
+                <div className="filtering">
+                    <span className="filter_title">
+                        FILTER BY PALETTE TAG <br />
+                    </span>
+                    <form method="POST">
+                        <input type="text" onChange={handleChange} />
+                        <button className="filter-button" onClick={filter}>
+                            FILTER
+                        </button>
+                    </form>
 
-                {noResult && <span> No matched tags found </span>}
-            </div>
+                    {noResult && <span> No matched tags found </span>}
+                </div>
+            )}
 
             {palettes &&
                 palettes.map(colorSet => {

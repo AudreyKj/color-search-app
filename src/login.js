@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
 
-function Login() {
-    const [loggedIn, setLoggedIn] = useState(false);
+function Login(props) {
     const [form, setForm] = useState(true);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -16,7 +15,7 @@ function Login() {
             if (data.data.error) {
                 return setError(true);
             } else {
-                setLoggedIn(true);
+                props.updateLogged();
                 setError(false);
                 setForm(false);
 
