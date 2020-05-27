@@ -28,7 +28,6 @@ function App() {
     }, [loggedIn]);
 
     const updateLogged = () => {
-        console.log("updating");
         if (!loggedIn) {
             setLoggedIn(true);
         } else {
@@ -57,35 +56,70 @@ function App() {
 
             <BrowserRouter>
                 <div className="options-buttons">
-                    <Link to="/spotter" className="options">
+                    <NavLink
+                        exact
+                        to="/spotter"
+                        activeClassName="active"
+                        className="options"
+                    >
                         COLOR SPOTTER
-                    </Link>
-                    <Link to="/saved" className="options">
+                    </NavLink>
+                    <NavLink
+                        exact
+                        to="/saved"
+                        activeClassName="active"
+                        className="options"
+                    >
                         SAVED PALETTES
-                    </Link>
+                    </NavLink>
 
-                    <Link to="/info" className="options">
+                    <NavLink
+                        exact
+                        to="/info"
+                        activeClassName="active"
+                        className="options"
+                    >
                         INFO
-                    </Link>
-                    <br />
-                    <Link to="/admin" className="options">
+                    </NavLink>
+
+                    <Link
+                        exact
+                        to="/admin"
+                        activeClassName="active"
+                        className="options"
+                    >
                         Admin
                     </Link>
+
                     {!loggedIn && (
                         <>
-                            <Link to="/login" className="options">
+                            <NavLink
+                                exact
+                                to="/login"
+                                activeClassName="active"
+                                className="options"
+                            >
                                 LOGIN
-                            </Link>
-                            <Link to="/register" className="options">
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/register"
+                                activeClassName="active"
+                                className="options"
+                            >
                                 REGISTER
-                            </Link>
+                            </NavLink>
                         </>
                     )}
 
                     {loggedIn && (
-                        <Link to="/profile" className="options">
+                        <NavLink
+                            to="/profile"
+                            activeClassName="active"
+                            className="options"
+                        >
                             EDIT PROFILE
-                        </Link>
+                        </NavLink>
                     )}
                 </div>
 

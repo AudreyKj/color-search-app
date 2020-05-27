@@ -74,7 +74,6 @@ app.post("/register", (req, res) => {
 
     db.checkUsername(userName)
         .then(result => {
-            console.log(result);
             if (result.rows.length !== 0) {
                 return res.json({ notUnique: "notUnique" });
             } else {
@@ -87,7 +86,6 @@ app.post("/register", (req, res) => {
                             return res.json(result);
                         })
                         .catch(error => {
-                            console.log(error);
                             return res.json({ error: true });
                         });
                 });
@@ -116,7 +114,6 @@ app.post("/login/submit", (req, res) => {
             compare(password, passwordDB)
                 .then(matchValue => {
                     if (matchValue) {
-                        console.log("match value", matchValue);
                         req.session.userId = result.rows[0].id;
 
                         return res.json(result);
@@ -130,25 +127,17 @@ app.post("/login/submit", (req, res) => {
                 });
         })
         .catch(error => {
-            console.log("error", error);
             return res.json({ error: true });
         });
 });
 
 app.post("/savepalette", (req, res) => {
-    console.log("req.session.userId -/savepalette", req.session.userId);
-
     let user_id = req.session.userId;
 
-    console.log("tag", req.body.tag);
-    console.log("colors", typeof req.body.colors);
-
     const colorArr = Object.values(req.body.colors);
-    console.log("colorArr", colorArr);
 
     db.savePalette(colorArr, req.body.tag, user_id)
         .then(result => {
-            console.log("res", result);
             return res.json({ result });
         })
         .catch(error => {
@@ -160,8 +149,6 @@ app.get("/savedcolors", (req, res) => {
     let user_id = req.session.userId;
     db.getColors(user_id)
         .then(result => {
-            console.log("result.rows", result.rows);
-
             result.rows.map(elem => {
                 if (typeof elem.palette === "string" || elem.palette !== null) {
                     elem.palette = elem.palette.replace(/[{}/"]/g, "");
@@ -190,8 +177,6 @@ app.post("/filter", (req, res) => {
                     elem.palette = elem.palette.split(",");
                 }
             });
-
-            console.log("result.rows", result.rows[0]);
 
             return res.json(result.rows);
         })
@@ -222,7 +207,6 @@ app.get("/getprofile", (req, res) => {
 
     db.getProfile(user_id)
         .then(result => {
-            console.log("result.rows[0]", result.rows);
             return res.json(result.rows);
         })
         .catch(error => {
@@ -247,17 +231,14 @@ app.post("/updateprofile", (req, res) => {
                             return res.json(result);
                         })
                         .catch(error => {
-                            console.log("error", error);
                             return res.json({ error: true });
                         });
                 })
                 .catch(error => {
-                    console.log("error", error);
                     return res.json({ error: true });
                 });
         })
         .catch(error => {
-            console.log("error", error);
             return res.json({ error: true });
         });
 });
@@ -283,7 +264,7 @@ app.get("/logout", (req, res) => {
     res.redirect("/spotter");
 });
 
-//ADMIN - DATA VISUALIZATION
+//ADMIN PAGE - DATA VISUALIZATION
 app.get("/admin", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
@@ -295,81 +276,17 @@ app.get("/data", async (req, res) => {
         const getAge = await db.getAge();
         const getCountry = await db.getCountry();
 
-        console.log("getGender", getGender);
-        console.log("getAge", getAge);
-        console.log("getCountry", getCountry);
-
         const result = [];
 
         result.push(getGender.rows);
         result.push(getAge.rows);
         result.push(getCountry.rows);
 
-        console.log("result", result);
-
         return res.json(result);
     } catch (error) {
         console.log("error", error);
     }
 });
-
-// app.get("/getgender", (req, res) => {
-//     db.getGender()
-//         .then(result => {
-//             console.log(result);
-//             return res.json(result.rows);
-//         })
-//         .catch(error => {
-//             console.log("error", error);
-//         });
-// });
-//
-// app.get("/getage", (req, res) => {
-//     db.getAge()
-//         .then(result => {
-//             console.log(result);
-//             return res.json(result.rows);
-//         })
-//         .catch(error => {
-//             console.log("error", error);
-//         });
-// });
-//
-// app.get("/getcountry", (req, res) => {
-//     db.getCountry()
-//         .then(result => {
-//             console.log("country - results", result);
-//             return res.json(result.rows);
-//         })
-//         .catch(error => {
-//             console.log("error", error);
-//         });
-// });
-
-// app.post("/upload", (req, res) => {
-//     uploader.single("file")(req, res, function(err) {
-//         if (err instanceof multer.MulterError) {
-//             return res.json({ error: true });
-//         } else if (err) {
-//             return res.json({ error: true });
-//         }
-//
-//         console.log(res);
-//
-//         if (req.file) {
-//             // let username = req.body.username;
-//             // let title = req.body.title;
-//             // let description = req.body.description;
-//             //
-//             // cloudinary.uploader.upload(req.file.path, function(result) {
-//             //     const url = result.secure_url;
-//             //     console.log(url);
-//             // });
-//
-//             console.log("req.file", req.file);
-//         }
-//     });
-// });
 
 app.get("*", function(req, res) {
     res.redirect("/spotter");

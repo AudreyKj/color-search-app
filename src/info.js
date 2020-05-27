@@ -11,8 +11,16 @@ function Info() {
                 <br />
                 API used: color-thief by Lokesh Dhakar
                 <br />
-                website made with React and Node.js <br /> developed by Audrey
-                Kadjar <br />
+                website made with React and Node.js <br /> developed by&nbsp;
+                <a
+                    href="https://github.com/AudreyKj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                >
+                    Audrey Kadjar
+                </a>
+                <br />
             </p>
         </div>
     );

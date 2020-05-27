@@ -25,7 +25,7 @@ function Saved(props) {
                 if (data.data === undefined || data.data.length === 0) {
                     return setNoResult(true);
                 }
-                console.log("data", data);
+
                 setNoResult(false);
                 setPalettes(data.data);
             })
@@ -36,27 +36,32 @@ function Saved(props) {
 
     return (
         <div className="saved_palettes_container">
-            <span className="title">
-                All the palettes you've saved are displayed here.
-            </span>
-            {!props.loggedIn && (
-                <span className="graber_instructions">
-                    Please register or login to save palettes and grow
-                    collections.
+            <div className="saved_instructions">
+                <span className="title">
+                    All the palettes you've saved are displayed here.
+                    <br />
                 </span>
-            )}
+                {!props.loggedIn && (
+                    <span className="graber_instructions">
+                        <br /> Please register or login to save palettes and
+                        grow collections.
+                    </span>
+                )}
+            </div>
 
             {props.loggedIn && (
                 <div className="filtering">
-                    <span className="filter_title">
-                        FILTER BY PALETTE TAG <br />
-                    </span>
-                    <form method="POST">
-                        <input type="text" onChange={handleChange} />
-                        <button className="filter-button" onClick={filter}>
-                            FILTER
-                        </button>
-                    </form>
+                    <div className="filter-part">
+                        <span className="filter_title">
+                            FILTER BY PALETTE TAG <br />
+                        </span>
+                        <form method="POST">
+                            <input type="text" onChange={handleChange} />
+                            <button className="filter-button" onClick={filter}>
+                                FILTER
+                            </button>
+                        </form>
+                    </div>
 
                     {noResult && <span> No matched tags found </span>}
                 </div>
@@ -86,15 +91,3 @@ function Saved(props) {
 }
 
 export default Saved;
-
-// <span className="filter_title">
-//     FILTER BY PALETTE TAG <br />
-// </span>
-// <div className="filter">
-//     {tag &&
-//         tag.map(item => (
-//             <span className="filter" key={item}>
-//                 {item}
-//             </span>
-//         ))}
-// </div>

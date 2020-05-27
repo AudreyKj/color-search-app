@@ -13,19 +13,14 @@ function ColorGraber(props) {
 
     const handleChange = e => {
         setUrl(e.target.value);
-        console.log(url);
     };
 
     const handleClick = e => {
         e.preventDefault();
-        console.log(url);
         setPalette(true);
     };
 
     const handledropped = acceptedFiles => {
-        console.log(acceptedFiles);
-
-        //const files = acceptedFiles.dataTransfer.files;
         const localUrl = window.URL.createObjectURL(acceptedFiles[0]);
 
         setFile(localUrl);
@@ -35,8 +30,7 @@ function ColorGraber(props) {
 
     const savePalette = e => {
         e.preventDefault();
-        console.log("colors", colors);
-        console.log("tag", tag);
+
         axios
             .post("/savepalette", { colors, tag })
             .then(res => {
@@ -135,14 +129,3 @@ function ColorGraber(props) {
 }
 
 export default ColorGraber;
-
-// <div>
-//     <form>
-//         <input
-//             onChange={handleChange}
-//             type="text"
-//             placeholder="url of your image"
-//         />
-//         <button onClick={handleClick}> GET COLOR PALETTE </button>
-//         <input type="reset" value="Reset" />
-//     </form>

@@ -23,13 +23,8 @@ div.container {
 header {
     display: flex;
     width: 100%;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-}
-
-img {
-    width: 500px;
 }
 
 div.logo {
@@ -44,15 +39,52 @@ div.logo {
     box-shadow: red 0px 0px 15px 10px;
 }
 
+@media (max-width: 550px) {
+    div.logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+}
+
 span.color-spot {
     font-size: 6rem;
     margin-left: 20px;
+    z-index: 10;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    span.color-spot {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 750px) {
+    span.color-spot {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
 }
 
 div.options-buttons {
     width: 50%;
     text-align: center;
     margin-bottom: 20px;
+}
+@media (max-width: 760px) {
+    div.options-buttons {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 550px) {
+    div.options-buttons {
+        margin-top: 40px;
+    }
 }
 
 a,
@@ -70,12 +102,65 @@ a.options {
     letter-spacing: 0.04em;
     min-width: 1.5em;
     border-radius: 10em;
-    background: #d6d6d6;
+    color: #ccc;
+    background-color: #333;
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
 }
+
+@media (max-width: 630px) {
+    span.options,
+    a.options {
+        font-size: 1rem;
+    }
+}
+
+a.admin {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 1.5em;
+    border-radius: 10em;
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    margin: 0.2em 0.5em;
+    padding: 0.4em 0.8em 0.2em;
+}
+
+@media (max-width: 750px) {
+    a.admin {
+        right: 50%;
+    }
+}
+
+@media (max-width: 630px) {
+    a.admin {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 540px) {
+    a.admin {
+        right: 55%;
+    }
+}
+
+/* span.options:hover,
+a.options:hover,
+span.options:visited,
+a.options:visited {
+    color: #333;
+    background-color: #ccc;
+} */
 
 div.member-otions {
     position: absolute;
@@ -103,6 +188,33 @@ button.logout {
     cursor: pointer;
 }
 
+- @media (max-width: 750px) {
+    button.logout {
+        right: 0;
+        top: 70px;
+    }
+}
+
+@media (max-width: 630px) {
+    button.logout {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    button.logout {
+        right: 50%;
+        top: 70px;
+        transform: translateX(50%);
+    }
+}
+
+@media (max-width: 450px) {
+    button.logout {
+        top: 120px;
+    }
+}
+
 /* COLOR SPOTTER */
 div.color-graber {
     margin-top: 35px;
@@ -112,6 +224,18 @@ span.graber_instructions {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+    span.graber_instructions {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    span.graber_instructions {
+        font-size: 0.8rem;
+    }
 }
 
 div.palette {
@@ -179,6 +303,12 @@ p.drop-graber {
 }
 
 /* SAVED PALETTES */
+
+div.saved_instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 div.filtering {
     width: 100%;
 
@@ -226,6 +356,12 @@ span.filter {
 
 span.filter_title {
     font-size: 2rem;
+}
+
+@media (max-width: 750px) {
+    span.filter_title {
+        font-size: 1.5rem;
+    }
 }
 
 div.single-color {
@@ -300,16 +436,44 @@ p.info {
     text-align: center;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
 span.title {
     font-size: 1.5rem;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
+@media (max-width: 700px) {
+    span.title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    span.title {
+        font-size: 0.8rem;
+    }
+}
+
 div.info-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    p.info {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1200px) {
+    p.info {
+        width: 90%;
+    }
 }
 
 /* PROFILE */
@@ -326,7 +490,7 @@ form.profile {
     align-items: center;
     margin-top: 45px;
     font-size: 1.5rem;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 span.account-date {
@@ -336,6 +500,20 @@ span.account-date {
 }
 
 /* ADMIN: CHARTS */
+
+h1 {
+    text-align: center;
+    width: 80%;
+}
+
+@media (max-width: 700px) {
+    h1 {
+        text-align: center;
+        width: 60%;
+        font-size: 1rem;
+    }
+}
+
 div.chart {
     display: flex;
     padding-top: 40px;
@@ -343,6 +521,12 @@ div.chart {
     justify-content: center;
     width: 100%;
     min-height: 100%;
+}
+
+@media (max-width: 1000px) {
+    div.chart {
+        flex-direction: column;
+    }
 }
 
 div.single-chart {
