@@ -56,71 +56,68 @@ function App() {
 
             <BrowserRouter>
                 <div className="options-buttons">
-                    <NavLink
-                        exact
-                        to="/spotter"
-                        activeClassName="active"
-                        className="options"
-                    >
-                        COLOR SPOTTER
-                    </NavLink>
-                    <NavLink
-                        exact
-                        to="/saved"
-                        activeClassName="active"
-                        className="options"
-                    >
-                        SAVED PALETTES
-                    </NavLink>
-
-                    <NavLink
-                        exact
-                        to="/info"
-                        activeClassName="active"
-                        className="options"
-                    >
-                        INFO
-                    </NavLink>
-
-                    <Link
-                        exact
-                        to="/admin"
-                        activeClassName="active"
-                        className="options"
-                    >
-                        Admin
-                    </Link>
-
-                    {!loggedIn && (
-                        <>
-                            <NavLink
-                                exact
-                                to="/login"
-                                activeClassName="active"
-                                className="options"
-                            >
-                                LOGIN
-                            </NavLink>
-                            <NavLink
-                                exact
-                                to="/register"
-                                activeClassName="active"
-                                className="options"
-                            >
-                                REGISTER
-                            </NavLink>
-                        </>
-                    )}
-
-                    {loggedIn && (
+                    <nav>
                         <NavLink
-                            to="/profile"
                             activeClassName="active"
-                            className="options"
+                            className="nav"
+                            to="/spotter"
                         >
-                            EDIT PROFILE
+                            COLOR SPOTTER
                         </NavLink>
-                    )}
+
+                        <NavLink
+                            to="/saved"
+                            activeClassName="active"
+                            className="nav"
+                        >
+                            SAVED PALETTES
+                        </NavLink>
+
+                        <NavLink
+                            to="/info"
+                            activeClassName="active"
+                            className="nav"
+                        >
+                            INFO
+                        </NavLink>
+
+                        <Link
+                            to="/admin"
+                            activeClassName="active"
+                            className="nav"
+                        >
+                            Admin
+                        </Link>
+
+                        {!loggedIn && (
+                            <>
+                                <NavLink
+                                    to="/login"
+                                    activeClassName="active"
+                                    className="nav"
+                                >
+                                    LOGIN
+                                </NavLink>
+                                <NavLink
+                                    to="/register"
+                                    activeClassName="active"
+                                    className="nav"
+                                >
+                                    REGISTER
+                                </NavLink>
+                            </>
+                        )}
+
+                        {loggedIn && (
+                            <NavLink
+                                to="/profile"
+                                activeClassName="active"
+                                className="nav"
+                            >
+                                EDIT PROFILE
+                            </NavLink>
+                        )}
+                    </nav>
                 </div>
 
                 {loggedIn && (

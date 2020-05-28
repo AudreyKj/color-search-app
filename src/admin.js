@@ -15,8 +15,6 @@ function Admin() {
         axios
             .get("/data")
             .then(data => {
-                console.log(data);
-
                 //GENDER
                 let femaleCount = 0;
                 let maleCount = 0;
@@ -68,21 +66,18 @@ function Admin() {
                 const sorted = age.sort((a, b) => {
                     return b - a;
                 });
-                console.log(sorted);
 
                 const ageData = [];
 
                 ageData.push(sorted.shift());
                 ageData.push(sorted.pop());
-                console.log(sorted);
+
                 let average = 0;
 
                 for (let age of sorted) {
                     average += age;
                 }
                 ageData.push(Math.floor(average / sorted.length));
-
-                console.log(ageData);
 
                 setAge({
                     labels: ["oldest user", "youngest user", "average age"],
@@ -179,5 +174,3 @@ function Admin() {
 }
 
 export default Admin;
-
-//</>

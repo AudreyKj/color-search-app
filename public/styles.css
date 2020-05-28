@@ -55,6 +55,13 @@ span.color-spot {
     margin-left: 20px;
     z-index: 10;
     text-align: center;
+    color: #333;
+}
+
+span.color-spot:hover {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #333;
+    color: transparent;
 }
 
 @media (max-width: 1000px) {
@@ -65,7 +72,7 @@ span.color-spot {
 
 @media (max-width: 750px) {
     span.color-spot {
-        font-size: 3rem;
+        font-size: 4rem;
         margin-bottom: 20px;
     }
 }
@@ -74,11 +81,6 @@ div.options-buttons {
     width: 50%;
     text-align: center;
     margin-bottom: 20px;
-}
-@media (max-width: 760px) {
-    div.options-buttons {
-        margin-top: 60px;
-    }
 }
 
 @media (max-width: 550px) {
@@ -94,8 +96,7 @@ a:active {
     text-decoration: none;
 }
 
-span.options,
-a.options {
+.nav {
     display: inline-block;
     vertical-align: top;
     font-size: 1.3rem;
@@ -110,11 +111,22 @@ a.options {
     padding: 0.4em 0.8em 0.2em;
 }
 
+a.nav:hover {
+    color: #333;
+    background-color: whitesmoke;
+    border: 1px solid #333;
+}
 @media (max-width: 630px) {
     span.options,
-    a.options {
+    a.nav {
         font-size: 1rem;
     }
+}
+
+.active {
+    color: #333;
+    background-color: whitesmoke;
+    border: 1px solid #333;
 }
 
 a.admin {
@@ -223,7 +235,6 @@ div.color-graber {
 span.graber_instructions {
     text-align: center;
     font-size: 1.5rem;
-    margin-top: 10px;
 }
 
 @media (max-width: 700px) {
@@ -411,8 +422,8 @@ button.submit {
     letter-spacing: 0.04em;
     min-width: 1.5em;
     border-radius: 10em;
-    background: #333;
-    color: whitesmoke;
+    background: #ccc;
+    color: #333;
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
@@ -443,7 +454,6 @@ p.info {
 span.title {
     font-size: 1.5rem;
     margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 @media (max-width: 700px) {

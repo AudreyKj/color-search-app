@@ -58,7 +58,7 @@ const {
     requireLoggedInUser
 } = require("./middlewares.js");
 
-//GRABER
+//COLOR SPOTTER
 app.get("/spotter", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
@@ -164,8 +164,6 @@ app.get("/savedcolors", (req, res) => {
 });
 
 app.post("/filter", (req, res) => {
-    console.log(req.body);
-
     let tag = req.body.tag;
     let user_id = req.session.userId;
 

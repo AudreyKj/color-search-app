@@ -29,7 +29,6 @@ function Register(props) {
         }
 
         axios.post("/register", { userName, password, email }).then(data => {
-            console.log("data", data);
             if (data.error) {
                 setError(true);
             } else if (data.data.notUnique) {
