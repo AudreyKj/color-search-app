@@ -43,8 +43,16 @@ function Admin() {
                     datasets: [
                         {
                             data: genderArr,
-                            backgroundColor: ["#003f5c", "#665191", "#ccc"],
-                            hoverBackgroundColor: ["#003f5c", "#665191", "#ccc"]
+                            backgroundColor: [
+                                "rgba(93, 114, 146, 1)",
+                                "rgba(109, 79, 107, 1)",
+                                "rgba(204, 204, 204, 1)"
+                            ],
+                            hoverBackgroundColor: [
+                                "rgba(93, 114, 146, 0.5)",
+                                "rgba(109, 79, 107, 0.5)",
+                                "rgba(204, 204, 204, 0.5)"
+                            ]
                         }
                     ]
                 });
@@ -81,10 +89,10 @@ function Admin() {
                     datasets: [
                         {
                             label: "Age",
-                            backgroundColor: "rgba(255,99,132,0.2)",
+                            backgroundColor: "rgb(185, 106, 75, 0.7)",
                             borderColor: "rgba(255,99,132,1)",
                             borderWidth: 1,
-                            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                            hoverBackgroundColor: "rgb(185, 106, 75, 0.4)",
                             hoverBorderColor: "rgba(255,99,132,1)",
                             data: ageData
                         }
@@ -116,16 +124,16 @@ function Admin() {
                         {
                             data: country_values,
                             backgroundColor: [
-                                "#c6a354",
-                                "#938275",
-                                "#855936",
-                                "#cd601c"
+                                "rgb(176, 107, 66)",
+                                "rgb(222, 169, 77)",
+                                "rgb(221, 203, 86)",
+                                "rgba(115, 79, 36, 1)"
                             ],
                             hoverBackgroundColor: [
-                                "#c6a354",
-                                "#938275",
-                                "#855936",
-                                "#cd601c"
+                                "rgba(176, 107, 66, 0.5)",
+                                "rgba(222, 169, 77, 0.5)",
+                                "rgb(221, 203, 86, 0.5)",
+                                "rgba(115, 79, 36, 0.5)"
                             ]
                         }
                     ]
