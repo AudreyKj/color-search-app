@@ -28,7 +28,7 @@ API used: color-thief by Lokesh Dhakar
 ## Tech
 
 **Stack**: HTML, CSS, JavaScript, Node.js, PostgreSQL <br />
-**Front-end Framework**: React
+**Front-end Framework**: React <br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
