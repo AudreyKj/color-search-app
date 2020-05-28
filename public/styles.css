@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: lightgrey;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -119,7 +119,7 @@ a:active {
 
 a.nav:hover {
     color: #333;
-    background-color: whitesmoke;
+    background-color: lightgrey;
     border: 1px solid #333;
 }
 @media (max-width: 630px) {
@@ -131,7 +131,7 @@ a.nav:hover {
 
 .active {
     color: #333;
-    background-color: whitesmoke;
+    background-color: lightgrey;
     border: 1px solid #333;
 }
 
@@ -195,7 +195,7 @@ button.logout {
     min-width: 1.5em;
     border-radius: 10em;
     background: #d6d6d6;
-    border: 1px solid transparent;
+    border: 1px solid #333;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
@@ -361,7 +361,7 @@ span.filter {
     min-width: 1.5em;
     border-radius: 10em;
     background: #333;
-    color: whitesmoke;
+    color: lightgrey;
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
@@ -380,7 +380,7 @@ span.filter {
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;
-    background-color: whitesmoke;
+    background-color: lightgrey;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
     cursor: pointer;
@@ -433,6 +433,7 @@ input {
     margin-top: 5px;
     padding: 10px;
     font-size: 1.3rem;
+    background-color: #ccc;
 }
 
 button.submit {
@@ -445,7 +446,7 @@ button.submit {
     border-radius: 10em;
     background: #ccc;
     color: #333;
-    border: 1px solid transparent;
+    border: 1px solid #333;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
