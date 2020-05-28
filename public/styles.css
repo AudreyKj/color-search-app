@@ -83,6 +83,12 @@ div.options-buttons {
     margin-bottom: 20px;
 }
 
+@media (max-width: 600px) {
+    div.options-buttons {
+        margin-top: 25px;
+    }
+}
+
 @media (max-width: 550px) {
     div.options-buttons {
         margin-top: 40px;
@@ -200,10 +206,10 @@ button.logout {
     cursor: pointer;
 }
 
-- @media (max-width: 750px) {
+@media (max-width: 750px) {
     button.logout {
         right: 0;
-        top: 70px;
+        top: 80px;
     }
 }
 
@@ -216,14 +222,14 @@ button.logout {
 @media (max-width: 600px) {
     button.logout {
         right: 50%;
-        top: 70px;
         transform: translateX(50%);
+        margin-bottom: 20px;
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 455px) {
     button.logout {
-        top: 120px;
+        top: 170px;
     }
 }
 
@@ -283,6 +289,12 @@ li {
     margin-top: 50px;
 }
 
+@media (max-width: 1200px) {
+    div.palette-save {
+        margin-top: 45px;
+    }
+}
+
 button.save {
     font-family: Arial;
     display: inline-block;
@@ -297,10 +309,12 @@ button.save {
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
 }
 
 span.palette_saved_confirmation {
     text-align: center;
+    font-size: 1.3rem;
 }
 
 p.drop-graber {
@@ -311,6 +325,7 @@ p.drop-graber {
     justify-content: center;
     text-align: center;
     font-size: 2rem;
+    cursor: crosshair;
 }
 
 /* SAVED PALETTES */
@@ -329,6 +344,17 @@ div.filtering {
     flex-direction: column;
     margin-top: 15px;
     margin-bottom: 35px;
+}
+
+div.filter-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span.no-match {
+    margin-top: 15px;
+    font-size: 1.3rem;
 }
 
 span.filter {
@@ -462,12 +488,6 @@ span.title {
     }
 }
 
-@media (max-width: 600px) {
-    span.title {
-        font-size: 0.8rem;
-    }
-}
-
 div.info-wrapper {
     width: 100%;
     display: flex;
@@ -503,10 +523,8 @@ form.profile {
     margin-bottom: 25px;
 }
 
-span.account-date {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin-top: 20px;
+.profile-input {
+    margin-left: 10px;
 }
 
 /* ADMIN: CHARTS */

@@ -39,7 +39,10 @@ function App() {
         axios
             .get("/logout")
             .then(res => {
-                location.replace("/spotter");
+                if (location.pathname !== "/spotter") {
+                    location.replace("/spotter");
+                }
+
                 setLoggedIn(false);
             })
             .catch(error => {

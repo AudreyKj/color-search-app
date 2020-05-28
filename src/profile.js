@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Moment from "react-moment";
 import axios from "./axios";
 
 function Profile() {
@@ -85,6 +84,7 @@ function Profile() {
                         placeholder="username"
                         value={username}
                         onChange={e => setUsername(e.target.value)}
+                        className="profile-input"
                     />
                 </label>
 
@@ -96,6 +96,7 @@ function Profile() {
                         placeholder="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                        className="profile-input"
                     />
                 </label>
 
@@ -107,6 +108,7 @@ function Profile() {
                         placeholder="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        className="profile-input"
                         required
                     />
                 </label>
@@ -119,6 +121,7 @@ function Profile() {
                         placeholder="age"
                         value={age}
                         onChange={e => setAge(e.target.value)}
+                        className="profile-input"
                     />
                 </label>
 
@@ -130,6 +133,7 @@ function Profile() {
                         placeholder="country"
                         value={country}
                         onChange={e => setCountry(e.target.value)}
+                        className="profile-input"
                     />
                 </label>
 
@@ -140,6 +144,7 @@ function Profile() {
                         value="female"
                         checked={gender === "female"}
                         onChange={e => handleChange(e)}
+                        className="profile-input"
                     />
                     FEMALE
                     <input
@@ -148,6 +153,7 @@ function Profile() {
                         value="male"
                         checked={gender === "male"}
                         onChange={e => handleChange(e)}
+                        className="profile-input"
                     />
                     MALE
                     <input
@@ -156,6 +162,7 @@ function Profile() {
                         value="gender_null"
                         checked={gender === "gender_null"}
                         onChange={e => handleChange(e)}
+                        className="profile-input"
                     />
                     OTHER
                 </label>
@@ -177,9 +184,6 @@ function Profile() {
                 </span>
             )}
 
-            <span className="account-date">
-                account created on <Moment format="MMMM Do YYYY">{date}</Moment>
-            </span>
             <button onClick={deleteAccount} className="submit">
                 DELETE ACCOUNT
             </button>

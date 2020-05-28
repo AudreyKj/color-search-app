@@ -1,10 +1,10 @@
 # COLOR SPOT - React app with color API and data visualization
 
-In this React app, users can detect the colors in images as well as save and categorize color palettes. An "admin" page visualizes the data from the users using the app. <br /><br />
+In this React app, users can detect the colors in images as well as save and categorize color palettes. An "admin" page visualizes the data from the users using the app. <br />
 
 API used: color-thief by Lokesh Dhakar
 
-[visit live app](https://color-spot.herokuapp.com)
+[visit live app](https://color-spot.herokuapp.com){:target="\_blank"}
 
 ## Features
 
@@ -33,8 +33,9 @@ API used: color-thief by Lokesh Dhakar
 
 ## Future improvements
 
--   Adding auth with google with Google Sign-In
--   Automate sending of emails to enable users to change their password if they don't remember it
+-   Add auth with Google Sign-In
+-   Automate sending of emails to enable users to reset their password
+-   Add more features to the "SAVED PALETTES" section
 
 ## Visuals
 

@@ -91,7 +91,7 @@ function ColorGraber(props) {
                                     ))}
 
                                     {props.loggedIn && (
-                                        <div>
+                                        <div className="palette-save">
                                             <form method="POST">
                                                 <input
                                                     type="text"
@@ -110,10 +110,7 @@ function ColorGraber(props) {
                                             </form>
                                             {confirmation_saved && (
                                                 <span className="palette_saved_confirmation">
-                                                    successfully saved! <br />
-                                                    all the palettes you've
-                                                    saved are in the SAVE
-                                                    section
+                                                    successfully saved!
                                                 </span>
                                             )}
                                         </div>

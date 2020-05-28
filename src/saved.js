@@ -61,9 +61,12 @@ function Saved(props) {
                                 FILTER
                             </button>
                         </form>
+                        {noResult && (
+                            <span className="no-match">
+                                No matched tags found
+                            </span>
+                        )}
                     </div>
-
-                    {noResult && <span> No matched tags found </span>}
                 </div>
             )}
 

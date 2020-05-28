@@ -34,6 +34,7 @@ function Register(props) {
             } else if (data.data.notUnique) {
                 setErrorUserName(true);
             } else {
+                props.updateLogged();
                 setErrorUserName(false);
                 setForm(false);
                 setError(false);
