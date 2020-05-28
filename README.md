@@ -42,7 +42,7 @@ API used: color-thief by Lokesh Dhakar
 
 ![screenshot](readMe/screenshot_1.png)
 ![screenshot](readMe/screenshot_2.png)
-![screenshot](readMe/screenshot_data.png)
+![screenshot](readMe/screenshot_3.png)
 ![screenshot](readMe/screenshot_4.png)
 
 <p align="center">
