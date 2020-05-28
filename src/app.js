@@ -61,7 +61,7 @@ function App() {
                 <div className="options-buttons">
                     <nav>
                         <NavLink
-                            activeClassName="active"
+                            activeclassname="active"
                             className="nav"
                             to="/spotter"
                         >
@@ -70,7 +70,7 @@ function App() {
 
                         <NavLink
                             to="/saved"
-                            activeClassName="active"
+                            activeclassname="active"
                             className="nav"
                         >
                             SAVED PALETTES
@@ -78,7 +78,7 @@ function App() {
 
                         <NavLink
                             to="/info"
-                            activeClassName="active"
+                            activeclassname="active"
                             className="nav"
                         >
                             INFO
@@ -86,7 +86,7 @@ function App() {
 
                         <Link
                             to="/admin"
-                            activeClassName="active"
+                            activeclassname="active"
                             className="nav"
                         >
                             Admin
@@ -96,14 +96,14 @@ function App() {
                             <>
                                 <NavLink
                                     to="/login"
-                                    activeClassName="active"
+                                    activeclassname="active"
                                     className="nav"
                                 >
                                     LOGIN
                                 </NavLink>
                                 <NavLink
                                     to="/register"
-                                    activeClassName="active"
+                                    activeclassname="active"
                                     className="nav"
                                 >
                                     REGISTER

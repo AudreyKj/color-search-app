@@ -35,7 +35,7 @@ function Saved(props) {
     };
 
     return (
-        <div className="saved_palettes_container">
+        <>
             <div className="saved_instructions">
                 <span className="title">
                     All the palettes you've saved are displayed here.
@@ -49,47 +49,52 @@ function Saved(props) {
                 )}
             </div>
 
-            {props.loggedIn && (
-                <div className="filtering">
-                    <div className="filter-part">
-                        <span className="filter_title">
-                            FILTER BY PALETTE TAG <br />
-                        </span>
-                        <form method="POST">
-                            <input type="text" onChange={handleChange} />
-                            <button className="filter-button" onClick={filter}>
-                                FILTER
-                            </button>
-                        </form>
-                        {noResult && (
-                            <span className="no-match">
-                                No matched tags found
+            <div className="saved_palettes_container">
+                {props.loggedIn && (
+                    <div className="filtering">
+                        <div className="filter-part">
+                            <span className="filter_title">
+                                FILTER BY PALETTE TAG <br />
                             </span>
-                        )}
-                    </div>
-                </div>
-            )}
-
-            {palettes &&
-                palettes.map(colorSet => {
-                    if (colorSet.palette !== null) {
-                        return colorSet.palette.map(name => (
-                            <div className="saved_color">
-                                <div
-                                    className="single-color"
-                                    style={{
-                                        backgroundColor: name,
-                                        boxShadow: `0px 0px 15px 10px ${name}`
-                                    }}
+                            <form method="POST">
+                                <input type="text" onChange={handleChange} />
+                                <button
+                                    className="filter-button"
+                                    onClick={filter}
                                 >
-                                    {name}
+                                    FILTER
+                                </button>
+                            </form>
+                            {noResult && (
+                                <span className="no-match">
+                                    No matched tags found
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {palettes &&
+                    palettes.map(colorSet => {
+                        if (colorSet.palette !== null) {
+                            return colorSet.palette.map(name => (
+                                <div className="saved_color">
+                                    <div
+                                        className="single-color"
+                                        style={{
+                                            backgroundColor: name,
+                                            boxShadow: `0px 0px 15px 10px ${name}`
+                                        }}
+                                    >
+                                        {name}
+                                    </div>
+                                    tag:{colorSet.tag}
                                 </div>
-                                tag:{colorSet.tag}
-                            </div>
-                        ));
-                    }
-                })}
-        </div>
+                            ));
+                        }
+                    })}
+            </div>
+        </>
     );
 }
 

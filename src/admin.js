@@ -9,8 +9,6 @@ function Admin() {
     const [age, setAge] = useState();
     const [chartReady, setchartReady] = useState(false);
 
-    console.log(genderData);
-
     useEffect(() => {
         axios
             .get("/data")

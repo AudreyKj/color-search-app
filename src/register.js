@@ -17,14 +17,20 @@ function Register(props) {
         e.preventDefault();
 
         if (userName.length < 2) {
+            setErrorEmail(false);
+            setErrorPw(false);
             return setErrorNames(true);
         }
 
         if (password.length < 5 || !/[0-9]/g.test(password)) {
+            setErrorEmail(false);
+            setErrorNames(false);
             return setErrorPw(true);
         }
 
         if (email.length < 3 || !email.includes("@")) {
+            setErrorNames(false);
+            setErrorPw(false);
             return setErrorEmail(true);
         }
 
@@ -32,9 +38,11 @@ function Register(props) {
             if (data.error) {
                 setError(true);
             } else if (data.data.notUnique) {
-                setErrorUserName(true);
+                setErrorEmail(false);
+                setErrorPw(false);
+                setErrorNames(false);
+                return setErrorUserName(true);
             } else {
-                props.updateLogged();
                 setErrorUserName(false);
                 setForm(false);
                 setError(false);
@@ -46,6 +54,7 @@ function Register(props) {
                 setUserName("");
                 setEmail("");
                 setPassword("");
+                return props.updateLogged();
             }
         });
     };

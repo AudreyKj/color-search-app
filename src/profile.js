@@ -16,7 +16,6 @@ function Profile() {
         axios
             .get("/getprofile")
             .then(({ data }) => {
-                console.log("data", data);
                 setUsername(data[0].username);
                 setEmail(data[0].email);
                 setDate(data[0].created_at);
@@ -30,7 +29,6 @@ function Profile() {
     }, []);
 
     const handleChange = e => {
-        console.log("e.target.checked");
         const { checked, value } = e.target;
 
         setGender(value);
