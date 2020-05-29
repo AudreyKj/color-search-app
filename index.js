@@ -70,25 +70,41 @@ app.get("/register", requireLoggedOutUser, (req, res) => {
 
 app.post("/register", (req, res) => {
     let { userName, email, password } = req.body;
-    let notUnique;
+    let userName_notUnique;
+    let email_notUnique;
 
     db.checkUsername(userName)
         .then(result => {
             if (result.rows.length !== 0) {
-                return res.json({ notUnique: "notUnique" });
+                return res.json({ userName_notUnique: "notUnique" });
             } else {
-                hash(password).then(hashedpassword => {
-                    password = hashedpassword;
+                db.checkEmail(email)
+                    .then(result => {
+                        if (result.rows.length !== 0) {
+                            return res.json({ email_notUnique: "notUnique" });
+                        } else {
+                            hash(password)
+                                .then(hashedpassword => {
+                                    password = hashedpassword;
 
-                    db.registerUser(userName, email, password)
-                        .then(result => {
-                            req.session.userId = result.rows[0].id;
-                            return res.json(result);
-                        })
-                        .catch(error => {
-                            return res.json({ error: true });
-                        });
-                });
+                                    db.registerUser(userName, email, password)
+                                        .then(result => {
+                                            req.session.userId =
+                                                result.rows[0].id;
+                                            return res.json(result);
+                                        })
+                                        .catch(error => {
+                                            return res.json({ error: true });
+                                        });
+                                })
+                                .catch(error => {
+                                    return res.json({ error: true });
+                                });
+                        }
+                    })
+                    .catch(error => {
+                        return res.json({ error: true });
+                    });
             }
         })
         .catch(error => {
@@ -179,7 +195,7 @@ app.post("/filter", (req, res) => {
             return res.json(result.rows);
         })
         .catch(err => {
-            console.log("err", err);
+            return res.json({ error: true });
         });
 });
 

@@ -9,6 +9,10 @@ function checkUsername(userName) {
     return db.query(`SELECT * FROM register WHERE userName=$1`, [userName]);
 }
 
+function checkEmail(email) {
+    return db.query(`SELECT * FROM register WHERE email=$1`, [email]);
+}
+
 function registerUser(userName, email, password) {
     return db.query(
         `INSERT INTO register (username, email, password)
@@ -97,6 +101,7 @@ function getAge() {
     return db.query(`SELECT age FROM user_profiles`);
 }
 
+exports.checkEmail = checkEmail;
 exports.checkUsername = checkUsername;
 exports.registerUser = registerUser;
 exports.verifyUser = verifyUser;

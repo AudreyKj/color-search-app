@@ -59,7 +59,9 @@ function Login(props) {
             )}
 
             {error && (
-                <span className="error">Auth failed: please try again.</span>
+                <span className="error">
+                    No matching account found; try again or register.
+                </span>
             )}
             {confirmation && (
                 <span className="confirmation">Success! You're logged in!</span>

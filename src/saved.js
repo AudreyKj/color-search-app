@@ -22,7 +22,11 @@ function Saved(props) {
         axios
             .post("/filter", { tag })
             .then(data => {
-                if (data.data === undefined || data.data.length === 0) {
+                if (
+                    data.data.error ||
+                    data.data === undefined ||
+                    data.data.length === 0
+                ) {
                     return setNoResult(true);
                 }
 

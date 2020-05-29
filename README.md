@@ -9,7 +9,7 @@ API used: color-thief by Lokesh Dhakar
 
 ## Features
 
--   drag and drop an image to detect its colors using color-thief API
+-   drag and drop/upload image to detect its colors using color-thief API
     <br />
 -   save color palettes and categorize them with tags (only for logged in users)
     <br />

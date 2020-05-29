@@ -8,6 +8,7 @@ function Register(props) {
     const [email, setEmail] = useState("");
     const [errorNames, setErrorNames] = useState(false);
     const [userNameError, setErrorUserName] = useState("");
+    const [errorNotUnique_Email, setErrorNotUnique_Email] = useState("");
     const [errorPw, setErrorPw] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
     const [error, setError] = useState(false);
@@ -19,11 +20,17 @@ function Register(props) {
         if (userName.length < 2) {
             setErrorEmail(false);
             setErrorPw(false);
+            setErrorNames(false);
+            setErrorUserName(false);
+            setErrorNotUnique_Email(false);
             return setErrorNames(true);
         }
 
         if (password.length < 5 || !/[0-9]/g.test(password)) {
             setErrorEmail(false);
+            setErrorNames(false);
+            setErrorUserName(false);
+            setErrorNotUnique_Email(false);
             setErrorNames(false);
             return setErrorPw(true);
         }
@@ -31,19 +38,35 @@ function Register(props) {
         if (email.length < 3 || !email.includes("@")) {
             setErrorNames(false);
             setErrorPw(false);
+            setErrorEmail(false);
+            setErrorUserName(false);
+            setErrorNotUnique_Email(false);
             return setErrorEmail(true);
         }
 
         axios.post("/register", { userName, password, email }).then(data => {
-            if (data.error) {
-                setError(true);
-            } else if (data.data.notUnique) {
+            if (data.data.error) {
                 setErrorEmail(false);
                 setErrorPw(false);
                 setErrorNames(false);
+                setErrorUserName(false);
+                setErrorNotUnique_Email(false);
+                return setError(true);
+            } else if (data.data.userName_notUnique) {
+                setErrorEmail(false);
+                setErrorPw(false);
+                setErrorNames(false);
+                setErrorNotUnique_Email(false);
                 return setErrorUserName(true);
+            } else if (data.data.email_notUnique) {
+                setErrorEmail(false);
+                setErrorPw(false);
+                setErrorNames(false);
+                setErrorUserName(false);
+                return setErrorNotUnique_Email(true);
             } else {
                 setErrorUserName(false);
+                setErrorNotUnique_Email(false);
                 setForm(false);
                 setError(false);
                 setErrorNames(false);
@@ -125,14 +148,16 @@ function Register(props) {
                 </span>
             )}
 
-            {error && (
-                <span className="error">
-                    Error: something went wrong. Please try again.
-                </span>
-            )}
+            {error && <span className="error">Error: please try again.</span>}
 
             {userNameError && (
                 <span className="error">This username already exists.</span>
+            )}
+
+            {errorNotUnique_Email && (
+                <span className="error">
+                    An account for this email address already exists.
+                </span>
             )}
 
             {confirmation && (
