@@ -1,7 +1,7 @@
 # COLOR SPOT - React app with color API and data visualization
 
-In this React app, users can detect the colors in images as well as save and categorize color palettes. <br />
-An "admin" page visualizes the data from the users using the app (made with chart.js). <br />
+In this React app, users can detect the colors of images as well as save and categorize color palettes. <br />
+An "admin" page (made with chart.js) visualizes the data from the app's users. <br />
 
 API used: color-thief by Lokesh Dhakar
 
@@ -15,7 +15,7 @@ API used: color-thief by Lokesh Dhakar
     <br />
 -   filter saved color palettes by tag (only for logged in users)
     <br />
--   admin page where users can visualize data about the the app's users (made with chart.js)
+-   admin page that visualizes data about the the app's users (made with chart.js)
     <br />
 -   login/ register (password hashed with bcrypt)
     <br />

@@ -11,6 +11,7 @@ function Profile() {
     const [gender, setGender] = useState();
     const [updated, setUpdated] = useState(false);
     const [error, setError] = useState(false);
+    const [errorPw, setErrorPw] = useState(false);
 
     useEffect(() => {
         axios
@@ -37,8 +38,12 @@ function Profile() {
     const update = e => {
         e.preventDefault();
 
-        if (password.length < 5 || !/[0-9]/g.test(password)) {
-            return setError(true);
+        if (
+            password === undefined ||
+            password.length < 5 ||
+            !/[0-9]/g.test(password)
+        ) {
+            return setErrorPw(true);
         }
 
         axios
@@ -52,8 +57,11 @@ function Profile() {
             })
             .then(data => {
                 if (data.data.error) {
+                    setErrorPw(false);
                     setError(true);
                 } else {
+                    setError(false);
+                    setErrorPw(false);
                     setUpdated(true);
                 }
             })
@@ -171,8 +179,14 @@ function Profile() {
 
             {error && (
                 <span className="error">
-                    Error: please try again. Passwords should be min 5
-                    characters and count at least one number.
+                    Error: something went wrong. <br /> Please try again.
+                </span>
+            )}
+
+            {errorPw && (
+                <span className="error">
+                    Error: the password field is required. <br /> Passwords
+                    should be min 5 characters and count at least one number.
                 </span>
             )}
 
