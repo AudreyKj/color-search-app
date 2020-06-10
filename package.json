@@ -45,6 +45,7 @@
         "react-drop-zone": "^3.0.7",
         "react-dropzone": "^11.0.1",
         "react-google-font-loader": "^1.1.0",
+        "react-helmet": "^6.1.0",
         "react-meta-tags": "^0.7.4",
         "react-moment": "^0.9.7",
         "react-redux": "^7.1.0",
