@@ -8,6 +8,7 @@ import Info from "./info";
 import Admin from "./admin";
 import axios from "./axios";
 import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
