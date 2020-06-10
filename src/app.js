@@ -52,6 +52,12 @@ function App() {
 
     return (
         <div className="container">
+            <Helmet>
+                <meta property="og:image:width" content="1080" />
+                <meta property="og:image:height" content="1080" />
+                <meta property="og:image" content="preview.jpg" />
+                <meta property="og:image:url" content="preview.jpg" />
+            </Helmet>
             <div className="logo "></div>
             <header>
                 <span className="color-spot">COLOR SPOT </span>
