@@ -6,7 +6,8 @@
     "scripts": {
         "build": "node build.js",
         "start": "node index.js",
-        "test": "jest --coverage"
+        "test": "jest --coverage",
+        "build-css": "node-sass --include-path scss public/styles.scss   public/styles.css"
     },
     "engines": {
         "npm": "6.13.4",
@@ -39,6 +40,7 @@
         "mem": "^6.1.0",
         "moment": "^2.24.0",
         "multer": "^1.4.2",
+        "node-sass": "^4.14.1",
         "react": "^16.9.0-alpha.0",
         "react-chartjs-2": "^2.9.0",
         "react-dom": "^16.9.0-alpha.0",
