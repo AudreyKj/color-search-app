@@ -51,6 +51,8 @@ function App() {
             });
     };
 
+    //    <div className="logo "></div>
+
     return (
         <div className="container">
             <Helmet>
@@ -59,76 +61,70 @@ function App() {
                 <meta property="og:image" content="preview.jpg" />
                 <meta property="og:image:url" content="preview.jpg" />
             </Helmet>
-            <div className="logo "></div>
+
             <header>
                 <span className="color-spot">COLOR SPOT </span>
             </header>
 
             <BrowserRouter>
-                <div className="options-buttons">
-                    <nav>
-                        <NavLink
-                            activeclassname="active"
-                            className="nav"
-                            to="/spotter"
-                        >
-                            COLOR SPOTTER
-                        </NavLink>
+                <nav className="options-buttons">
+                    <NavLink
+                        activeclassname="active"
+                        className="nav"
+                        to="/spotter"
+                    >
+                        COLOR SPOTTER
+                    </NavLink>
 
-                        <NavLink
-                            to="/saved"
-                            activeclassname="active"
-                            className="nav"
-                        >
-                            SAVED PALETTES
-                        </NavLink>
+                    <NavLink
+                        to="/saved"
+                        activeclassname="active"
+                        className="nav"
+                    >
+                        SAVED PALETTES
+                    </NavLink>
 
-                        <NavLink
-                            to="/info"
-                            activeclassname="active"
-                            className="nav"
-                        >
-                            INFO
-                        </NavLink>
-
-                        <Link
-                            to="/admin"
-                            activeclassname="active"
-                            className="nav"
-                        >
-                            Admin
-                        </Link>
-
-                        {!loggedIn && (
-                            <>
-                                <NavLink
-                                    to="/login"
-                                    activeclassname="active"
-                                    className="nav"
-                                >
-                                    LOGIN
-                                </NavLink>
-                                <NavLink
-                                    to="/register"
-                                    activeclassname="active"
-                                    className="nav"
-                                >
-                                    REGISTER
-                                </NavLink>
-                            </>
-                        )}
-
-                        {loggedIn && (
+                    {!loggedIn && (
+                        <>
                             <NavLink
-                                to="/profile"
-                                activeClassName="active"
+                                to="/login"
+                                activeclassname="active"
                                 className="nav"
                             >
-                                EDIT PROFILE
+                                LOGIN
                             </NavLink>
-                        )}
-                    </nav>
-                </div>
+                            <NavLink
+                                to="/register"
+                                activeclassname="active"
+                                className="nav"
+                            >
+                                REGISTER
+                            </NavLink>
+                        </>
+                    )}
+
+                    {loggedIn && (
+                        <NavLink
+                            to="/profile"
+                            activeClassName="active"
+                            className="nav"
+                        >
+                            EDIT PROFILE
+                        </NavLink>
+                    )}
+
+                    <NavLink
+                        to="/info"
+                        activeclassname="active"
+                        className="nav"
+                    >
+                        INFO
+                    </NavLink>
+
+                    <Link to="/admin" activeclassname="active" className="nav">
+                        Admin
+                    </Link>
+                </nav>
 
                 {loggedIn && (
                     <button onClick={logout} className="logout">

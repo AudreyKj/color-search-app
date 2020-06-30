@@ -82,8 +82,7 @@ function ColorGraber(props) {
                                         <li
                                             key={color}
                                             style={{
-                                                backgroundColor: color,
-                                                boxShadow: `0px 0px 15px 10px ${color}`
+                                                backgroundColor: color
                                             }}
                                         >
                                             {color}

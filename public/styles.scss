@@ -42,8 +42,8 @@ header {
 }
 
 div.logo {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     position: absolute;
     top: 30px;
@@ -55,13 +55,31 @@ div.logo {
 
 @media (max-width: 550px) {
     div.logo {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        position: absolute;
+        width: 60px;
+        height: 60px;
         top: 30px;
         left: 30px;
     }
+}
+
+footer {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: lightgrey;
+    height: 50px;
+    text-align: center;
+}
+
+span.footer-text,
+a.footer-text,
+a.footer-text:hover,
+a.footer-text:active,
+a.footer-text:visited {
+    color: lightgrey;
+    font-size: 1rem;
 }
 
 span.color-spot {
@@ -91,20 +109,20 @@ span.color-spot:hover {
     }
 }
 
-div.options-buttons {
+nav.options-buttons {
     width: 50%;
     text-align: center;
     margin-bottom: 20px;
 }
 
 @media (max-width: 600px) {
-    div.options-buttons {
+    nav.options-buttons {
         margin-top: 25px;
     }
 }
 
 @media (max-width: 550px) {
-    div.options-buttons {
+    nav.options-buttons {
         margin-top: 40px;
     }
 }
