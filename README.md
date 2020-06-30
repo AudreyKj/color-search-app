@@ -27,7 +27,7 @@ API used: color-thief by Lokesh Dhakar
 
 ## Tech
 
-**Stack**: HTML, SASS/SCSS, JavaScript, React, Node.js, PostgreSQL <br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL <br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
@@ -41,9 +41,7 @@ API used: color-thief by Lokesh Dhakar
 
 ![screenshot](readMe/screenshot_1.png)
 ![screenshot](readMe/screenshot_2.png)
-![screenshot](readMe/screenshot_3.png)
-![screenshot](readMe/screenshot_4.png)
 
 <p align="center">
-<img width="400" height="570" src="readMe/mobile.png">
+<img width="400" height="573" src="readMe/mobile.png">
 </p>

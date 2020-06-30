@@ -86,8 +86,7 @@ function Saved(props) {
                                     <div
                                         className="single-color"
                                         style={{
-                                            backgroundColor: name,
-                                            boxShadow: `0px 0px 15px 10px ${name}`
+                                            backgroundColor: name
                                         }}
                                     >
                                         {name}

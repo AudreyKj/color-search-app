@@ -24,11 +24,14 @@ header {
     width: 100%;
     align-items: center;
     flex-direction: column;
-    background-color: #333;
+    background-color: rgb(3, 27, 34);
 }
 
 footer {
-    margin-top: 20px;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,15 +39,30 @@ footer {
     color: lightgrey;
     height: 50px;
     text-align: center;
+    padding: 30px;
+    margin: 0;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: -5px;
 }
 
-span.footer-text,
-a.footer-text,
-a.footer-text:hover,
 a.footer-text:active,
 a.footer-text:visited {
     color: lightgrey;
-    font-size: 1rem;
+}
+
+a.footer-text:hover {
+    text-decoration: none;
+    color: lightgrey;
+}
+
+span.footer-close {
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding-left: 10px;
+    margin-right: 15px;
 }
 
 div.logo {
@@ -98,20 +116,9 @@ nav.options-buttons {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
-    background-color: #333;
+    background-color: rgb(3, 27, 34);
     padding-bottom: 20px;
-}
-
-@media (max-width: 600px) {
-    nav.options-buttons {
-        margin-top: 25px;
-    }
-}
-
-@media (max-width: 550px) {
-    nav.options-buttons {
-        margin-top: 40px;
-    }
+    margin-top: -5px;
 }
 
 a,
@@ -122,7 +129,7 @@ a:active {
 }
 
 .nav,
-button.logout {
+button.nav {
     display: inline-block;
     vertical-align: top;
     font-size: 1.3rem;
@@ -130,14 +137,16 @@ button.logout {
     min-width: 1.5em;
     border-radius: 10em;
     color: #ccc;
-    background-color: #333;
+    background-color: rgb(3, 27, 34);
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
     padding: 0.4em 0.8em 0.2em;
+    cursor: pointer;
 }
 
-a.nav:hover {
+a.nav:hover,
+button.nav:hover {
     color: #333;
     background-color: lightgrey;
     border: 1px solid #333;
@@ -145,7 +154,8 @@ a.nav:hover {
 
 @media (max-width: 630px) {
     span.options,
-    a.nav {
+    a.nav,
+    button.nav {
         font-size: 1rem;
     }
 }
@@ -167,7 +177,7 @@ a.admin {
     min-width: 1.5em;
     border-radius: 10em;
     color: #ccc;
-    background-color: #333;
+    background-color: rgb(3, 27, 34);
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
@@ -198,44 +208,6 @@ div.member-otions {
     background-color: #333;
 }
 
-button.logout {
-    color: #333;
-    background: #d6d6d6;
-    border: 1px solid #333;
-    text-transform: uppercase;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-}
-
-@media (max-width: 750px) {
-    button.logout {
-        right: 0;
-        top: 80px;
-    }
-}
-
-@media (max-width: 630px) {
-    button.logout {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 600px) {
-    button.logout {
-        right: 50%;
-        transform: translateX(50%);
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 455px) {
-    button.logout {
-        top: 170px;
-    }
-}
-
 /* COLOR SPOTTER */
 div.color-graber {
     margin-top: 35px;
@@ -263,7 +235,7 @@ div.saved_palettes_container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 50px;
+    margin-left: 20px;
 }
 
 ul {
@@ -301,7 +273,7 @@ button.save {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    padding: 0.4em 0.4em 0.4em;
     cursor: pointer;
 }
 
@@ -319,6 +291,7 @@ p.drop-graber {
     text-align: center;
     font-size: 1.5rem;
     cursor: crosshair;
+    border-radius: 12px;
 }
 
 /* SAVED PALETTES */
@@ -452,7 +425,7 @@ button.submit {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    padding: 0.4em 0.4em 0.4em;
     cursor: pointer;
 }
 

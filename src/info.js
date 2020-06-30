@@ -5,7 +5,7 @@ function Info() {
         <div className="info-wrapper">
             <p className="info">
                 GRAB THE COLORS OF AN IMAGE & SAVE PALETTES <br /> <br />
-                This website enables users to detect colors in images as well as
+                This website enables you to detect colors in images as well as
                 save and categorize color palettes. You need to be logged in to
                 be able to save palettes & grow collections. <br />
                 <br />

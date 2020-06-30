@@ -40,15 +40,11 @@ function Admin() {
                         {
                             data: genderArr,
                             backgroundColor: [
-                                "rgba(93, 114, 146, 1)",
-                                "rgba(109, 79, 107, 1)",
+                                "#f06c6c",
+                                "#b0ace4",
                                 "rgba(204, 204, 204, 1)"
                             ],
-                            hoverBackgroundColor: [
-                                "rgba(93, 114, 146, 0.5)",
-                                "rgba(109, 79, 107, 0.5)",
-                                "rgba(204, 204, 204, 0.5)"
-                            ]
+                            hoverBackgroundColor: ["#ccc", "#ccc", "#ccc"]
                         }
                     ]
                 });
@@ -117,16 +113,16 @@ function Admin() {
                         {
                             data: country_values,
                             backgroundColor: [
-                                "rgb(176, 107, 66)",
-                                "rgb(222, 169, 77)",
-                                "rgb(221, 203, 86)",
-                                "rgba(115, 79, 36, 1)"
+                                "#c3e4c4",
+                                "#c47c7c",
+                                "#c4dce4",
+                                "#a48c8c"
                             ],
                             hoverBackgroundColor: [
-                                "rgba(176, 107, 66, 0.5)",
-                                "rgba(222, 169, 77, 0.5)",
-                                "rgb(221, 203, 86, 0.5)",
-                                "rgba(115, 79, 36, 0.5)"
+                                "#ccc",
+                                "#ccc",
+                                "#ccc",
+                                "#ccc"
                             ]
                         }
                     ]

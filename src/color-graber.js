@@ -46,17 +46,15 @@ function ColorGraber(props) {
         <div className="color-graber">
             <Dropzone onDrop={acceptedFiles => handledropped(acceptedFiles)}>
                 {({ getRootProps, getInputProps }) => (
-                    <section>
-                        <div className="drop-graber" {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <p className="drop-graber">
-                                GET THE COLORS OF AN IMAGE: <br />
-                                <br />
-                                Drag and drop your image here <br />
-                                or click to select your file
-                            </p>
-                        </div>
-                    </section>
+                    <div className="drop-graber" {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <p className="drop-graber">
+                            GET THE COLORS OF AN IMAGE: <br />
+                            <br />
+                            Drag and drop your image here <br />
+                            or click to select your file
+                        </p>
+                    </div>
                 )}
             </Dropzone>
 
