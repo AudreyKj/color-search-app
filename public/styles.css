@@ -253,6 +253,7 @@ li {
     justify-content: center;
     margin-right: 50px;
     margin-top: 50px;
+    border: 1px solid #333;
 }
 
 @media (max-width: 1200px) {
@@ -337,7 +338,7 @@ span.filter {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    padding: 0.4em 0.4em 0.4em;
     cursor: pointer;
 }
 
@@ -355,7 +356,7 @@ span.filter {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    padding: 0.4em 0.4em 0.4em;
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;
@@ -381,6 +382,7 @@ div.single-color {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    border: 1px solid #333;
 }
 
 div.saved_color {

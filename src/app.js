@@ -12,7 +12,6 @@ import { Helmet } from "react-helmet";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [footer, setFooter] = useState(true);
 
     useEffect(() => {
         axios
@@ -51,8 +50,6 @@ function App() {
                 console.log("error", error);
             });
     };
-
-    //    <div className="logo "></div>
 
     return (
         <div className="container">
@@ -176,27 +173,6 @@ function App() {
                     )}
                 />
             </BrowserRouter>
-
-            {footer && (
-                <footer>
-                    <span class="footer-close" onClick={() => setFooter(false)}>
-                        X
-                    </span>
-                    <span class="footer-text">
-                        By using this website you agree to the use of cookies.
-                        <br />
-                        COLOR SPOT © 2020 - see project on&nbsp;
-                        <a
-                            class="footer-text"
-                            href="https://github.com/AudreyKj/color-search-app"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            GitHub
-                        </a>
-                    </span>
-                </footer>
-            )}
         </div>
     );
 }
