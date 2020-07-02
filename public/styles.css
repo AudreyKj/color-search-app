@@ -85,7 +85,7 @@ button.nav {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    padding: 0.6em 0.6em 0.4em;
     cursor: pointer;
 }
 
@@ -108,42 +108,6 @@ button.nav:hover {
     color: #333;
     background-color: lightgrey;
     border: 1px solid #333;
-}
-
-a.admin {
-    position: absolute;
-    right: 10px;
-    top: 70px;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    min-width: 1.5em;
-    border-radius: 10em;
-    color: #ccc;
-    background-color: rgb(3, 27, 34);
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
-}
-
-@media (max-width: 750px) {
-    a.admin {
-        right: 50%;
-    }
-}
-
-@media (max-width: 630px) {
-    a.admin {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 540px) {
-    a.admin {
-        right: 55%;
-    }
 }
 
 div.member-otions {
@@ -218,7 +182,7 @@ button.save {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.4em 0.4em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
@@ -282,7 +246,7 @@ span.filter {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.4em 0.4em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
@@ -300,7 +264,7 @@ span.filter {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.4em 0.4em;
+    padding: 0.4em 0.6em 0.4em;
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;
@@ -371,7 +335,7 @@ button.submit {
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
-    padding: 0.4em 0.4em 0.4em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 

@@ -39,8 +39,8 @@ API used: color-thief by Lokesh Dhakar
 
 ## Visuals
 
-![screenshot](readMe/screenshot_1.png)
-![screenshot](readMe/screenshot_2.png)
+![screenshot](readMe/screenshot-1.png)
+![screenshot](readMe/screenshot-2.png)
 
 <p align="center">
 <img width="400" height="576" src="readMe/mobile.png">
