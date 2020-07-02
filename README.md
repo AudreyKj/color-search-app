@@ -1,7 +1,7 @@
 # React app with color API and data visualization
 
-In this React app, users can detect the colors of images as well as save and categorize color palettes. <br />
-An "admin" page (made with chart.js) visualizes the data from the app's users. <br />
+React app where users can detect the colors of images as well as save and categorize color palettes. <br />
+An "admin" page (made with chart.js) visualizes data from the app's users. <br />
 
 API used: color-thief by Lokesh Dhakar
 
@@ -43,5 +43,5 @@ API used: color-thief by Lokesh Dhakar
 ![screenshot](readMe/screenshot_2.png)
 
 <p align="center">
-<img width="400" height="573" src="readMe/mobile.png">
+<img width="400" height="576" src="readMe/mobile.png">
 </p>

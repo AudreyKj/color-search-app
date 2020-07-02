@@ -119,9 +119,13 @@ function App() {
                         INFO
                     </NavLink>
 
-                    <Link to="/admin" activeclassname="active" className="nav">
+                    <NavLink
+                        to="/admin"
+                        activeclassname="active"
+                        className="nav"
+                    >
                         Admin
-                    </Link>
+                    </NavLink>
 
                     {loggedIn && (
                         <button onClick={logout} className="nav">

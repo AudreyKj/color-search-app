@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
 @import-normalize;
 * {
     -webkit-font-smoothing: antialiased;
@@ -7,7 +9,7 @@
 
 body {
     background-color: lightgrey;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Questrial", sans-serif;
     margin: 0;
 }
 
@@ -20,69 +22,9 @@ div.container {
 
 /* HOME */
 header {
-    display: flex;
     width: 100%;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgb(3, 27, 34);
-}
-
-footer {
-    left: 0;
-    right: 0;
-    position: fixed;
-    bottom: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #333;
-    color: lightgrey;
-    height: 50px;
-    text-align: center;
-    padding: 30px;
-    margin: 0;
-    width: 100%;
-    margin-top: 50px;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    margin-bottom: -5px;
-}
-
-a.footer-text:active,
-a.footer-text:visited {
-    color: lightgrey;
-}
-
-a.footer-text:hover {
-    text-decoration: none;
-    color: lightgrey;
-}
-
-span.footer-close {
-    font-size: 2.5rem;
-    cursor: pointer;
-    padding-left: 10px;
-    margin-right: 15px;
-}
-
-div.logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-
-    background-color: red;
-    box-shadow: red 0px 0px 15px 10px;
-}
-
-@media (max-width: 550px) {
-    div.logo {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        position: absolute;
-        top: 30px;
-        left: 30px;
-    }
 }
 
 span.color-spot {
@@ -90,12 +32,12 @@ span.color-spot {
     margin-left: 20px;
     z-index: 10;
     text-align: center;
-    color: #ccc;
+    color: #333;
 }
 
 span.color-spot:hover {
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #ccc;
+    -webkit-text-stroke-color: #333;
     color: transparent;
 }
 
@@ -116,9 +58,11 @@ nav.options-buttons {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
-    background-color: rgb(3, 27, 34);
     padding-bottom: 20px;
-    margin-top: -5px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 a,
@@ -136,8 +80,8 @@ button.nav {
     letter-spacing: 0.04em;
     min-width: 1.5em;
     border-radius: 10em;
-    color: #ccc;
-    background-color: rgb(3, 27, 34);
+    color: lightgrey;
+    background-color: #333;
     border: 1px solid transparent;
     text-transform: uppercase;
     margin: 0.2em 0.5em;
@@ -235,7 +179,7 @@ div.saved_palettes_container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 ul {
@@ -253,7 +197,7 @@ li {
     justify-content: center;
     margin-right: 50px;
     margin-top: 50px;
-    border: 1px solid #333;
+    border: 1px solid #9e9e9e;
 }
 
 @media (max-width: 1200px) {
@@ -269,7 +213,7 @@ button.save {
     letter-spacing: 0.04em;
     min-width: 1.5em;
     border-radius: 10em;
-    color: #ccc;
+    color: lightgrey;
     background-color: #333;
     border: 1px solid transparent;
     text-transform: uppercase;
@@ -382,7 +326,7 @@ div.single-color {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    border: 1px solid #333;
+    border: 1px solid #9e9e9e;
 }
 
 div.saved_color {
@@ -445,6 +389,7 @@ p.info {
     width: 50%;
     font-size: 1.5rem;
     text-align: center;
+    line-height: 1.3;
 }
 
 .underline {
