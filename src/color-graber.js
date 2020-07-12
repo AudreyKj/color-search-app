@@ -98,12 +98,12 @@ function ColorGraber(props) {
                                                         setTag(e.target.value)
                                                     }
                                                 />
-                                                <button
+                                                <span
                                                     className="save"
                                                     onClick={savePalette}
                                                 >
                                                     SAVE PALETTE
-                                                </button>
+                                                </span>
                                             </form>
                                             {confirmation_saved && (
                                                 <span className="palette_saved_confirmation">

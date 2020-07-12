@@ -73,7 +73,7 @@ a:active {
 }
 
 .nav,
-button.nav {
+span.nav {
     display: inline-block;
     vertical-align: top;
     font-size: 1.3rem;
@@ -94,14 +94,6 @@ button.nav:hover {
     color: #333;
     background-color: lightgrey;
     border: 1px solid #333;
-}
-
-@media (max-width: 630px) {
-    span.options,
-    a.nav,
-    button.nav {
-        font-size: 1rem;
-    }
 }
 
 .active {
@@ -170,7 +162,7 @@ li {
     }
 }
 
-button.save {
+span.save {
     display: inline-block;
     vertical-align: top;
     font-size: 1.3rem;

@@ -128,9 +128,9 @@ function App() {
                     </NavLink>
 
                     {loggedIn && (
-                        <button onClick={logout} className="nav">
+                        <span onClick={logout} className="nav">
                             LOGOUT
-                        </button>
+                        </span>
                     )}
                 </nav>
 
