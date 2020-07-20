@@ -27,7 +27,7 @@ API used: color-thief by Lokesh Dhakar
 
 ## Tech
 
-**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL <br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js<br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
@@ -41,3 +41,4 @@ API used: color-thief by Lokesh Dhakar
 
 ![screenshot](readMe/screenshot_2.png)
 ![screenshot](readMe/screenshot_1.png)
+![screenshot](readMe/screenshot_3.png)

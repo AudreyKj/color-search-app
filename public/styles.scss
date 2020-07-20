@@ -41,27 +41,6 @@ header {
     flex-direction: column;
 }
 
-div.logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    position: absolute;
-    top: 30px;
-    left: 40px;
-
-    background-color: red;
-    box-shadow: red 0px 0px 15px 10px;
-}
-
-@media (max-width: 550px) {
-    div.logo {
-        width: 60px;
-        height: 60px;
-        top: 30px;
-        left: 30px;
-    }
-}
-
 footer {
     margin-top: 20px;
     display: flex;
