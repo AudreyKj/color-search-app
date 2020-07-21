@@ -33,6 +33,8 @@ API used: color-thief by Lokesh Dhakar
 
 ## Future improvements
 
+-   Add Google sign in for register/login
+-   Add color picker (Swatches)
 -   Automate sending of emails to enable users to reset their password
 
 ## Visuals
