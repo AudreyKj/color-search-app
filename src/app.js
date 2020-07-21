@@ -9,6 +9,10 @@ import Admin from "./admin";
 import axios from "./axios";
 import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -60,125 +64,179 @@ function App() {
                 <meta property="og:image:url" content="preview.jpg" />
             </Helmet>
 
-            <header>
-                <span className="color-spot">COLOR SPOT </span>
-            </header>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h5">COLOR SPOT </Typography>
 
-            <BrowserRouter>
-                <nav className="options-buttons">
-                    <NavLink
-                        activeclassname="active"
-                        className="nav"
-                        to="/spotter"
-                    >
-                        COLOR SPOTTER
-                    </NavLink>
+                    <div className="menu">
+                        <Button component={Link} to="/info" color="inherit">
+                            About
+                        </Button>
+                        <Button component={Link} to="/spotter" color="inherit">
+                            Color Spotter
+                        </Button>
+                        <Button component={Link} to="/saved" color="inherit">
+                            Saved Palettes
+                        </Button>
+                        {!loggedIn && (
+                            <>
+                                <Button
+                                    component={Link}
+                                    to="/login"
+                                    color="inherit"
+                                >
+                                    Login
+                                </Button>
 
-                    <NavLink
-                        to="/saved"
-                        activeclassname="active"
-                        className="nav"
-                    >
-                        SAVED PALETTES
-                    </NavLink>
+                                <Button
+                                    component={Link}
+                                    to="/register"
+                                    color="inherit"
+                                >
+                                    Register
+                                </Button>
+                            </>
+                        )}
 
-                    {!loggedIn && (
-                        <>
+                        {loggedIn && (
+                            <Button onClick={logout} color="inherit">
+                                LOGOUT
+                            </Button>
+                        )}
+
+                        {loggedIn && (
                             <NavLink
-                                to="/login"
-                                activeclassname="active"
+                                to="/profile"
+                                activeClassName="active"
                                 className="nav"
                             >
-                                LOGIN
+                                EDIT PROFILE
                             </NavLink>
-                            <NavLink
-                                to="/register"
-                                activeclassname="active"
-                                className="nav"
-                            >
-                                REGISTER
-                            </NavLink>
-                        </>
-                    )}
+                        )}
 
-                    {loggedIn && (
-                        <NavLink
-                            to="/profile"
-                            activeClassName="active"
-                            className="nav"
-                        >
-                            EDIT PROFILE
-                        </NavLink>
-                    )}
+                        <Button component={Link} to="/admin" color="inherit">
+                            Admin
+                        </Button>
+                    </div>
+                </Toolbar>
+            </AppBar>
 
-                    <NavLink
-                        to="/info"
-                        activeclassname="active"
-                        className="nav"
-                    >
-                        INFO
-                    </NavLink>
+            <Route path="/profile" component={Profile}></Route>
+            <Route path="/info" component={Info}></Route>
+            <Route path="/admin" component={Admin}></Route>
 
-                    <NavLink
-                        to="/admin"
-                        activeclassname="active"
-                        className="nav"
-                    >
-                        Admin
-                    </NavLink>
+            <Route
+                path="/register"
+                render={props => (
+                    <Register loggedIn={loggedIn} updateLogged={updateLogged} />
+                )}
+            />
 
-                    {loggedIn && (
-                        <span onClick={logout} className="nav">
-                            LOGOUT
-                        </span>
-                    )}
-                </nav>
+            <Route
+                path="/login"
+                render={props => (
+                    <Login loggedIn={loggedIn} updateLogged={updateLogged} />
+                )}
+            />
 
-                <Route path="/profile" component={Profile}></Route>
-                <Route path="/info" component={Info}></Route>
-                <Route path="/admin" component={Admin}></Route>
+            <Route
+                path="/saved"
+                render={props => (
+                    <Saved loggedIn={loggedIn} updateLogged={updateLogged} />
+                )}
+            />
 
-                <Route
-                    path="/register"
-                    render={props => (
-                        <Register
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                        />
-                    )}
-                />
-
-                <Route
-                    path="/login"
-                    render={props => (
-                        <Login
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                        />
-                    )}
-                />
-
-                <Route
-                    path="/spotter"
-                    render={props => (
-                        <ColorGraber
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                        />
-                    )}
-                />
-                <Route
-                    path="/saved"
-                    render={props => (
-                        <Saved
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                        />
-                    )}
-                />
-            </BrowserRouter>
+            <Route
+                path="/spotter"
+                render={props => (
+                    <ColorGraber
+                        loggedIn={loggedIn}
+                        updateLogged={updateLogged}
+                    />
+                )}
+            />
+            <footer>
+                COLOR SPOT © 2020 - see project on
+                <a
+                    className="footer-link"
+                    href="https://github.com/AudreyKj/color-search-app"
+                >
+                    &nbsp; GitHub
+                </a>
+            </footer>
         </div>
     );
 }
 
 export default App;
+
+/*
+<nav className="options-buttons">
+    COLOR SPOTTER
+    <NavLink to="/saved" activeclassname="active" className="nav">
+        SAVED PALETTES
+    </NavLink>
+    {!loggedIn && (
+        <>
+            <NavLink to="/login" activeclassname="active" className="nav">
+                LOGIN
+            </NavLink>
+            <NavLink to="/register" activeclassname="active" className="nav">
+                REGISTER
+            </NavLink>
+        </>
+    )}
+    {loggedIn && (
+        <NavLink to="/profile" activeClassName="active" className="nav">
+            EDIT PROFILE
+        </NavLink>
+    )}
+    <NavLink to="/info" activeclassname="active" className="nav">
+        INFO
+    </NavLink>
+    <NavLink to="/admin" activeclassname="active" className="nav">
+        Admin
+    </NavLink>
+    {loggedIn && (
+        <span onClick={logout} className="nav">
+            LOGOUT
+        </span>
+    )}
+</nav>;
+
+
+<Route path="/profile" component={Profile}></Route>
+<Route path="/info" component={Info}></Route>
+<Route path="/admin" component={Admin}></Route>
+
+<Route
+    path="/register"
+    render={props => (
+        <Register loggedIn={loggedIn} updateLogged={updateLogged} />
+    )}
+/>
+
+<Route
+    path="/login"
+    render={props => (
+        <Login loggedIn={loggedIn} updateLogged={updateLogged} />
+    )}
+/>
+
+<Route
+    path="/spotter"
+    render={props => (
+        <ColorGraber
+            loggedIn={loggedIn}
+            updateLogged={updateLogged}
+        />
+    )}
+/>
+<Route
+    path="/saved"
+    render={props => (
+        <Saved loggedIn={loggedIn} updateLogged={updateLogged} />
+    )}
+/>
+
+*/

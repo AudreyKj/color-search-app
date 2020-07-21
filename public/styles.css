@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: lightgrey;
+    background-color: #f3f3f3e0;
     font-family: "Questrial", sans-serif;
     margin: 0;
 }
@@ -23,8 +23,18 @@ div.container {
 /* HOME */
 header {
     width: 100%;
+    height: 80px;
+
     display: flex;
     justify-content: center;
+
+    margin-bottom: 30px;
+    position: fixed;
+}
+
+div.menu {
+    position: absolute;
+    right: 20px;
 }
 
 span.color-spot {
@@ -79,13 +89,11 @@ span.nav {
     font-size: 1.3rem;
     letter-spacing: 0.04em;
     min-width: 1.5em;
-    border-radius: 10em;
-    color: lightgrey;
-    background-color: #333;
-    border: 1px solid transparent;
+    color: #333;
+    border: 1px solid #333;
     text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    margin: 0.5em 0.5em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
@@ -168,19 +176,24 @@ span.save {
     font-size: 1.3rem;
     letter-spacing: 0.04em;
     min-width: 1.5em;
-    border-radius: 10em;
-    color: lightgrey;
-    background-color: #333;
-    border: 1px solid transparent;
+    color: #333;
+    border: 1px solid #333;
     text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.8em 0.2em;
+    margin: 0.5em 0.5em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
 span.palette_saved_confirmation {
     text-align: center;
     font-size: 1.3rem;
+}
+
+div.palette-save {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 p.drop-graber {
@@ -245,22 +258,14 @@ span.filter {
 .filter-button {
     display: inline-block;
     vertical-align: top;
-    display: inline-block;
-    vertical-align: top;
     font-size: 1.3rem;
     letter-spacing: 0.04em;
     min-width: 1.5em;
-    border-radius: 10em;
-    color: #ccc;
-    background-color: #333;
-    border: 1px solid transparent;
-    text-transform: uppercase;
-    margin: 0.2em 0.5em;
-    padding: 0.4em 0.6em 0.4em;
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;
-    background-color: lightgrey;
+    margin: 0.5em 0.5em;
+    padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
@@ -312,7 +317,7 @@ input {
     margin-top: 5px;
     padding: 10px;
     font-size: 1.3rem;
-    background-color: #ccc;
+    background-color: #f3f3f3e0;
 }
 
 button.submit {
@@ -321,12 +326,10 @@ button.submit {
     font-size: 1.3rem;
     letter-spacing: 0.04em;
     min-width: 1.5em;
-    border-radius: 10em;
-    color: #ccc;
-    background-color: #333;
-    border: 1px solid transparent;
+    color: #333;
+    border: 1px solid #333;
     text-transform: uppercase;
-    margin: 0.2em 0.5em;
+    margin: 0.5em 0.5em;
     padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
@@ -334,6 +337,7 @@ button.submit {
 span.error {
     text-align: center;
     font-size: 1.5rem;
+    width: 50%;
 }
 
 span.confirmation {
@@ -368,6 +372,7 @@ div.info-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    color: #333;
 }
 
 @media (max-width: 1200px) {
@@ -435,4 +440,28 @@ div.chart {
 
 div.single-chart {
     padding-right: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #1a237e;
+
+    bottom: 0;
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: center;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+a.footer-link,
+a.footer-link:active,
+a.footer-link:visited {
+    color: #fff;
 }
