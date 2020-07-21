@@ -8,9 +8,12 @@
 }
 
 body {
-    background-color: #f3f3f3e0;
+    background-color: #f8f8f8;
     font-family: "Questrial", sans-serif;
     margin: 0;
+
+    position: relative;
+    min-height: 100vh;
 }
 
 div.container {
@@ -30,6 +33,25 @@ header {
 
     margin-bottom: 30px;
     position: fixed;
+    background-color: #212121;
+}
+
+@media (max-width: 550px) {
+    header {
+        height: 120px;
+    }
+}
+
+@media (max-width: 400px) {
+    header {
+        height: 150px;
+    }
+}
+
+@media (max-width: 370px) {
+    header {
+        height: 250px;
+    }
 }
 
 div.menu {
@@ -37,30 +59,10 @@ div.menu {
     right: 20px;
 }
 
-span.color-spot {
-    font-size: 6rem;
-    margin-left: 20px;
-    z-index: 10;
-    text-align: center;
-    color: #333;
-}
-
-span.color-spot:hover {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #333;
-    color: transparent;
-}
-
-@media (max-width: 1000px) {
-    span.color-spot {
-        font-size: 4rem;
-    }
-}
-
-@media (max-width: 750px) {
-    span.color-spot {
-        font-size: 4rem;
-        margin-bottom: 20px;
+@media (max-width: 770px) {
+    div.menu {
+        position: relative;
+        margin-left: 30px;
     }
 }
 
@@ -119,6 +121,7 @@ div.member-otions {
 /* COLOR SPOTTER */
 div.color-graber {
     margin-top: 35px;
+    margin-bottom: 80px;
 }
 
 span.graber_instructions {
@@ -143,7 +146,8 @@ div.saved_palettes_container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 30px;
+    margin-left: 40px;
+    margin-bottom: 100px;
 }
 
 ul {
@@ -197,7 +201,6 @@ div.palette-save {
 }
 
 p.drop-graber {
-    border: 1px solid #333;
     padding: 50px;
     display: flex;
     align-items: center;
@@ -206,6 +209,9 @@ p.drop-graber {
     font-size: 1.5rem;
     cursor: crosshair;
     border-radius: 12px;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 /* SAVED PALETTES */
@@ -298,6 +304,11 @@ div.saved_color {
 }
 
 /* AUTH */
+
+div.auth-login,
+div.auth-register {
+    margin-bottom: 80px;
+}
 form.auth {
     display: flex;
     flex-direction: column;
@@ -373,6 +384,7 @@ div.info-wrapper {
     display: flex;
     justify-content: center;
     color: #333;
+    margin-bottom: 80px;
 }
 
 @media (max-width: 1200px) {
@@ -397,8 +409,6 @@ div.profile {
 form.profile {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-top: 45px;
     font-size: 1.5rem;
     margin-bottom: 25px;
@@ -430,6 +440,7 @@ div.chart {
     justify-content: center;
     width: 100%;
     min-height: 100%;
+    margin-bottom: 80px;
 }
 
 @media (max-width: 1000px) {
@@ -445,23 +456,42 @@ div.single-chart {
 /* FOOTER */
 
 footer {
-    background-color: #1a237e;
-
+    position: absolute;
+    right: 0;
     bottom: 0;
-    position: fixed;
+    left: 0;
     height: 40px;
     width: 100%;
     display: flex;
     align-items: center;
-    color: #fff;
+    color: #333;
     justify-content: center;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.9),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 350px) {
+    footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        color: #333;
+        justify-content: center;
+
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.9),
+            0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
 }
 
 a.footer-link,
 a.footer-link:active,
 a.footer-link:visited {
-    color: #fff;
+    color: #333;
 }

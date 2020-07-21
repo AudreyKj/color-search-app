@@ -83,7 +83,7 @@ function Register(props) {
     };
 
     return (
-        <div>
+        <div className="auth-register">
             {form && (
                 <form className="auth" method="POST">
                     <label htmlFor="userName">

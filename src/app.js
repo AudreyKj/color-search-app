@@ -64,13 +64,13 @@ function App() {
                 <meta property="og:image:url" content="preview.jpg" />
             </Helmet>
 
-            <AppBar position="static">
+            <AppBar position="static" style={{ background: "#212121" }}>
                 <Toolbar>
                     <Typography variant="h5">COLOR SPOT </Typography>
 
                     <div className="menu">
                         <Button component={Link} to="/info" color="inherit">
-                            About
+                            Info
                         </Button>
                         <Button component={Link} to="/spotter" color="inherit">
                             Color Spotter
@@ -100,18 +100,18 @@ function App() {
 
                         {loggedIn && (
                             <Button onClick={logout} color="inherit">
-                                LOGOUT
+                                Logout
                             </Button>
                         )}
 
                         {loggedIn && (
-                            <NavLink
+                            <Button
+                                component={Link}
                                 to="/profile"
-                                activeClassName="active"
-                                className="nav"
+                                color="inherit"
                             >
-                                EDIT PROFILE
-                            </NavLink>
+                                Edit profile
+                            </Button>
                         )}
 
                         <Button component={Link} to="/admin" color="inherit">
@@ -169,74 +169,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<nav className="options-buttons">
-    COLOR SPOTTER
-    <NavLink to="/saved" activeclassname="active" className="nav">
-        SAVED PALETTES
-    </NavLink>
-    {!loggedIn && (
-        <>
-            <NavLink to="/login" activeclassname="active" className="nav">
-                LOGIN
-            </NavLink>
-            <NavLink to="/register" activeclassname="active" className="nav">
-                REGISTER
-            </NavLink>
-        </>
-    )}
-    {loggedIn && (
-        <NavLink to="/profile" activeClassName="active" className="nav">
-            EDIT PROFILE
-        </NavLink>
-    )}
-    <NavLink to="/info" activeclassname="active" className="nav">
-        INFO
-    </NavLink>
-    <NavLink to="/admin" activeclassname="active" className="nav">
-        Admin
-    </NavLink>
-    {loggedIn && (
-        <span onClick={logout} className="nav">
-            LOGOUT
-        </span>
-    )}
-</nav>;
-
-
-<Route path="/profile" component={Profile}></Route>
-<Route path="/info" component={Info}></Route>
-<Route path="/admin" component={Admin}></Route>
-
-<Route
-    path="/register"
-    render={props => (
-        <Register loggedIn={loggedIn} updateLogged={updateLogged} />
-    )}
-/>
-
-<Route
-    path="/login"
-    render={props => (
-        <Login loggedIn={loggedIn} updateLogged={updateLogged} />
-    )}
-/>
-
-<Route
-    path="/spotter"
-    render={props => (
-        <ColorGraber
-            loggedIn={loggedIn}
-            updateLogged={updateLogged}
-        />
-    )}
-/>
-<Route
-    path="/saved"
-    render={props => (
-        <Saved loggedIn={loggedIn} updateLogged={updateLogged} />
-    )}
-/>
-
-*/

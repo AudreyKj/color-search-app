@@ -25,7 +25,7 @@ function Login(props) {
     };
 
     return (
-        <div>
+        <div className="auth-login">
             {form && (
                 <form className="auth" method="POST">
                     <label htmlFor="email">

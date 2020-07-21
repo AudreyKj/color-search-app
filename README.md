@@ -27,15 +27,13 @@ API used: color-thief by Lokesh Dhakar
 
 ## Tech
 
-**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js<br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js, material-ui<br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
 ## Future improvements
 
--   Add auth with Google Sign-In
 -   Automate sending of emails to enable users to reset their password
--   Add more features to the "SAVED PALETTES" section
 
 ## Visuals
 
