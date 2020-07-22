@@ -13,9 +13,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Logout from "./logout";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [googleLoggedIn, setGoogleLoggedIn] = useState(false);
+
+    console.log("loggedIn", loggedIn);
 
     useEffect(() => {
         axios
@@ -23,8 +27,6 @@ function App() {
             .then(data => {
                 if (data.data === "logged") {
                     setLoggedIn(true);
-                } else {
-                    setLoggedIn(false);
                 }
             })
             .catch(error => {
@@ -40,19 +42,35 @@ function App() {
         }
     };
 
-    const logout = () => {
-        axios
-            .get("/logout")
-            .then(res => {
-                if (location.pathname !== "/spotter") {
-                    location.replace("/spotter");
-                }
+    const updateGoogleLogged = () => {
+        if (!googleLoggedIn) {
+            setGoogleLoggedIn(true);
+        } else {
+            setGoogleLoggedIn(false);
+        }
+    };
 
-                setLoggedIn(false);
-            })
-            .catch(error => {
-                console.log("error", error);
+    const logout = () => {
+        if (googleLoggedIn) {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log("User signed out- google");
+                auth2.disconnect();
             });
+        } else {
+            axios
+                .get("/logout")
+                .then(res => {
+                    if (location.pathname !== "/spotter") {
+                        location.replace("/spotter");
+                    }
+
+                    props.updateLogged();
+                })
+                .catch(error => {
+                    console.log("error", error);
+                });
+        }
     };
 
     return (
@@ -63,7 +81,6 @@ function App() {
                 <meta property="og:image" content="preview.jpg" />
                 <meta property="og:image:url" content="preview.jpg" />
             </Helmet>
-
             <AppBar position="static" style={{ background: "#212121" }}>
                 <Toolbar>
                     <Typography variant="h5">COLOR SPOT </Typography>
@@ -104,7 +121,7 @@ function App() {
                             </Button>
                         )}
 
-                        {loggedIn && (
+                        {appUserLoggedIn && (
                             <Button
                                 component={Link}
                                 to="/profile"
@@ -120,32 +137,31 @@ function App() {
                     </div>
                 </Toolbar>
             </AppBar>
-
             <Route path="/profile" component={Profile}></Route>
             <Route path="/info" component={Info}></Route>
             <Route path="/admin" component={Admin}></Route>
-
             <Route
                 path="/register"
                 render={props => (
                     <Register loggedIn={loggedIn} updateLogged={updateLogged} />
                 )}
             />
-
             <Route
                 path="/login"
                 render={props => (
-                    <Login loggedIn={loggedIn} updateLogged={updateLogged} />
+                    <Login
+                        loggedIn={loggedIn}
+                        updateLogged={updateLogged}
+                        updateGoogleLogged={updateGoogleLogged}
+                    />
                 )}
             />
-
             <Route
                 path="/saved"
                 render={props => (
                     <Saved loggedIn={loggedIn} updateLogged={updateLogged} />
                 )}
             />
-
             <Route
                 path="/spotter"
                 render={props => (
@@ -155,6 +171,7 @@ function App() {
                     />
                 )}
             />
+
             <footer>
                 COLOR SPOT © 2020 - see project on
                 <a

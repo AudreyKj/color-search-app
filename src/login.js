@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
+import GoogleAuthLogin from "./google-login.js";
 
 function Login(props) {
     const [form, setForm] = useState(true);
+    const [googleAuth, setGoogleAuth] = useState(true);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
+
+    const loginSuccess = () => {
+        setConfirmation(true);
+        setError(false);
+        setForm(false);
+        setGoogleAuth(false);
+        props.updateLogged();
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -56,6 +66,14 @@ function Login(props) {
                         SUBMIT
                     </button>
                 </form>
+            )}
+
+            {googleAuth && (
+                <GoogleAuthLogin
+                    updateLogged={props.updateLogged}
+                    updateGoogleLogged={props.updateGoogleLogged}
+                    loginSuccess={loginSuccess}
+                />
             )}
 
             {error && (

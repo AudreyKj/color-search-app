@@ -245,6 +245,11 @@ div.auth-login,
 div.auth-register {
     margin-bottom: 80px;
 }
+
+div.auth-google {
+    display: flex;
+    justify-content: center;
+}
 form.auth {
     display: flex;
     flex-direction: column;
@@ -272,7 +277,7 @@ button.submit {
     vertical-align: top;
     font-size: 1.3rem;
     letter-spacing: 0.04em;
-    min-width: 1.5em;
+    width: 100%;
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;

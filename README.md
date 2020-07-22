@@ -17,7 +17,7 @@ API used: color-thief by Lokesh Dhakar
     <br />
 -   admin page that visualizes data about the the app's users (made with chart.js)
     <br />
--   login/ register (password hashed with bcrypt)
+-   login/ register (password hashed with bcrypt) or login with Google
     <br />
 -   create & update profile
     <br />
@@ -27,15 +27,15 @@ API used: color-thief by Lokesh Dhakar
 
 ## Tech
 
-**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js, material-ui<br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js, material-ui, Goggle Sign-In<br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
 ## Future improvements
 
--   Add Google sign in for register/login
 -   Add color picker (Swatches)
 -   Automate sending of emails to enable users to reset their password
+-   Develop mobile app with React Native
 
 ## Visuals
 
