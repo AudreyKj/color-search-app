@@ -97,7 +97,14 @@ function App() {
                             src="color-wheel.png"
                             alt="color-circle"
                         />
-                        <Typography variant="h5">COLOR SPOT </Typography>
+                        <Typography
+                            variant="h5"
+                            className="link-header"
+                            component={Link}
+                            to="/spotter"
+                        >
+                            COLOR SPOT
+                        </Typography>
                     </div>
 
                     <div className="menu">
