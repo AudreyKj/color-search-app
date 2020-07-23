@@ -11,23 +11,23 @@ API used: color-thief by Lokesh Dhakar
 
 -   drag and drop/upload image to detect its colors using color-thief API
     <br />
+-   login/ register (password hashed with bcrypt) or with Google Sign In
+    <br />
+-   create & update profile
+    <br />
 -   save color palettes and categorize them with tags (only for logged in users)
     <br />
 -   filter saved color palettes by tag (only for logged in users)
     <br />
--   admin page that visualizes data about the the app's users (made with chart.js)
+-   admin page that visualizes data about the the app's users (made with chart.js)(protected by password)
     <br />
--   login/ register (password hashed with bcrypt)
-    <br />
--   create & update profile
-    <br />
--   delete account & all associated info
+-   delete account
     <br />
 -   logout
 
 ## Tech
 
-**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js, material-ui<br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, PostgreSQL, chart.js, material-ui, Google Sign In<br />
 **Protection**: CSURF <br />
 **Testing**: React Testing Library + Jest | **Deployment**: Heroku
 
