@@ -39,6 +39,8 @@ API used: color-thief by Lokesh Dhakar
 
 ## Visuals
 
-![screenshot](readMe/screenshot_2.png)
 ![screenshot](readMe/screenshot_1.png)
+<br />
+![screenshot](readMe/screenshot_2.png)
+<br />
 ![screenshot](readMe/screenshot_3.png)

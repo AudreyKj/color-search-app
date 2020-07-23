@@ -174,11 +174,10 @@ function Admin() {
                     <button className="submit" onClick={verifyPassword}>
                         SUBMIT
                     </button>
+                    {errorAccess && (
+                        <span className="error"> Authentication failed </span>
+                    )}
                 </div>
-            )}
-
-            {errorAccess && (
-                <span className="error"> Authentication failed </span>
             )}
 
             {pageAccess && (
