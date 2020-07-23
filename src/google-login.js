@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import GoogleLogin from "react-google-login";
 import { refreshTokenSetup } from "./refreshToken";
+import axios from "axios";
 
 function GoogleAuthLogin(props) {
-    //"658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-
     //onsuccess => display confirmation message on /Login
     const onSuccess = res => {
+        console.log("res - googleSignIn", res);
         if (props.loginSuccess) {
             props.loginSuccess();
         } else {
@@ -18,6 +18,17 @@ function GoogleAuthLogin(props) {
         props.updateGoogleLogged();
 
         refreshTokenSetup(res);
+
+        let token = { token: res["tokenId"] };
+
+        axios
+            .post("/verifygogleauth", token)
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+
+        //communicate res["tokenId"] to server
+        //check if res["tokenId"] exists in database
+        //if not: register user -> insert in database
     };
 
     //onFailure={onFailure}
@@ -25,7 +36,7 @@ function GoogleAuthLogin(props) {
     return (
         <div className="auth-google">
             <GoogleLogin
-                clientId="90923391367-d1nr426bojtevsskh46plv8gjjdlf0sl.apps.googleusercontent.com"
+                clientId=""
                 buttonText="Sign up or Login with Google"
                 onSuccess={onSuccess}
                 cookiePolicy={"single_host_origin"}

@@ -34,13 +34,13 @@ app.use(
     })
 );
 
-app.use(require("csurf")());
-
-app.use((req, res, next) => {
-    res.set("x-frame-options", "deny");
-    res.cookie("csrftoken", req.csrfToken());
-    next();
-});
+// app.use(require("csurf")());
+//
+// app.use((req, res, next) => {
+//     res.set("x-frame-options", "deny");
+//     res.cookie("csrftoken", req.csrfToken());
+//     next();
+// });
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -64,7 +64,7 @@ app.get("/spotter", function(req, res) {
 });
 
 //REGISTER
-app.get("/register", requireLoggedOutUser, (req, res) => {
+app.get("/register", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
@@ -113,7 +113,7 @@ app.post("/register", (req, res) => {
 });
 
 //LOGIN
-app.get("/login", requireLoggedOutUser, (req, res) => {
+app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
@@ -145,6 +145,15 @@ app.post("/login/submit", (req, res) => {
         .catch(error => {
             return res.json({ error: true });
         });
+});
+
+//GOOGLE SIGN IN AUTH
+app.post("/verifygogleauth", (req, res) => {
+    //check if res["tokenId"] exists in database
+    //if yes: just add cookies with id
+    //if not: register user -> insert in database + add cookie
+
+    console.log("req.body[token]", req.body["token"]);
 });
 
 app.post("/savepalette", (req, res) => {
