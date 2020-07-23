@@ -18,6 +18,7 @@ import Logout from "./logout";
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [googleLoggedIn, setGoogleLoggedIn] = useState(false);
+    const [appUserLoggedIn, setAppUserLoggedIn] = useState(false);
 
     console.log("loggedIn", loggedIn);
 
@@ -42,6 +43,14 @@ function App() {
         }
     };
 
+    const updateAppUserLoggedIn = () => {
+        if (!appUserLoggedIn) {
+            setAppUserLoggedIn(true);
+        } else {
+            setAppUserLoggedIn(false);
+        }
+    };
+
     const updateGoogleLogged = () => {
         if (!googleLoggedIn) {
             setGoogleLoggedIn(true);
@@ -56,6 +65,9 @@ function App() {
             auth2.signOut().then(function() {
                 console.log("User signed out- google");
                 auth2.disconnect();
+                if (location.pathname !== "/spotter") {
+                    location.replace("/spotter");
+                }
             });
         } else {
             axios
@@ -143,7 +155,12 @@ function App() {
             <Route
                 path="/register"
                 render={props => (
-                    <Register loggedIn={loggedIn} updateLogged={updateLogged} />
+                    <Register
+                        loggedIn={loggedIn}
+                        updateLogged={updateLogged}
+                        updateAppUserLoggedIn={updateAppUserLoggedIn}
+                        updateGoogleLogged={updateGoogleLogged}
+                    />
                 )}
             />
             <Route
@@ -153,13 +170,18 @@ function App() {
                         loggedIn={loggedIn}
                         updateLogged={updateLogged}
                         updateGoogleLogged={updateGoogleLogged}
+                        updateAppUserLoggedIn={updateAppUserLoggedIn}
                     />
                 )}
             />
             <Route
                 path="/saved"
                 render={props => (
-                    <Saved loggedIn={loggedIn} updateLogged={updateLogged} />
+                    <Saved
+                        loggedIn={loggedIn}
+                        updateLogged={updateLogged}
+                        updateAppUserLoggedIn={updateAppUserLoggedIn}
+                    />
                 )}
             />
             <Route

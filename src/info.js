@@ -8,8 +8,9 @@ function Info() {
                 GRAB THE COLORS OF AN IMAGE & SAVE PALETTES <br /> <br />
                 You love an image's mood and would like to know its colors? you
                 are designing a product and need some inspiration for the color
-                scheme? you are at the right place! This website enables you to
-                detect colors in images and save and categorize color palettes.
+                scheme? look no further: you are at the right place! This
+                website enables you to detect colors in images as well as to
+                save and categorize color palettes.
                 <br /> <br />
                 GET STARTED 🎨 <br />1 - upload an image to the&nbsp;
                 <Link className="underline" to="/spotter">

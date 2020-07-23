@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
+import GoogleAuthLogin from "./google-login.js";
 
 function Register(props) {
+    console.log("props - register", props);
     const [form, setForm] = useState(true);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -13,6 +15,15 @@ function Register(props) {
     const [errorEmail, setErrorEmail] = useState(false);
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
+    const [googleAuth, setGoogleAuth] = useState(true);
+
+    const registerSuccess = () => {
+        setConfirmation(true);
+        setError(false);
+        setForm(false);
+        setGoogleAuth(false);
+        props.updateLogged();
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -77,7 +88,9 @@ function Register(props) {
                 setUserName("");
                 setEmail("");
                 setPassword("");
-                return props.updateLogged();
+                props.updateAppUserLoggedIn();
+                props.updateLogged();
+                setGoogleAuth(false);
             }
         });
     };
@@ -127,6 +140,14 @@ function Register(props) {
                         SUBMIT
                     </button>
                 </form>
+            )}
+
+            {googleAuth && (
+                <GoogleAuthLogin
+                    updateLogged={props.updateLogged}
+                    updateGoogleLogged={props.updateGoogleLogged}
+                    registerSuccess={registerSuccess}
+                />
             )}
 
             {errorNames && (

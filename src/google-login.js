@@ -7,21 +7,20 @@ function GoogleAuthLogin(props) {
     //"658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
 
     //onsuccess => display confirmation message on /Login
-    const onSuccess = () => {
-        props.loginSuccess();
+    const onSuccess = res => {
+        if (props.loginSuccess) {
+            props.loginSuccess();
+        } else {
+            props.registerSuccess();
+        }
+
         props.updateLogged();
-        props.pdateGoogleLogged();
+        props.updateGoogleLogged();
 
         refreshTokenSetup(res);
     };
 
-    //onsuccess => display confirmation message on /Register
-    const onFailure = res => {
-        console.log("Login failed: res:", res);
-        alert(
-            `Failed to login. 😢 Please ping this to repo owner twitter.com/sivanesh_fiz`
-        );
-    };
+    //onFailure={onFailure}
 
     return (
         <div className="auth-google">
@@ -29,7 +28,6 @@ function GoogleAuthLogin(props) {
                 clientId="90923391367-d1nr426bojtevsskh46plv8gjjdlf0sl.apps.googleusercontent.com"
                 buttonText="Sign up or Login with Google"
                 onSuccess={onSuccess}
-                onFailure={onFailure}
                 cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
             />
