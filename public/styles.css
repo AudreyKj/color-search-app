@@ -31,20 +31,14 @@ header {
     display: flex;
     justify-content: center;
 
-    margin-bottom: 30px;
+    margin-bottom: 45px;
     position: fixed;
     background-color: #212121;
 }
 
 @media (max-width: 550px) {
     header {
-        height: 120px;
-    }
-}
-
-@media (max-width: 400px) {
-    header {
-        height: 150px;
+        height: 220px;
     }
 }
 
@@ -54,9 +48,32 @@ header {
     }
 }
 
+@media (min-width: 1900px) {
+    header {
+        height: 120px;
+    }
+}
+
+div.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+img.logo {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+}
+
 div.menu {
     position: absolute;
     right: 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media (max-width: 770px) {
@@ -75,7 +92,6 @@ a:active {
 
 /* COLOR SPOTTER */
 div.color-graber {
-    margin-top: 35px;
     margin-bottom: 80px;
 }
 
@@ -162,11 +178,17 @@ p.drop-graber {
     justify-content: center;
     text-align: center;
     font-size: 1.5rem;
+    line-height: 1.2;
     cursor: crosshair;
-    border-radius: 12px;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 1900px) {
+    p.drop-graber {
+        font-size: 1.7rem;
+    }
 }
 
 /* SAVED PALETTES */
@@ -243,6 +265,9 @@ div.saved_color {
 /* AUTH */
 div.auth-login,
 div.auth-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 80px;
 }
 
@@ -255,7 +280,6 @@ form.auth {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 45px;
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
@@ -281,15 +305,23 @@ button.submit {
     color: #333;
     border: 1px solid #333;
     text-transform: uppercase;
-    margin: 0.5em 0.5em;
+    margin-top: 10px;
     padding: 0.4em 0.6em 0.4em;
     cursor: pointer;
 }
 
 span.error {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.2;
     width: 50%;
+    color: red;
+}
+
+div.error-conf-messages {
+    margin-top: 20px;
+    width: 60%;
+    text-align: center;
 }
 
 span.confirmation {
@@ -298,9 +330,16 @@ span.confirmation {
 
 /* INFO */
 p.info {
-    width: 50%;
-    font-size: 1.5rem;
+    width: 40%;
+    font-size: 1.3rem;
     line-height: 1.4;
+    margin-top: 0;
+}
+
+@media (min-width: 1900px) {
+    p.info {
+        font-size: 1.6rem;
+    }
 }
 
 .underline {
@@ -309,7 +348,7 @@ p.info {
 
 span.title {
     font-size: 1.5rem;
-    margin-top: 15px;
+
     text-align: center;
 }
 
@@ -344,14 +383,14 @@ div.profile {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 form.profile {
     display: flex;
     flex-direction: column;
-    margin-top: 45px;
     font-size: 1.5rem;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .profile-input {
@@ -359,10 +398,28 @@ form.profile {
 }
 
 /* ADMIN: CHARTS */
+div.admin-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.admin-auth {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+input.admin-auth {
+    margin-left: 15px;
+}
 h1 {
     text-align: center;
     width: 80%;
     font-weight: 300;
+    display: block;
 }
 
 @media (max-width: 700px) {

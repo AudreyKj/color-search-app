@@ -13,7 +13,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Logout from "./logout";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -65,24 +64,21 @@ function App() {
             auth2.signOut().then(function() {
                 console.log("User signed out- google");
                 auth2.disconnect();
+                setLoggedIn(false);
+            });
+        }
+        axios
+            .get("/logout")
+            .then(res => {
                 if (location.pathname !== "/spotter") {
                     location.replace("/spotter");
                 }
-            });
-        } else {
-            axios
-                .get("/logout")
-                .then(res => {
-                    if (location.pathname !== "/spotter") {
-                        location.replace("/spotter");
-                    }
 
-                    props.updateLogged();
-                })
-                .catch(error => {
-                    console.log("error", error);
-                });
-        }
+                setLoggedIn(false);
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
     };
 
     return (
@@ -95,32 +91,71 @@ function App() {
             </Helmet>
             <AppBar position="static" style={{ background: "#212121" }}>
                 <Toolbar>
-                    <Typography variant="h5">COLOR SPOT </Typography>
+                    <div className="title">
+                        <img
+                            className="logo"
+                            src="color-wheel.png"
+                            alt="color-circle"
+                        />
+                        <Typography variant="h5">COLOR SPOT </Typography>
+                    </div>
 
                     <div className="menu">
-                        <Button component={Link} to="/info" color="inherit">
+                        <Button
+                            component={NavLink}
+                            to="/info"
+                            color="inherit"
+                            activeStyle={{
+                                borderBottom:
+                                    "solid 3px rgba(248, 248, 248, 0.8)"
+                            }}
+                        >
                             Info
                         </Button>
-                        <Button component={Link} to="/spotter" color="inherit">
+                        <Button
+                            component={NavLink}
+                            to="/spotter"
+                            color="inherit"
+                            activeStyle={{
+                                borderBottom:
+                                    "solid 3px rgba(248, 248, 248, 0.8)"
+                            }}
+                        >
                             Color Spotter
                         </Button>
-                        <Button component={Link} to="/saved" color="inherit">
+                        <Button
+                            component={NavLink}
+                            to="/saved"
+                            color="inherit"
+                            activeStyle={{
+                                borderBottom:
+                                    "solid 3px rgba(248, 248, 248, 0.8)"
+                            }}
+                        >
                             Saved Palettes
                         </Button>
                         {!loggedIn && (
                             <>
                                 <Button
-                                    component={Link}
+                                    component={NavLink}
                                     to="/login"
                                     color="inherit"
+                                    activeStyle={{
+                                        borderBottom:
+                                            "solid 3px rgba(248, 248, 248, 0.8)"
+                                    }}
                                 >
                                     Login
                                 </Button>
 
                                 <Button
-                                    component={Link}
+                                    component={NavLink}
                                     to="/register"
                                     color="inherit"
+                                    activeStyle={{
+                                        borderBottom:
+                                            "solid 3px rgba(248, 248, 248, 0.8)"
+                                    }}
                                 >
                                     Register
                                 </Button>
@@ -135,15 +170,27 @@ function App() {
 
                         {appUserLoggedIn && (
                             <Button
-                                component={Link}
+                                component={NavLink}
                                 to="/profile"
                                 color="inherit"
+                                activeStyle={{
+                                    borderBottom:
+                                        "solid 3px rgba(248, 248, 248, 0.8)"
+                                }}
                             >
                                 Edit profile
                             </Button>
                         )}
 
-                        <Button component={Link} to="/admin" color="inherit">
+                        <Button
+                            component={NavLink}
+                            to="/admin"
+                            color="inherit"
+                            activeStyle={{
+                                borderBottom:
+                                    "solid 3px rgba(248, 248, 248, 0.8)"
+                            }}
+                        >
                             Admin
                         </Button>
                     </div>
@@ -194,15 +241,7 @@ function App() {
                 )}
             />
 
-            <footer>
-                COLOR SPOT © 2020 - see project on
-                <a
-                    className="footer-link"
-                    href="https://github.com/AudreyKj/color-search-app"
-                >
-                    &nbsp; GitHub
-                </a>
-            </footer>
+            <footer>COLOR SPOT © 2020</footer>
         </div>
     );
 }

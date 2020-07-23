@@ -150,42 +150,46 @@ function Register(props) {
                 />
             )}
 
-            {errorNames && (
-                <span className="error">
-                    Please make sure your username is correctly entered.
-                </span>
-            )}
+            <div className="error-conf-messages">
+                {errorNames && (
+                    <span className="error">
+                        Please make sure your username is correctly entered.
+                    </span>
+                )}
 
-            {errorPw && (
-                <span className="error">
-                    Passwords should be min 5 characters and count at least one
-                    number.
-                </span>
-            )}
+                {errorPw && (
+                    <span className="error">
+                        Passwords should be min 5 characters and count at least
+                        one number.
+                    </span>
+                )}
 
-            {errorEmail && (
-                <span className="error">
-                    Please make sure you entered your email correctly.
-                </span>
-            )}
+                {errorEmail && (
+                    <span className="error">
+                        Please make sure you entered your email correctly.
+                    </span>
+                )}
 
-            {error && <span className="error">Error: please try again.</span>}
+                {error && (
+                    <span className="error">Error: please try again.</span>
+                )}
 
-            {userNameError && (
-                <span className="error">This username already exists.</span>
-            )}
+                {userNameError && (
+                    <span className="error">This username already exists.</span>
+                )}
 
-            {errorNotUnique_Email && (
-                <span className="error">
-                    An account for this email address already exists.
-                </span>
-            )}
+                {errorNotUnique_Email && (
+                    <span className="error">
+                        An account for this email address already exists.
+                    </span>
+                )}
 
-            {confirmation && (
-                <span className="confirmation">
-                    Success! You're registered!
-                </span>
-            )}
+                {confirmation && (
+                    <span className="confirmation">
+                        Success! You're registered!
+                    </span>
+                )}
+            </div>
         </div>
     );
 }

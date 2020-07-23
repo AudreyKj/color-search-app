@@ -3,11 +3,33 @@ import axios from "./axios";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 
 function Admin() {
+    //password check
+    const [pwCheck, setPwCheck] = useState(true);
+    const [pageAccess, setPageAccess] = useState(false);
+    const [password, setPassword] = useState("");
+    const [errorAccess, setErrorAccess] = useState(false);
+
+    //data dashboard
     const [gender, setGender] = useState();
     const [genderData, setGenderData] = useState();
     const [country, setCountry] = useState();
     const [age, setAge] = useState();
     const [chartReady, setchartReady] = useState(false);
+
+    const verifyPassword = () => {
+        axios
+            .post("/admin-page-access", { password: password })
+            .then(data => {
+                if (data.data.error) {
+                    setErrorAccess(true);
+                } else if (data.data.passwordVerified) {
+                    setPwCheck(false);
+                    setPageAccess(true);
+                    setErrorAccess(false);
+                }
+            })
+            .catch(error => console.log("error", error));
+    };
 
     useEffect(() => {
         axios
@@ -134,36 +156,64 @@ function Admin() {
     }, []);
 
     return (
-        <>
-            <h1> DASHBOARD: DATA ABOUT THE APP'S USERS </h1>
+        <div>
+            {pwCheck && (
+                <div className="admin-auth">
+                    Access to the admin page's data dashboard is protected.{" "}
+                    <br />
+                    Please enter the password to access the page <br />
+                    <label forhtml="password">
+                        PASSWORD
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={e => setPassword(e.target.value)}
+                            className="admin-auth"
+                        />
+                    </label>
+                    <button className="submit" onClick={verifyPassword}>
+                        SUBMIT
+                    </button>
+                </div>
+            )}
 
-            <div className="chart">
-                <div className="single-chart">
-                    <Doughnut
-                        data={genderData}
-                        width={300}
-                        height={300}
-                        options={{ maintainAspectRatio: false }}
-                    />
+            {errorAccess && (
+                <span className="error"> Authentication failed </span>
+            )}
+
+            {pageAccess && (
+                <div className="admin-page">
+                    <h1> DASHBOARD: DATA ABOUT THE APP'S USERS </h1>
+
+                    <div className="chart">
+                        <div className="single-chart">
+                            <Doughnut
+                                data={genderData}
+                                width={300}
+                                height={300}
+                                options={{ maintainAspectRatio: false }}
+                            />
+                        </div>
+                        <div className="single-chart">
+                            <Bar
+                                data={age}
+                                width={300}
+                                height={200}
+                                options={{ maintainAspectRatio: false }}
+                            />
+                        </div>
+                        <div className="single-chart">
+                            <Pie
+                                data={country}
+                                width={300}
+                                height={300}
+                                options={{ maintainAspectRatio: false }}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="single-chart">
-                    <Bar
-                        data={age}
-                        width={300}
-                        height={200}
-                        options={{ maintainAspectRatio: false }}
-                    />
-                </div>
-                <div className="single-chart">
-                    <Pie
-                        data={country}
-                        width={300}
-                        height={300}
-                        options={{ maintainAspectRatio: false }}
-                    />
-                </div>
-            </div>
-        </>
+            )}
+        </div>
     );
 }
 

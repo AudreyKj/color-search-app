@@ -173,7 +173,7 @@ function Profile() {
                     OTHER
                 </label>
                 <button onClick={update} className="submit">
-                    UPDATE
+                    UPDATE PROFILE
                 </button>
             </form>
 

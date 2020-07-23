@@ -34,13 +34,13 @@ app.use(
     })
 );
 
-// app.use(require("csurf")());
-//
-// app.use((req, res, next) => {
-//     res.set("x-frame-options", "deny");
-//     res.cookie("csrftoken", req.csrfToken());
-//     next();
-// });
+app.use(require("csurf")());
+
+app.use((req, res, next) => {
+    res.set("x-frame-options", "deny");
+    res.cookie("csrftoken", req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -64,7 +64,7 @@ app.get("/spotter", function(req, res) {
 });
 
 //REGISTER
-app.get("/register", (req, res) => {
+app.get("/register", requireLoggedOutUser, (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
@@ -113,7 +113,7 @@ app.post("/register", (req, res) => {
 });
 
 //LOGIN
-app.get("/login", (req, res) => {
+app.get("/login", requireLoggedOutUser, (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
@@ -149,13 +149,46 @@ app.post("/login/submit", (req, res) => {
 
 //GOOGLE SIGN IN AUTH
 app.post("/verifygogleauth", (req, res) => {
-    //check if res["tokenId"] exists in database
-    //if yes: just add cookies with id
-    //if not: register user -> insert in database + add cookie
+    let token = req.body["token"];
+    let type = "Google";
 
-    console.log("req.body[token]", req.body["token"]);
+    db.verifyGoogleAuth(token)
+        .then(result => {
+            if (result.rows.length === 0) {
+                db.addUserFromGoogleAuth(token, type).then(result => {
+                    console.log("result", result);
+                    req.session.userId = result.rows[0].id;
+                    return res.json(result);
+                });
+            } else {
+                req.session.userId = result.rows[0].id;
+                console.log("req.session.userId", req.session.userId);
+
+                return res.json(result);
+            }
+        })
+        .catch(error => console.log(error));
 });
 
+//VERIFY IF LOGGED IN
+app.get("/getloggedIn", (req, res) => {
+    let loggedIn = "logged";
+    let notLogged = "notlogged";
+
+    if (req.session.userId) {
+        return res.json(loggedIn);
+    } else {
+        return res.json(notLogged);
+    }
+});
+
+//LOGOUT
+app.get("/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/spotter");
+});
+
+//SAVE COLOR PALETTES
 app.post("/savepalette", (req, res) => {
     let user_id = req.session.userId;
 
@@ -170,6 +203,7 @@ app.post("/savepalette", (req, res) => {
         });
 });
 
+//SAVE COLORS
 app.get("/savedcolors", (req, res) => {
     let user_id = req.session.userId;
     db.getColors(user_id)
@@ -188,6 +222,7 @@ app.get("/savedcolors", (req, res) => {
         });
 });
 
+//FILTER
 app.post("/filter", (req, res) => {
     let tag = req.body.tag;
     let user_id = req.session.userId;
@@ -206,18 +241,6 @@ app.post("/filter", (req, res) => {
         .catch(err => {
             return res.json({ error: true });
         });
-});
-
-//GET LOGGED IN
-app.get("/getloggedIn", (req, res) => {
-    let loggedIn = "logged";
-    let notLogged = "notlogged";
-
-    if (req.session.userId) {
-        return res.json(loggedIn);
-    } else {
-        return res.json(notLogged);
-    }
 });
 
 //PROFILE
@@ -281,15 +304,24 @@ app.post("/delete", async (req, res) => {
     }
 });
 
-//LOGOUT
-app.get("/logout", (req, res) => {
-    req.session.userId = null;
-    res.redirect("/spotter");
-});
-
 //ADMIN PAGE - DATA VISUALIZATION
 app.get("/admin", (req, res) => {
     res.sendFile(__dirname + "/index.html");
+});
+
+//VERIFY PASSWORD FOR ADMIN PAGE ACCESS
+app.post("/admin-page-access", (req, res) => {
+    const password = req.body["password"];
+
+    db.verifyAdminPassword(password)
+        .then(result => {
+            if (result.rows.length === 0) {
+                return res.json({ error: true });
+            } else {
+                return res.json({ passwordVerified: true });
+            }
+        })
+        .catch(error => console.log("error", error));
 });
 
 //DATA OF USERS

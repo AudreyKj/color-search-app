@@ -18,6 +18,10 @@ function Login(props) {
         props.updateLogged();
     };
 
+    const googleAuthFailure = () => {
+        setError(true);
+    };
+
     const handleClick = e => {
         e.preventDefault();
 
@@ -74,17 +78,22 @@ function Login(props) {
                     updateLogged={props.updateLogged}
                     updateGoogleLogged={props.updateGoogleLogged}
                     loginSuccess={loginSuccess}
+                    googleAuthFailure={googleAuthFailure}
                 />
             )}
 
-            {error && (
-                <span className="error">
-                    No matching account found; try again or register.
-                </span>
-            )}
-            {confirmation && (
-                <span className="confirmation">Success! You're logged in!</span>
-            )}
+            <div className="error-conf-messages">
+                {error && (
+                    <span className="error">
+                        Authentication failed; try again or register.
+                    </span>
+                )}
+                {confirmation && (
+                    <span className="confirmation">
+                        Success! You're logged in!
+                    </span>
+                )}
+            </div>
         </div>
     );
 }

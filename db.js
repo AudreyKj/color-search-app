@@ -27,6 +27,20 @@ function verifyUser(email) {
     ]);
 }
 
+function verifyGoogleAuth(token_id) {
+    return db.query(
+        `SELECT external_id, id FROM register WHERE external_id=$1`,
+        [token_id]
+    );
+}
+
+function addUserFromGoogleAuth(token_id, token_type) {
+    return db.query(
+        `INSERT INTO register(external_id, external_type) VALUES($1, $2) RETURNING *`,
+        [token_id, token_type]
+    );
+}
+
 function savePalette(colors, tag, user_id) {
     return db.query(
         `INSERT INTO saved (palette, tag, user_id) VALUES ($1, $2, $3) RETURNING id`,
@@ -89,6 +103,12 @@ function deleteUserInfo(user_id) {
     return db.query(`DELETE FROM register WHERE id=$1`, [user_id]);
 }
 
+function verifyAdminPassword(password) {
+    return db.query(`SELECT FROM adminPageAccess WHERE password=$1`, [
+        password
+    ]);
+}
+
 function getGender() {
     return db.query(`SELECT gender FROM user_profiles`);
 }
@@ -105,6 +125,8 @@ exports.checkEmail = checkEmail;
 exports.checkUsername = checkUsername;
 exports.registerUser = registerUser;
 exports.verifyUser = verifyUser;
+exports.verifyGoogleAuth = verifyGoogleAuth;
+exports.addUserFromGoogleAuth = addUserFromGoogleAuth;
 exports.savePalette = savePalette;
 exports.getColors = getColors;
 exports.filter = filter;
@@ -114,6 +136,7 @@ exports.updateProfile = updateProfile;
 exports.deleteSavedPalettes = deleteSavedPalettes;
 exports.deleteInfoProfile = deleteInfoProfile;
 exports.deleteUserInfo = deleteUserInfo;
+exports.verifyAdminPassword = verifyAdminPassword;
 exports.getGender = getGender;
 exports.getCountry = getCountry;
 exports.getAge = getAge;
