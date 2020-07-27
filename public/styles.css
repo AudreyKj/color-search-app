@@ -497,9 +497,3 @@ footer {
         height: 50px;
     }
 }
-
-a.footer-link,
-a.footer-link:active,
-a.footer-link:visited {
-    color: #333;
-}

@@ -84,6 +84,21 @@ function App() {
     return (
         <div className="container">
             <Helmet>
+                <title>COLOR SPOT </title>
+                <meta name="description" content="colors" />
+                <meta name="keywords" content="colors, design, color palette" />
+                <meta name="application-name" content="color spot" />
+                <meta name="theme-color" content="black" />
+                <meta property="og:image:width" content="1080" />
+                <meta property="og:image:height" content="1080" />
+                <meta
+                    property="og:url"
+                    content="https://color-spot.herokuapp.com/"
+                />
+                <meta
+                    property="og:description"
+                    content="color spot - detect colors in images and grow color collections"
+                />
                 <meta property="og:image:width" content="1080" />
                 <meta property="og:image:height" content="1080" />
                 <meta property="og:image" content="preview.jpg" />
