@@ -47,5 +47,5 @@ API used: color-thief by Lokesh Dhakar
 <br/>
 
 <p align="center">
-<img width="400" height="793" src="readMe/mobile.png">
+<img width="300" height="595" src="readMe/mobile.png">
 </p>
