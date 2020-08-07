@@ -38,13 +38,7 @@ header {
 
 @media (max-width: 550px) {
     header {
-        height: 220px;
-    }
-}
-
-@media (max-width: 370px) {
-    header {
-        height: 250px;
+        height: 200px;
     }
 }
 

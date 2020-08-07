@@ -44,3 +44,8 @@ API used: color-thief by Lokesh Dhakar
 ![screenshot](readMe/screenshot_2.png)
 <br />
 ![screenshot](readMe/screenshot_3.png)
+<br/>
+
+<p align="center">
+<img width="400" height="793" src="readMe/mobile.png">
+</p>

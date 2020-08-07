@@ -51,8 +51,8 @@ function ColorGraber(props) {
                         <p className="drop-graber">
                             GET THE COLORS OF AN IMAGE: <br />
                             <br />
-                            Drag and drop your image here <br />
-                            or click to select your file
+                            Drag and drop your image here or click to select
+                            your file
                         </p>
                     </div>
                 )}

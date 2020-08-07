@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 
 function Profile() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [date, setDate] = useState();
-    const [email, setEmail] = useState();
-    const [age, setAge] = useState();
-    const [country, setCountry] = useState();
-    const [gender, setGender] = useState();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [date, setDate] = useState("");
+    const [email, setEmail] = useState("");
+    const [age, setAge] = useState("");
+    const [country, setCountry] = useState("");
+    const [gender, setGender] = useState("");
     const [updated, setUpdated] = useState(false);
     const [error, setError] = useState(false);
     const [errorPw, setErrorPw] = useState(false);
