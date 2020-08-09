@@ -5,7 +5,7 @@ An "admin" page (made with chart.js) visualizes data from the app's users. <br /
 
 API used: color-thief by Lokesh Dhakar
 
-[visit live app](https://color-spot.herokuapp.com)
+[visit live app](https://color-spot.space/)
 
 ## Features
 
