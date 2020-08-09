@@ -6,7 +6,7 @@
     "scripts": {
         "build": "node build.js",
         "start": "node index.js",
-        "test": "jest --coverage",
+        "test": "jest",
         "build-css": "node-sass --include-path scss public/styles.scss   public/styles.css"
     },
     "engines": {
@@ -26,6 +26,7 @@
         "babel-loader": "^8.0.5",
         "bcryptjs": "^2.4.3",
         "chart.js": "^2.9.3",
+        "chroma-js": "^2.1.0",
         "cloudinary": "^1.21.0",
         "color-thief-react": "^1.0.2",
         "compression": "^1.7.0",

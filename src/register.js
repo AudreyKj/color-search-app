@@ -3,7 +3,7 @@ import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
 
 function Register(props) {
-    console.log("props - register", props);
+    //console.log("props - register", props);
     const [form, setForm] = useState(true);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -27,6 +27,10 @@ function Register(props) {
 
     const handleClick = e => {
         e.preventDefault();
+
+        console.log("userName", userName);
+        console.log("password", password);
+        console.log("email", email);
 
         if (userName.length < 2) {
             setErrorEmail(false);
@@ -105,6 +109,7 @@ function Register(props) {
                             type="text"
                             name="username"
                             placeholder="username"
+                            className="username"
                             value={userName}
                             onChange={e => setUserName(e.target.value)}
                             autoComplete="off"
@@ -118,6 +123,7 @@ function Register(props) {
                             type="text"
                             name="email"
                             placeholder="email"
+                            className="email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             autoComplete="off"
@@ -130,6 +136,7 @@ function Register(props) {
                             type="password"
                             name="password"
                             placeholder="password"
+                            className="password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             autoComplete="off"
@@ -152,20 +159,20 @@ function Register(props) {
 
             <div className="error-conf-messages">
                 {errorNames && (
-                    <span className="error">
+                    <span className="error" data-testid="errorUsername">
                         Please make sure your username is correctly entered.
                     </span>
                 )}
 
                 {errorPw && (
-                    <span className="error">
+                    <span className="error" data-testid="errorPw">
                         Passwords should be min 5 characters and count at least
                         one number.
                     </span>
                 )}
 
                 {errorEmail && (
-                    <span className="error">
+                    <span className="error" data-testid="errorEmail">
                         Please make sure you entered your email correctly.
                     </span>
                 )}
@@ -185,7 +192,7 @@ function Register(props) {
                 )}
 
                 {confirmation && (
-                    <span className="confirmation">
+                    <span className="confirmation" data-testid="confirmation">
                         Success! You're registered!
                     </span>
                 )}

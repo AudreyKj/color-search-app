@@ -83,14 +83,17 @@ function ColorGraber(props) {
                             return (
                                 <ul style={{ color: data }}>
                                     {data.map(color => (
-                                        <li
-                                            key={color}
-                                            style={{
-                                                backgroundColor: color
-                                            }}
-                                        >
-                                            {color}
-                                        </li>
+                                        <div className="color">
+                                            <li
+                                                key={color}
+                                                style={{
+                                                    backgroundColor: color
+                                                }}
+                                            ></li>
+                                            <span className="color-name">
+                                                {color}
+                                            </span>
+                                        </div>
                                     ))}
 
                                     {props.loggedIn && (

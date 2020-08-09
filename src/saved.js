@@ -8,6 +8,7 @@ function Saved(props) {
 
     useEffect(() => {
         axios.get("/savedcolors").then(data => {
+            console.log("data.data", data.data);
             setPalettes(data.data);
         });
     }, []);
@@ -77,16 +78,17 @@ function Saved(props) {
                     palettes.map(colorSet => {
                         if (colorSet.palette !== null) {
                             return colorSet.palette.map(name => (
-                                <div className="saved_color">
+                                <div className="color" data-testid="color">
                                     <div
                                         className="single-color"
                                         style={{
                                             backgroundColor: name
                                         }}
-                                    >
-                                        {name}
-                                    </div>
-                                    tag:{colorSet.tag}
+                                    ></div>
+                                    <span className="color-name">{name}</span>
+                                    <span className="color-tag">
+                                        tag:{colorSet.tag}
+                                    </span>
                                 </div>
                             ));
                         }

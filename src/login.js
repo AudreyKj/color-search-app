@@ -89,7 +89,7 @@ function Login(props) {
                     </span>
                 )}
                 {confirmation && (
-                    <span className="confirmation">
+                    <span className="confirmation" data-testid="confirmation">
                         Success! You're logged in!
                     </span>
                 )}
