@@ -138,7 +138,6 @@ app.post("/login/submit", (req, res) => {
                     }
                 })
                 .catch(err => {
-                    console.log("error", error);
                     return res.json({ error: true });
                 });
         })
@@ -156,7 +155,6 @@ app.post("/verifygogleauth", (req, res) => {
         .then(result => {
             if (result.rows.length === 0) {
                 db.addUserFromGoogleAuth(token, type).then(result => {
-                    console.log("result", result);
                     req.session.userId = result.rows[0].id;
                     return res.json(result);
                 });

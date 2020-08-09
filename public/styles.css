@@ -5,12 +5,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     outline: none;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: #f8f8f8;
     font-family: "Questrial", sans-serif;
     margin: 0;
+    padding: 0;
 
     position: relative;
     min-height: 100vh;
@@ -30,8 +33,9 @@ header {
 
     display: flex;
     justify-content: center;
+    text-align: center;
 
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     position: fixed;
     background-color: #212121;
 }
@@ -39,6 +43,12 @@ header {
 @media (max-width: 550px) {
     header {
         height: 200px;
+    }
+}
+
+@media (max-width: 400px) {
+    header {
+        height: 250px;
     }
 }
 
@@ -168,7 +178,7 @@ form.color-spotter {
     justify-content: center;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     form.color-spotter {
         display: flex;
         justify-content: center;
@@ -228,7 +238,7 @@ p.drop-graber {
     text-align: center;
     font-size: 1.5rem;
     line-height: 1.2;
-    margin: 0;
+    margin-bottom: 30px;
     cursor: crosshair;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
@@ -271,6 +281,15 @@ form.form-filter {
     justify-content: center;
 }
 
+@media (max-width: 400px) {
+    form.form-filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 span.no-match {
     margin-top: 15px;
     font-size: 1.3rem;
@@ -292,6 +311,7 @@ span.no-match {
 
 span.filter_title {
     font-size: 2rem;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 750px) {
