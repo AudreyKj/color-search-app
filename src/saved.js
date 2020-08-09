@@ -56,25 +56,20 @@ function Saved(props) {
             <div className="saved_palettes_container">
                 {props.loggedIn && (
                     <div className="filtering">
-                        <div className="filter-part">
-                            <span className="filter_title">
-                                FILTER BY PALETTE TAG <br />
+                        <span className="filter_title">
+                            FILTER BY PALETTE TAG <br />
+                        </span>
+                        <form method="POST" className="form-filter">
+                            <input type="text" onChange={handleChange} />
+                            <button className="filter-button" onClick={filter}>
+                                FILTER
+                            </button>
+                        </form>
+                        {noResult && (
+                            <span className="no-match">
+                                No matched tags found
                             </span>
-                            <form method="POST">
-                                <input type="text" onChange={handleChange} />
-                                <button
-                                    className="filter-button"
-                                    onClick={filter}
-                                >
-                                    FILTER
-                                </button>
-                            </form>
-                            {noResult && (
-                                <span className="no-match">
-                                    No matched tags found
-                                </span>
-                            )}
-                        </div>
+                        )}
                     </div>
                 )}
 

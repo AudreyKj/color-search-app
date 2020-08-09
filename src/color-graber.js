@@ -42,6 +42,12 @@ function ColorGraber(props) {
             });
     };
 
+    const enterCheck = e => {
+        if (e.key === "Enter") {
+            savePalette(e);
+        }
+    };
+
     return (
         <div className="color-graber">
             <Dropzone onDrop={acceptedFiles => handledropped(acceptedFiles)}>
@@ -59,7 +65,7 @@ function ColorGraber(props) {
             </Dropzone>
 
             {palette && (
-                <div className="palette">
+                <div className="palette" onKeyDown={enterCheck}>
                     {!props.loggedIn && (
                         <span className="graber_instructions">
                             Please register or login to be able to save palettes
@@ -89,7 +95,10 @@ function ColorGraber(props) {
 
                                     {props.loggedIn && (
                                         <div className="palette-save">
-                                            <form method="POST">
+                                            <form
+                                                method="POST"
+                                                className="color-spotter"
+                                            >
                                                 <input
                                                     type="text"
                                                     placeholder="palette tag"
