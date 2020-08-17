@@ -15,7 +15,7 @@ function checkEmail(email) {
 
 function registerUser(userName, email, password) {
     return db.query(
-        `INSERT INTO register (username, email, password, external_type, external_id)
+        `INSERT INTO register (username, email, password)
     VALUES ($1, $2, $3) RETURNING id`,
         [userName, email, password]
     );
