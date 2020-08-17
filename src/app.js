@@ -14,16 +14,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ReactGA from "react-ga";
-//
-// ReactGA.initialize("UA-174946579-1");
-// ReactGA.pageview(window.location.pathname + window.location.search);
+
+ReactGA.initialize("UA-174946579-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [googleLoggedIn, setGoogleLoggedIn] = useState(false);
     const [appUserLoggedIn, setAppUserLoggedIn] = useState(false);
-
-    console.log("loggedIn", loggedIn);
 
     useEffect(() => {
         axios
@@ -66,7 +64,7 @@ function App() {
         if (googleLoggedIn) {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
-                console.log("User signed out- google");
+                //console.log("User signed out- google");
                 auth2.disconnect();
                 setLoggedIn(false);
             });

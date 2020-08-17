@@ -3,7 +3,6 @@ import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
 
 function Register(props) {
-    //console.log("props - register", props);
     const [form, setForm] = useState(true);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -65,7 +64,6 @@ function Register(props) {
         axios
             .post("/register", { userName, password, email })
             .then(data => {
-                console.log("data", data);
                 if (data.data.error) {
                     setErrorEmail(false);
                     setErrorPw(false);

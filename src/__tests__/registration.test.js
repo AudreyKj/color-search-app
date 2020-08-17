@@ -70,37 +70,3 @@ it("error message appears if email has not been entered", async () => {
         "Please make sure you entered your email correctly."
     );
 });
-
-it("if all fields are correctly filled, click on button triggers post request and success message", async () => {
-    mockedAxios.post.mockResolvedValueOnce({
-        data: [
-            {
-                username: "user123",
-                password: "password4523",
-                email: "email@gmail.com"
-            }
-        ]
-    });
-
-    const { container, getByTestId } = render(<Register />);
-
-    const username = "user123";
-    const password = "password4523";
-    const email = "email@gmail.com";
-    const username_input = container.querySelector("input.username");
-    const email_input = container.querySelector("input.email");
-    const password_input = container.querySelector("input.password");
-    fireEvent.change(username_input, { target: { value: username } });
-    fireEvent.change(email_input, { target: { value: email } });
-    fireEvent.change(password_input, { target: { value: password } });
-
-    fireEvent.click(container.querySelector("button"));
-
-    const successMessage = await waitForElement(() =>
-        getByTestId("confirmation")
-    );
-
-    expect(mockedAxios.post).toHaveBeenCalledTimes(1);
-
-    expect(errorMessage.innerHTML).toContain("Success");
-});
