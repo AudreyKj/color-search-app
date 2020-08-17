@@ -25,12 +25,12 @@ function Register(props) {
         props.updateLogged();
     };
 
+    const googleAuthFailure = () => {
+        setError(true);
+    };
+
     const handleClick = e => {
         e.preventDefault();
-
-        console.log("userName", userName);
-        console.log("password", password);
-        console.log("email", email);
 
         if (userName.length < 2) {
             setErrorEmail(false);
@@ -59,44 +59,47 @@ function Register(props) {
             return setErrorEmail(true);
         }
 
-        axios.post("/register", { userName, password, email }).then(data => {
-            if (data.data.error) {
-                setErrorEmail(false);
-                setErrorPw(false);
-                setErrorNames(false);
-                setErrorUserName(false);
-                setErrorNotUnique_Email(false);
-                return setError(true);
-            } else if (data.data.userName_notUnique) {
-                setErrorEmail(false);
-                setErrorPw(false);
-                setErrorNames(false);
-                setErrorNotUnique_Email(false);
-                return setErrorUserName(true);
-            } else if (data.data.email_notUnique) {
-                setErrorEmail(false);
-                setErrorPw(false);
-                setErrorNames(false);
-                setErrorUserName(false);
-                return setErrorNotUnique_Email(true);
-            } else {
-                setErrorUserName(false);
-                setErrorNotUnique_Email(false);
-                setForm(false);
-                setError(false);
-                setErrorNames(false);
-                setErrorPw(false);
-                setErrorEmail(false);
-                setConfirmation(true);
+        axios
+            .post("/register", { userName, password, email })
+            .then(data => {
+                if (data.data.error) {
+                    setErrorEmail(false);
+                    setErrorPw(false);
+                    setErrorNames(false);
+                    setErrorUserName(false);
+                    setErrorNotUnique_Email(false);
+                    return setError(true);
+                } else if (data.data.userName_notUnique) {
+                    setErrorEmail(false);
+                    setErrorPw(false);
+                    setErrorNames(false);
+                    setErrorNotUnique_Email(false);
+                    return setErrorUserName(true);
+                } else if (data.data.email_notUnique) {
+                    setErrorEmail(false);
+                    setErrorPw(false);
+                    setErrorNames(false);
+                    setErrorUserName(false);
+                    return setErrorNotUnique_Email(true);
+                } else {
+                    setErrorUserName(false);
+                    setErrorNotUnique_Email(false);
+                    setForm(false);
+                    setError(false);
+                    setErrorNames(false);
+                    setErrorPw(false);
+                    setErrorEmail(false);
+                    setConfirmation(true);
 
-                setUserName("");
-                setEmail("");
-                setPassword("");
-                props.updateAppUserLoggedIn();
-                props.updateLogged();
-                setGoogleAuth(false);
-            }
-        });
+                    setUserName("");
+                    setEmail("");
+                    setPassword("");
+                    props.updateAppUserLoggedIn();
+                    props.updateLogged();
+                    setGoogleAuth(false);
+                }
+            })
+            .catch(error => console.log(error));
     };
 
     return (

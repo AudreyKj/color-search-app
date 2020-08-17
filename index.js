@@ -64,7 +64,7 @@ app.get("/spotter", function(req, res) {
 });
 
 //REGISTER
-app.get("/register", requireLoggedOutUser, (req, res) => {
+app.get("/register", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 

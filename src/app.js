@@ -14,9 +14,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ReactGA from "react-ga";
-
-ReactGA.initialize("UA-174946579-1");
-ReactGA.pageview(window.location.pathname + window.location.search);
+//
+// ReactGA.initialize("UA-174946579-1");
+// ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
