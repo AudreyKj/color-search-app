@@ -73,13 +73,17 @@ app.post("/register", (req, res) => {
     let userName_notUnique;
     let email_notUnique;
 
+    console.log(req.body);
+
     db.checkUsername(userName)
         .then(result => {
+            console.log("result", result);
             if (result.rows.length !== 0) {
                 return res.json({ userName_notUnique: "notUnique" });
             } else {
                 db.checkEmail(email)
                     .then(result => {
+                        console.log("result", result);
                         if (result.rows.length !== 0) {
                             return res.json({ email_notUnique: "notUnique" });
                         } else {
@@ -94,20 +98,24 @@ app.post("/register", (req, res) => {
                                             return res.json(result);
                                         })
                                         .catch(error => {
+                                            console.log("error", error);
                                             return res.json({ error: true });
                                         });
                                 })
                                 .catch(error => {
+                                    console.log("error", error);
                                     return res.json({ error: true });
                                 });
                         }
                     })
                     .catch(error => {
+                        console.log("error", error);
                         return res.json({ error: true });
                     });
             }
         })
         .catch(error => {
+            console.log("error", error);
             return res.json({ error: true });
         });
 });

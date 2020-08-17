@@ -20,6 +20,9 @@ function Register(props) {
     const registerSuccess = () => {
         setConfirmation(true);
         setError(false);
+        setErrorNames(false);
+        setErrorPw(false);
+        setErrorEmail(false);
         setForm(false);
         setGoogleAuth(false);
         props.updateLogged();
@@ -62,6 +65,7 @@ function Register(props) {
         axios
             .post("/register", { userName, password, email })
             .then(data => {
+                console.log("data", data);
                 if (data.data.error) {
                     setErrorEmail(false);
                     setErrorPw(false);
