@@ -124,7 +124,7 @@ app.post("/login/submit", (req, res) => {
     db.verifyUser(email)
         .then(result => {
             if (!result || result.rows.length === 0) {
-                return res.json({ error: error });
+                return res.json({ error: "user not found" });
             }
 
             let passwordDB = result.rows[0].password;
@@ -139,11 +139,11 @@ app.post("/login/submit", (req, res) => {
                     }
                 })
                 .catch(error => {
-                    return res.json({ error: error });
+                    return res.json({ error: "password not match" });
                 });
         })
         .catch(error => {
-            return res.json({ error: error });
+            return res.json({ error: "verify user fail" });
         });
 });
 
