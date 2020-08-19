@@ -34,15 +34,13 @@ function Register(props) {
     const handleClick = e => {
         e.preventDefault();
 
-        console.log("click");
-
         if (userName.length < 2) {
             setErrorEmail(false);
             setErrorPw(false);
             setErrorNames(false);
             setErrorUserName(false);
             setErrorNotUnique_Email(false);
-            console.log("setErrorNames");
+
             return setErrorNames(true);
         }
 
@@ -52,7 +50,7 @@ function Register(props) {
             setErrorUserName(false);
             setErrorNotUnique_Email(false);
             setErrorNames(false);
-            console.log("setErrorNames");
+
             return setErrorPw(true);
         }
 
@@ -62,7 +60,7 @@ function Register(props) {
             setErrorEmail(false);
             setErrorUserName(false);
             setErrorNotUnique_Email(false);
-            console.log("setErrorNotUnique_Email");
+
             return setErrorEmail(true);
         }
 
@@ -70,7 +68,6 @@ function Register(props) {
             .post("/register", { userName, password, email })
             .then(data => {
                 if (data.data.error) {
-                    console.log("error", data.data.error);
                     setErrorEmail(false);
                     setErrorPw(false);
                     setErrorNames(false);
