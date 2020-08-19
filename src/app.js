@@ -4,6 +4,7 @@ import Register from "./register";
 import Profile from "./profile";
 import Login from "./login";
 import Saved from "./saved";
+import Shared from "./shared";
 import Info from "./info";
 import Admin from "./admin";
 import axios from "./axios";
@@ -87,7 +88,10 @@ function App() {
         <div className="container">
             <Helmet>
                 <title>COLOR SPOT </title>
-                <meta name="description" content="colors" />
+                <meta
+                    name="description"
+                    content="color spot - detect colors in images and grow color collections"
+                />
                 <meta name="keywords" content="colors, design, color palette" />
                 <meta name="application-name" content="color spot" />
                 <meta name="theme-color" content="black" />
@@ -158,6 +162,7 @@ function App() {
                         >
                             Saved Palettes
                         </Button>
+
                         {!loggedIn && (
                             <>
                                 <Button
@@ -223,6 +228,7 @@ function App() {
             <Route path="/profile" component={Profile}></Route>
             <Route path="/info" component={Info}></Route>
             <Route path="/admin" component={Admin}></Route>
+
             <Route
                 path="/register"
                 render={props => (

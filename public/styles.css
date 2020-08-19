@@ -156,6 +156,12 @@ ul {
     width: 100%;
 }
 
+@media (max-width: 500px) {
+    ul {
+        justify-content: flex-start;
+    }
+}
+
 li {
     width: 100px;
     height: 100px;
@@ -202,7 +208,7 @@ span.save {
     cursor: pointer;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     span.save {
         margin-left: 0;
     }

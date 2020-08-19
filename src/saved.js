@@ -20,6 +20,7 @@ function Saved(props) {
 
     const filter = e => {
         e.preventDefault();
+        console.log("filtering");
         axios
             .post("/filter", { tag })
             .then(data => {
@@ -61,7 +62,12 @@ function Saved(props) {
                             FILTER BY PALETTE TAG <br />
                         </span>
                         <form method="POST" className="form-filter">
-                            <input type="text" onChange={handleChange} />
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                value={tag}
+                            />
+
                             <button className="filter-button" onClick={filter}>
                                 FILTER
                             </button>
@@ -89,6 +95,7 @@ function Saved(props) {
                                     <span className="color-tag">
                                         tag:{colorSet.tag}
                                     </span>
+                                    <span> share </span>
                                 </div>
                             ));
                         }

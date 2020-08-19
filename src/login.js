@@ -27,6 +27,7 @@ function Login(props) {
 
         axios.post("/login/submit", { email, password }).then(data => {
             if (data.data.error) {
+                console.log(data.data.error);
                 return setError(true);
             } else {
                 props.updateLogged();
