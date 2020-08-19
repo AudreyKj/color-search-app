@@ -95,21 +95,21 @@ app.post("/register", (req, res) => {
                                             return res.json(result);
                                         })
                                         .catch(error => {
-                                            return res.json({ error: true });
+                                            return res.json({ error: error });
                                         });
                                 })
                                 .catch(error => {
-                                    return res.json({ error: true });
+                                    return res.json({ error: error });
                                 });
                         }
                     })
                     .catch(error => {
-                        return res.json({ error: true });
+                        return res.json({ error: error });
                     });
             }
         })
         .catch(error => {
-            return res.json({ error: true });
+            return res.json({ error: error });
         });
 });
 
@@ -124,7 +124,7 @@ app.post("/login/submit", (req, res) => {
     db.verifyUser(email)
         .then(result => {
             if (!result || result.rows.length === 0) {
-                return res.json({ error: true });
+                return res.json({ error: error });
             }
 
             let passwordDB = result.rows[0].password;
@@ -138,12 +138,12 @@ app.post("/login/submit", (req, res) => {
                         return res.json({ error: true });
                     }
                 })
-                .catch(err => {
-                    return res.json({ error: true });
+                .catch(error => {
+                    return res.json({ error: error });
                 });
         })
         .catch(error => {
-            return res.json({ error: true });
+            return res.json({ error: error });
         });
 });
 
