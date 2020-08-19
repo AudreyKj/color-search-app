@@ -6,7 +6,7 @@ import axios from "./axios";
 
 function GoogleAuthLogin(props) {
     const onSuccess = res => {
-        console.log("res - googleSignIn", res);
+        //console.log("res - googleSignIn", res);
         if (props.loginSuccess) {
             props.loginSuccess();
         } else {
@@ -19,11 +19,11 @@ function GoogleAuthLogin(props) {
         refreshTokenSetup(res);
 
         let token = { token: res["googleId"] };
-        console.log("token", token);
+        //console.log("token", token);
 
         axios
             .post("/verifygogleauth", token)
-            .then(data => console.log(data))
+            .then(data => console.log(""))
             .catch(error => console.log(error));
     };
 
