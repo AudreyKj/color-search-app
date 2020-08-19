@@ -4,7 +4,6 @@ import Register from "./register";
 import Profile from "./profile";
 import Login from "./login";
 import Saved from "./saved";
-import Shared from "./shared";
 import Info from "./info";
 import Admin from "./admin";
 import axios from "./axios";
