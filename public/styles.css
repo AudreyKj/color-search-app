@@ -401,7 +401,6 @@ span.error {
 
 div.error-conf-messages {
     margin-top: 20px;
-    width: 85%;
     text-align: center;
 }
 
@@ -412,8 +411,9 @@ span.confirmation {
 /* INFO */
 p.info {
     width: 40%;
-    font-size: 1.3rem;
-    line-height: 1.4;
+
+    font-size: 1.5rem;
+    line-height: 1.2;
     margin-top: 0;
 }
 
@@ -476,6 +476,7 @@ form.profile {
 
 .profile-input {
     margin-left: 10px;
+    margin-right: 5px;
 }
 
 /* ADMIN: CHARTS */

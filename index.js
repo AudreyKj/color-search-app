@@ -68,49 +68,37 @@ app.get("/register", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/register", (req, res) => {
-    let { userName, email, password } = req.body;
+app.post("/register", async (req, res) => {
+    let {
+        values: { username, email, password }
+    } = req.body;
     let userName_notUnique;
     let email_notUnique;
 
-    db.checkUsername(userName)
-        .then(result => {
-            if (result.rows.length !== 0) {
-                return res.json({ userName_notUnique: "notUnique" });
-            } else {
-                db.checkEmail(email)
-                    .then(result => {
-                        console.log("result", result);
-                        if (result.rows.length !== 0) {
-                            return res.json({ email_notUnique: "notUnique" });
-                        } else {
-                            hash(password)
-                                .then(hashedpassword => {
-                                    password = hashedpassword;
+    try {
+        const userNameCheck = await db.checkUsername(username);
 
-                                    db.registerUser(userName, email, password)
-                                        .then(result => {
-                                            req.session.userId =
-                                                result.rows[0].id;
-                                            return res.json(result);
-                                        })
-                                        .catch(error => {
-                                            return res.json({ error: error });
-                                        });
-                                })
-                                .catch(error => {
-                                    return res.json({ error: error });
-                                });
-                        }
-                    })
-                    .catch(error => {
-                        return res.json({ error: error });
-                    });
-            }
-        })
-        .catch(error => {
-            return res.json({ error: error });
-        });
+        if (userNameCheck.rows.length !== 0) {
+            return res.json({ userName_notUnique: "notUnique" });
+        }
+
+        const emailCheck = await db.checkEmail(email);
+
+        if (emailCheck.rows.length !== 0) {
+            return res.json({ email_notUnique: "notUnique" });
+        }
+
+        const hashPw = await hash(password);
+        password = hashPw;
+
+        const regsiteruser = await db.registerUser(username, email, password);
+
+        req.session.userId = regsiteruser.rows[0].id;
+        return res.json(regsiteruser);
+    } catch (error) {
+        console.log("error", error);
+        return res.json({ error: error });
+    }
 });
 
 //LOGIN
@@ -119,7 +107,9 @@ app.get("/login", requireLoggedOutUser, (req, res) => {
 });
 
 app.post("/login/submit", (req, res) => {
-    let { email, password } = req.body;
+    const {
+        values: { email, password }
+    } = req.body;
 
     db.verifyUser(email)
         .then(result => {
@@ -240,6 +230,17 @@ app.post("/filter", (req, res) => {
         .catch(err => {
             return res.json({ error: true });
         });
+});
+
+//SHARED PALETTES
+app.get("/getSharedPalettes", async (req, res) => {
+    try {
+        const getSharedPalettes = await db.getSharedPalettes();
+        console.log("getSharedPalettes", getSharedPalettes);
+        return res.json({ getSharedPalettes });
+    } catch (error) {
+        return res.json({ error: true });
+    }
 });
 
 //PROFILE

@@ -62,6 +62,10 @@ function filter(tag, user_id) {
     ]);
 }
 
+function getSharedPalettes() {
+    return db.query("SELECT * FROM shared");
+}
+
 function getProfile(user_id) {
     return db.query(
         `SELECT register.username, register.email, register.password,

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
+import useStatefulFields from "./customHooks/useStatefulFields.js";
 
 function Register(props) {
     const [form, setForm] = useState(true);
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [values, handleChange] = useStatefulFields();
     const [errorNames, setErrorNames] = useState(false);
     const [userNameError, setErrorUserName] = useState("");
     const [errorNotUnique_Email, setErrorNotUnique_Email] = useState("");
@@ -15,6 +14,8 @@ function Register(props) {
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
     const [googleAuth, setGoogleAuth] = useState(true);
+
+    console.log("values", values);
 
     const registerSuccess = () => {
         setConfirmation(true);
@@ -34,7 +35,12 @@ function Register(props) {
     const handleClick = e => {
         e.preventDefault();
 
-        if (userName.length < 2) {
+        const { username, password, email } = values;
+        console.log("username", username);
+        console.log("password", password);
+        console.log("email", email);
+
+        if (username.length < 2) {
             setErrorEmail(false);
             setErrorPw(false);
             setErrorNames(false);
@@ -65,8 +71,9 @@ function Register(props) {
         }
 
         axios
-            .post("/register", { userName, password, email })
+            .post("/register", { values })
             .then(data => {
+                console.log("data", data);
                 if (data.data.error) {
                     setErrorEmail(false);
                     setErrorPw(false);
@@ -96,15 +103,15 @@ function Register(props) {
                     setErrorEmail(false);
                     setConfirmation(true);
 
-                    setUserName("");
-                    setEmail("");
-                    setPassword("");
                     props.updateAppUserLoggedIn();
                     props.updateLogged();
                     setGoogleAuth(false);
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log("error", error);
+                setError(true);
+            });
     };
 
     return (
@@ -118,8 +125,7 @@ function Register(props) {
                             name="username"
                             placeholder="username"
                             className="username"
-                            value={userName}
-                            onChange={e => setUserName(e.target.value)}
+                            onChange={handleChange}
                             autoComplete="off"
                             required
                         />
@@ -132,8 +138,7 @@ function Register(props) {
                             name="email"
                             placeholder="email"
                             className="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={handleChange}
                             autoComplete="off"
                             required
                         />
@@ -145,8 +150,7 @@ function Register(props) {
                             name="password"
                             placeholder="password"
                             className="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={handleChange}
                             autoComplete="off"
                             required
                         />

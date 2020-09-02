@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
+import useStatefulFields from "./customHooks/useStatefulFields.js";
 
 function Login(props) {
     const [form, setForm] = useState(true);
     const [googleAuth, setGoogleAuth] = useState(true);
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [values, handleChange] = useStatefulFields();
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
 
@@ -25,9 +25,8 @@ function Login(props) {
     const handleClick = e => {
         e.preventDefault();
 
-        axios.post("/login/submit", { email, password }).then(data => {
+        axios.post("/login/submit", { values }).then(data => {
             if (data.data.error) {
-            
                 return setError(true);
             } else {
                 props.updateLogged();
@@ -50,8 +49,7 @@ function Login(props) {
                             type="text"
                             name="email"
                             placeholder="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={handleChange}
                             autoComplete="off"
                             required
                         />
@@ -62,8 +60,7 @@ function Login(props) {
                             type="password"
                             name="password"
                             placeholder="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={handleChange}
                             autoComplete="off"
                             required
                         />

@@ -85,7 +85,7 @@ function ColorGraber(props) {
                                     {data.map(color => (
                                         <div className="color">
                                             <li
-                                                key={color}
+                                                key={color + Math.random()}
                                                 style={{
                                                     backgroundColor: color
                                                 }}

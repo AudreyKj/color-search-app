@@ -6,8 +6,9 @@ import Login from "./login";
 import Saved from "./saved";
 import Info from "./info";
 import Admin from "./admin";
+import Shared from "./shared";
 import axios from "./axios";
-import { BrowserRouter, Route, NavLink, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, NavLink, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -224,51 +225,54 @@ function App() {
                     </div>
                 </Toolbar>
             </AppBar>
-            <Route path="/profile" component={Profile}></Route>
-            <Route path="/info" component={Info}></Route>
-            <Route path="/admin" component={Admin}></Route>
+            <Switch>
+                <Route path="/profile" component={Profile}></Route>
+                <Route path="/info" component={Info}></Route>
+                <Route path="/admin" component={Admin}></Route>
+                <Route path="/shared" component={Shared} />
 
-            <Route
-                path="/register"
-                render={props => (
-                    <Register
-                        loggedIn={loggedIn}
-                        updateLogged={updateLogged}
-                        updateAppUserLoggedIn={updateAppUserLoggedIn}
-                        updateGoogleLogged={updateGoogleLogged}
-                    />
-                )}
-            />
-            <Route
-                path="/login"
-                render={props => (
-                    <Login
-                        loggedIn={loggedIn}
-                        updateLogged={updateLogged}
-                        updateGoogleLogged={updateGoogleLogged}
-                        updateAppUserLoggedIn={updateAppUserLoggedIn}
-                    />
-                )}
-            />
-            <Route
-                path="/saved"
-                render={props => (
-                    <Saved
-                        loggedIn={loggedIn}
-                        updateLogged={updateLogged}
-                        updateAppUserLoggedIn={updateAppUserLoggedIn}
-                    />
-                )}
-            />
-            <Route
-                path="/spotter"
-                render={props => (
-                    <ColorGraber
-                        loggedIn={loggedIn}
-                        updateLogged={updateLogged}
-                    />
-                )}
-            />
+                <Route
+                    path="/register"
+                    render={props => (
+                        <Register
+                            loggedIn={loggedIn}
+                            updateLogged={updateLogged}
+                            updateAppUserLoggedIn={updateAppUserLoggedIn}
+                            updateGoogleLogged={updateGoogleLogged}
+                        />
+                    )}
+                />
+                <Route
+                    path="/login"
+                    render={props => (
+                        <Login
+                            loggedIn={loggedIn}
+                            updateLogged={updateLogged}
+                            updateGoogleLogged={updateGoogleLogged}
+                            updateAppUserLoggedIn={updateAppUserLoggedIn}
+                        />
+                    )}
+                />
+                <Route
+                    path="/saved"
+                    render={props => (
+                        <Saved
+                            loggedIn={loggedIn}
+                            updateLogged={updateLogged}
+                            updateAppUserLoggedIn={updateAppUserLoggedIn}
+                        />
+                    )}
+                />
+                <Route
+                    path="/spotter"
+                    render={props => (
+                        <ColorGraber
+                            loggedIn={loggedIn}
+                            updateLogged={updateLogged}
+                        />
+                    )}
+                />
+            </Switch>
 
             <footer>COLOR SPOT © 2020</footer>
         </div>

@@ -8,10 +8,12 @@ function Saved(props) {
 
     useEffect(() => {
         axios.get("/savedcolors").then(data => {
-            console.log("data.data", data.data);
+            console.log("data", data);
             setPalettes(data.data);
         });
     }, []);
+
+    console.log(palettes);
 
     const handleChange = e => {
         setTags(e.target.value);
@@ -43,10 +45,6 @@ function Saved(props) {
     return (
         <>
             <div className="saved_instructions">
-                <span className="title">
-                    All the palettes you've saved are displayed here.
-                    <br />
-                </span>
                 {!props.loggedIn && (
                     <span className="graber_instructions">
                         <br /> Please register or login to save palettes and
@@ -84,7 +82,11 @@ function Saved(props) {
                     palettes.map(colorSet => {
                         if (colorSet.palette !== null) {
                             return colorSet.palette.map(name => (
-                                <div className="color" data-testid="color">
+                                <div
+                                    className="color"
+                                    data-testid="color"
+                                    key={name + Math.random()}
+                                >
                                     <div
                                         className="single-color"
                                         style={{
@@ -92,9 +94,7 @@ function Saved(props) {
                                         }}
                                     ></div>
                                     <span className="color-name">{name}</span>
-                                    <span className="color-tag">
-                                        tag:{colorSet.tag}
-                                    </span>
+                                    tag:{colorSet.tag}
                                 </div>
                             ));
                         }
