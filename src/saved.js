@@ -5,6 +5,7 @@ function Saved(props) {
     const [palettes, setPalettes] = useState();
     const [tag, setTags] = useState();
     const [noResult, setNoResult] = useState(false);
+    const [successShare, setSuccessShare] = useState(false);
 
     useEffect(() => {
         axios.get("/savedcolors").then(data => {
@@ -14,6 +15,7 @@ function Saved(props) {
     }, []);
 
     console.log(palettes);
+    console.log("successShare", successShare);
 
     const handleChange = e => {
         setTags(e.target.value);
@@ -36,6 +38,19 @@ function Saved(props) {
 
                 setNoResult(false);
                 setPalettes(data.data);
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
+    };
+
+    const sharePalette = colorSet => {
+        console.log("sharing palette");
+        axios
+            .post("/sharePalette", colorSet)
+            .then(data => {
+                console.log("data", data);
+                setSuccessShare(true);
             })
             .catch(error => {
                 console.log("error", error);
@@ -79,26 +94,48 @@ function Saved(props) {
                 )}
 
                 {palettes &&
-                    palettes.map(colorSet => {
-                        if (colorSet.palette !== null) {
-                            return colorSet.palette.map(name => (
-                                <div
-                                    className="color"
-                                    data-testid="color"
-                                    key={name + Math.random()}
-                                >
-                                    <div
-                                        className="single-color"
-                                        style={{
-                                            backgroundColor: name
-                                        }}
-                                    ></div>
-                                    <span className="color-name">{name}</span>
-                                    tag:{colorSet.tag}
+                    palettes.map(colorSet => (
+                        <div
+                            className="saved-palette-container"
+                            key={colorSet.tag}
+                        >
+                            <div className="color-palette-save">
+                                <div className="palette-options">
+                                    <span className="color-palette">
+                                        tag:{colorSet.tag}
+                                    </span>
+                                    <button
+                                        className="share"
+                                        onClick={() => sharePalette(colorSet)}
+                                    >
+                                        SHARE
+                                    </button>
+                                    {successShare && (
+                                        <span className="success">
+                                            palette shared!
+                                        </span>
+                                    )}
                                 </div>
-                            ));
-                        }
-                    })}
+                                {colorSet.palette.map(name => (
+                                    <div
+                                        className="color"
+                                        data-testid="color"
+                                        key={name + Math.random()}
+                                    >
+                                        <div
+                                            className="single-color"
+                                            style={{
+                                                backgroundColor: name
+                                            }}
+                                        ></div>
+                                        <span className="color-name">
+                                            {name}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
             </div>
         </>
     );

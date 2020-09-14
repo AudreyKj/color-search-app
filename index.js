@@ -139,13 +139,16 @@ app.post("/login/submit", (req, res) => {
 
 //GOOGLE SIGN IN AUTH
 app.post("/verifygogleauth", (req, res) => {
-    let token = req.body["token"];
+    let { token, username } = req.body;
     let type = "Google";
+
+    console.log("req.body google", req.body);
 
     db.verifyGoogleAuth(token)
         .then(result => {
             if (result.rows.length === 0) {
-                db.addUserFromGoogleAuth(token, type).then(result => {
+                db.addUserFromGoogleAuth(token, type, username).then(result => {
+                    console.log("result", result);
                     req.session.userId = result.rows[0].id;
                     return res.json(result);
                 });
@@ -178,21 +181,33 @@ app.get("/logout", (req, res) => {
 });
 
 //SAVE COLOR PALETTES
-app.post("/savepalette", (req, res) => {
+app.post("/savepalette", async (req, res) => {
     let user_id = req.session.userId;
+    let username;
+    let { tag } = req.body;
 
     const colorArr = Object.values(req.body.colors);
 
-    db.savePalette(colorArr, req.body.tag, user_id)
-        .then(result => {
-            return res.json({ result });
-        })
-        .catch(error => {
-            console.log("error", error);
-        });
+    try {
+        const getUsername = await db.getUserName(user_id);
+        console.log("getUsername", getUsername);
+        username = getUsername.rows[0].username;
+    } catch (error) {
+        console.log(error);
+    }
+
+    if (username) {
+        db.savePalette(colorArr, tag, user_id, username)
+            .then(result => {
+                return res.json({ result });
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
+    }
 });
 
-//SAVE COLORS
+//GET SAVE PALETTES
 app.get("/savedcolors", (req, res) => {
     let user_id = req.session.userId;
     db.getColors(user_id)
@@ -232,13 +247,65 @@ app.post("/filter", (req, res) => {
         });
 });
 
-//SHARED PALETTES
-app.get("/getSharedPalettes", async (req, res) => {
+//SHARE PALETTE
+app.post("/sharePalette", async (req, res) => {
+    const { palette, tag, user_id, created_at, username } = req.body;
+    console.log("req.body", req.body);
+
+    const savedConf = "yes";
+
+    console.log("palette", palette);
+
     try {
-        const getSharedPalettes = await db.getSharedPalettes();
-        console.log("getSharedPalettes", getSharedPalettes);
-        return res.json({ getSharedPalettes });
+        const alreadyShared = await db.checkPaletteShared(
+            palette,
+            tag,
+            user_id,
+            savedConf
+        );
+
+        if (alreadyShared.rows.length === 0) {
+            try {
+                const sharePalette = await db.sharePalette(
+                    savedConf,
+                    tag,
+                    user_id,
+                    palette
+                );
+
+                return res.json({ sharePalette });
+            } catch (error) {
+                console.log("error share palette", error);
+                return res.json({ error: true });
+            }
+        } else {
+            console.log("already shared");
+            return res.json({ error: "already shared" });
+            return;
+        }
     } catch (error) {
+        console.log("error", error);
+    }
+});
+
+//GET SHARED PALETTES
+app.get("/getSharedPalettes", async (req, res) => {
+    const savedConf = "yes";
+    try {
+        const getSharedPalettes = await db.getSharedPalettes(savedConf);
+        console.log("getSharedPalettes", getSharedPalettes);
+        getSharedPalettes.rows.map(elem => {
+            if (typeof elem.palette === "string" || elem.palette !== null) {
+                elem.palette = elem.palette.replace(/[{}/"]/g, "");
+                elem.palette = elem.palette.split(",");
+            }
+        });
+
+        const { rows } = getSharedPalettes;
+        console.log("shared palettes", rows);
+        return res.json({ rows });
+    } catch (error) {
+        console.log("error", error);
         return res.json({ error: true });
     }
 });
@@ -312,6 +379,8 @@ app.get("/admin", (req, res) => {
 //VERIFY PASSWORD FOR ADMIN PAGE ACCESS
 app.post("/admin-page-access", (req, res) => {
     const password = req.body["password"];
+
+    console.log("req.body", req.body);
 
     db.verifyAdminPassword(password)
         .then(result => {

@@ -3,6 +3,8 @@ import Register from "../register";
 import { render, waitForElement, fireEvent } from "@testing-library/react";
 import mockedAxios from "../__mocks__/mockedaxios.js";
 
+//POST request on success
+
 it("error message appears if username has not been entered", async () => {
     const { container, getByTestId } = render(<Register />);
 

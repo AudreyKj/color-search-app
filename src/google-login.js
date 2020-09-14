@@ -18,12 +18,13 @@ function GoogleAuthLogin(props) {
 
         refreshTokenSetup(res);
 
-        let token = { token: res["googleId"] };
-        //console.log("token", token);
+        let token = res["googleId"];
+
+        let username = res.rt["Ad"];
 
         axios
-            .post("/verifygogleauth", token)
-            .then(data => console.log(""))
+            .post("/verifygogleauth", { token, username })
+            .then()
             .catch(error => console.log(error));
     };
 

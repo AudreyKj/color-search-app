@@ -151,6 +151,7 @@ function App() {
                         >
                             Color Spotter
                         </Button>
+
                         <Button
                             component={NavLink}
                             to="/saved"
@@ -161,6 +162,18 @@ function App() {
                             }}
                         >
                             Saved Palettes
+                        </Button>
+
+                        <Button
+                            component={NavLink}
+                            to="/shared"
+                            color="inherit"
+                            activeStyle={{
+                                borderBottom:
+                                    "solid 3px rgba(248, 248, 248, 0.8)"
+                            }}
+                        >
+                            Shared
                         </Button>
 
                         {!loggedIn && (
@@ -229,7 +242,7 @@ function App() {
                 <Route path="/profile" component={Profile}></Route>
                 <Route path="/info" component={Info}></Route>
                 <Route path="/admin" component={Admin}></Route>
-                <Route path="/shared" component={Shared} />
+                <Route path="/shared" component={Shared}></Route>
 
                 <Route
                     path="/register"

@@ -3,5 +3,7 @@ CREATE TABLE saved(
   palette VARCHAR,
   tag VARCHAR,
   user_id INT NOT NULL REFERENCES register(id),
+  username VARCHAR,
+  shared VARCHAR,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

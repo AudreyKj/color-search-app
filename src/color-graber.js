@@ -81,20 +81,22 @@ function ColorGraber(props) {
                         {({ data, loading }) => {
                             setColors(data);
                             return (
-                                <ul style={{ color: data }}>
-                                    {data.map(color => (
-                                        <div className="color">
-                                            <li
-                                                key={color + Math.random()}
-                                                style={{
-                                                    backgroundColor: color
-                                                }}
-                                            ></li>
-                                            <span className="color-name">
-                                                {color}
-                                            </span>
-                                        </div>
-                                    ))}
+                                <>
+                                    <ul style={{ color: data }}>
+                                        {data.map(color => (
+                                            <div className="color">
+                                                <li
+                                                    key={color + Math.random()}
+                                                    style={{
+                                                        backgroundColor: color
+                                                    }}
+                                                ></li>
+                                                <span className="color-name">
+                                                    {color}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </ul>
 
                                     {props.loggedIn && (
                                         <div className="palette-save">
@@ -124,7 +126,7 @@ function ColorGraber(props) {
                                             )}
                                         </div>
                                     )}
-                                </ul>
+                                </>
                             );
                         }}
                     </Palette>

@@ -34,17 +34,17 @@ function verifyGoogleAuth(token_id) {
     );
 }
 
-function addUserFromGoogleAuth(token_id, token_type) {
+function addUserFromGoogleAuth(token_id, token_type, username) {
     return db.query(
-        `INSERT INTO register(external_id, external_type) VALUES($1, $2) RETURNING *`,
-        [token_id, token_type]
+        `INSERT INTO register(external_id, external_type, username) VALUES($1, $2, $3) RETURNING *`,
+        [token_id, token_type, username]
     );
 }
 
-function savePalette(colors, tag, user_id) {
+function savePalette(colors, tag, user_id, username) {
     return db.query(
-        `INSERT INTO saved (palette, tag, user_id) VALUES ($1, $2, $3) RETURNING id`,
-        [colors, tag, user_id]
+        `INSERT INTO saved (palette, tag, user_id, username) VALUES ($1, $2, $3, $4) RETURNING id`,
+        [colors, tag, user_id, username]
     );
 }
 
@@ -62,8 +62,26 @@ function filter(tag, user_id) {
     ]);
 }
 
-function getSharedPalettes() {
-    return db.query("SELECT * FROM shared");
+function checkPaletteShared(palette, tag, user_id, savedConf) {
+    return db.query(
+        `SELECT * FROM saved WHERE palette=$1 AND tag=$2 AND user_id= $3 AND shared=$4`,
+        [palette, tag, user_id, savedConf]
+    );
+}
+
+function sharePalette(savedConf, tag, user_id, palette) {
+    return db.query(
+        `UPDATE saved SET shared=$1 WHERE tag=$2 AND user_id=$3 AND palette=$4 RETURNING *`,
+        [savedConf, tag, user_id, palette]
+    );
+}
+
+function getSharedPalettes(savedConf) {
+    return db.query(`SELECT * FROM saved WHERE shared=$1`, [savedConf]);
+}
+
+function getUserName(user_id) {
+    return db.query("SELECT username FROM register WHERE id=$1", [user_id]);
 }
 
 function getProfile(user_id) {
@@ -125,21 +143,34 @@ function getAge() {
     return db.query(`SELECT age FROM user_profiles`);
 }
 
+//AUTH
 exports.checkEmail = checkEmail;
 exports.checkUsername = checkUsername;
 exports.registerUser = registerUser;
 exports.verifyUser = verifyUser;
 exports.verifyGoogleAuth = verifyGoogleAuth;
 exports.addUserFromGoogleAuth = addUserFromGoogleAuth;
+
+//SAVE PALETTE
 exports.savePalette = savePalette;
+exports.getUserName = getUserName;
 exports.getColors = getColors;
 exports.filter = filter;
+
+//SHARE PALETTE
+exports.sharePalette = sharePalette;
+exports.checkPaletteShared = checkPaletteShared;
+exports.getSharedPalettes = getSharedPalettes;
+
+//PROFILE
 exports.getProfile = getProfile;
 exports.updateUsers = updateUsers;
 exports.updateProfile = updateProfile;
 exports.deleteSavedPalettes = deleteSavedPalettes;
 exports.deleteInfoProfile = deleteInfoProfile;
 exports.deleteUserInfo = deleteUserInfo;
+
+//ADMIN DATA DASHBOARD
 exports.verifyAdminPassword = verifyAdminPassword;
 exports.getGender = getGender;
 exports.getCountry = getCountry;

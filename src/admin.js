@@ -4,8 +4,12 @@ import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 
 function Admin() {
     //password check
-    const [pwCheck, setPwCheck] = useState(true);
-    const [pageAccess, setPageAccess] = useState(false);
+    const [pwCheck, setPwCheck] = useState(
+        localStorage.getItem("pwCheck") || true
+    );
+    const [pageAccess, setPageAccess] = useState(
+        localStorage.getItem("pageAccess") || "noAccess"
+    );
     const [password, setPassword] = useState("");
     const [errorAccess, setErrorAccess] = useState(false);
 
@@ -23,8 +27,10 @@ function Admin() {
                 if (data.data.error) {
                     setErrorAccess(true);
                 } else if (data.data.passwordVerified) {
-                    setPwCheck(false);
-                    setPageAccess(true);
+                    localStorage.setItem("pwCheck", "pwVerified");
+                    localStorage.setItem("pageAccess", "accessGranted");
+                    setPwCheck("pwVerified");
+                    setPageAccess("accessGranted");
                     setErrorAccess(false);
                 }
             })
@@ -157,7 +163,7 @@ function Admin() {
 
     return (
         <div>
-            {pwCheck && (
+            {pwCheck !== "pwVerified" && (
                 <div className="admin-auth">
                     Access to the admin page's data dashboard is protected.{" "}
                     <br />
@@ -180,7 +186,7 @@ function Admin() {
                 </div>
             )}
 
-            {pageAccess && (
+            {pageAccess === "accessGranted" && (
                 <div className="admin-page">
                     <h1> DASHBOARD: DATA ABOUT THE APP'S USERS </h1>
 
