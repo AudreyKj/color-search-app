@@ -6,16 +6,13 @@ function Saved(props) {
     const [tag, setTags] = useState();
     const [noResult, setNoResult] = useState(false);
     const [successShare, setSuccessShare] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         axios.get("/savedcolors").then(data => {
-            console.log("data", data);
             setPalettes(data.data);
         });
     }, []);
-
-    console.log(palettes);
-    console.log("successShare", successShare);
 
     const handleChange = e => {
         setTags(e.target.value);
@@ -45,15 +42,27 @@ function Saved(props) {
     };
 
     const sharePalette = colorSet => {
-        console.log("sharing palette");
         axios
             .post("/sharePalette", colorSet)
             .then(data => {
-                console.log("data", data);
-                setSuccessShare(true);
+                if (data.data.error === "already shared") {
+                    setError("error: palette already shared!");
+                    setTimeout(() => {
+                        setError(false);
+                    }, 1500);
+                } else {
+                    setSuccessShare(true);
+                    setTimeout(() => {
+                        setSuccessShare(false);
+                    }, 1500);
+                }
             })
             .catch(error => {
                 console.log("error", error);
+                setError("error: please try again!");
+                setTimeout(() => {
+                    setError(false);
+                }, 1300);
             });
     };
 
@@ -93,6 +102,12 @@ function Saved(props) {
                     </div>
                 )}
 
+                {successShare && (
+                    <span className="success">palette shared!</span>
+                )}
+
+                {error && <span className="error">{error}</span>}
+
                 {palettes &&
                     palettes.map(colorSet => (
                         <div
@@ -110,11 +125,6 @@ function Saved(props) {
                                     >
                                         SHARE
                                     </button>
-                                    {successShare && (
-                                        <span className="success">
-                                            palette shared!
-                                        </span>
-                                    )}
                                 </div>
                                 {colorSet.palette.map(name => (
                                     <div
@@ -136,6 +146,12 @@ function Saved(props) {
                             </div>
                         </div>
                     ))}
+
+                {successShare && (
+                    <span className="success">palette shared!</span>
+                )}
+
+                {error && <span className="error">{error}</span>}
             </div>
         </>
     );

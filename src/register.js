@@ -40,7 +40,7 @@ function Register(props) {
         console.log("password", password);
         console.log("email", email);
 
-        if (username.length < 2) {
+        if (!username || username.length < 2) {
             setErrorEmail(false);
             setErrorPw(false);
             setErrorNames(false);
@@ -50,7 +50,7 @@ function Register(props) {
             return setErrorNames(true);
         }
 
-        if (password.length < 5 || !/[0-9]/g.test(password)) {
+        if (!password || password.length < 5 || !/[0-9]/g.test(password)) {
             setErrorEmail(false);
             setErrorNames(false);
             setErrorUserName(false);
@@ -60,7 +60,7 @@ function Register(props) {
             return setErrorPw(true);
         }
 
-        if (email.length < 3 || !email.includes("@")) {
+        if (!email || email.length < 3 || !email.includes("@")) {
             setErrorNames(false);
             setErrorPw(false);
             setErrorEmail(false);

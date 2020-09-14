@@ -32,6 +32,10 @@ div.container {
     color: #2e8543;
 }
 
+.error {
+    color: red;
+}
+
 /* HOME */
 header {
     width: 100%;

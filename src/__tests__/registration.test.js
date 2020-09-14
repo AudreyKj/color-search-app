@@ -1,9 +1,14 @@
 import React from "react";
 import Register from "../register";
-import { render, waitForElement, fireEvent } from "@testing-library/react";
+import {
+    render,
+    waitForElement,
+    fireEvent,
+    cleanup
+} from "@testing-library/react";
 import mockedAxios from "../__mocks__/mockedaxios.js";
 
-//POST request on success
+afterEach(cleanup);
 
 it("error message appears if username has not been entered", async () => {
     const { container, getByTestId } = render(<Register />);
@@ -72,3 +77,35 @@ it("error message appears if email has not been entered", async () => {
         "Please make sure you entered your email correctly."
     );
 });
+
+// it("on success, post request to register user", async () => {
+//     const { container, getByTestId } = render(<Register />);
+//     const username = "username";
+//     const password = "pw2306";
+//     const email = "email@gmail.com";
+//
+//     mockedAxios.post.mockResolvedValueOnce({
+//         data: [
+//             {
+//                 username: username,
+//                 password: password,
+//                 email: email
+//             }
+//         ]
+//     });
+//
+//     const email_input = container.querySelector("input.email");
+//     const password_input = container.querySelector("input.password");
+//     const username_input = container.querySelector("input.username");
+//
+//     fireEvent.change(username_input, { target: { value: username } });
+//     fireEvent.change(email_input, { target: { value: email } });
+//     fireEvent.change(password_input, { target: { value: password } });
+//
+//     fireEvent.click(container.querySelector("button"));
+//
+//     await waitForElement(() => getByTestId("confirmation"));
+//
+//     expect(confirmation).toHaveTextContent("success");
+//     //expect(mockedAxios.post).toHaveBeenCalledTimes(1);
+// });

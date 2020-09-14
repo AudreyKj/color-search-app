@@ -10,11 +10,6 @@ console.log(error);
 
 //TO DO
 
-//SHARED: change db
-
-//ADMIN: change post to get request
-//add cookie + localStorage to access
-
 //TESTS
 
 //GET request

@@ -26,6 +26,7 @@ function Login(props) {
         e.preventDefault();
 
         axios.post("/login/submit", { values }).then(data => {
+            console.log("data", data);
             if (data.data.error) {
                 return setError(true);
             } else {
@@ -48,6 +49,7 @@ function Login(props) {
                         <input
                             type="text"
                             name="email"
+                            className="email"
                             placeholder="email"
                             onChange={handleChange}
                             autoComplete="off"
@@ -59,6 +61,7 @@ function Login(props) {
                         <input
                             type="password"
                             name="password"
+                            className="password"
                             placeholder="password"
                             onChange={handleChange}
                             autoComplete="off"
