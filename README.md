@@ -7,7 +7,7 @@ all the components have been unit-tested with Jest and React Testing Library.
 
 API used: color-thief by Lokesh Dhakar
 
-[https://color-spot.space](visit live app)
+[visit live app](https://color-spot.space)
 
 ## Features
 
