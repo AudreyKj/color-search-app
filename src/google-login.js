@@ -6,7 +6,6 @@ import axios from "./axios";
 
 function GoogleAuthLogin(props) {
     const onSuccess = res => {
-        //console.log("res - googleSignIn", res);
         if (props.loginSuccess) {
             props.loginSuccess();
         } else {

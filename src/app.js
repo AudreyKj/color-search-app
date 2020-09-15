@@ -140,7 +140,7 @@ function App() {
                                         "solid 3px rgba(248, 248, 248, 0.8)"
                                 }}
                             >
-                                Color Spotter
+                                Spotter
                             </Button>
 
                             <Button
@@ -152,7 +152,7 @@ function App() {
                                         "solid 3px rgba(248, 248, 248, 0.8)"
                                 }}
                             >
-                                Saved Palettes
+                                Saved
                             </Button>
 
                             <Button
@@ -211,7 +211,7 @@ function App() {
                                             "solid 3px rgba(248, 248, 248, 0.8)"
                                     }}
                                 >
-                                    Edit profile
+                                    profile
                                 </Button>
                             )}
 

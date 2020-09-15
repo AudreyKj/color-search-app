@@ -57,7 +57,7 @@ can save palette >> go in separate database
 confirmation message
 
 SAVED
-- displays saved palette tag + palette
+- displays saved palette tag + palette (reverse order: newest at top)
 - filter by tag name >> request to database
 
 share button: confirmation/error message
@@ -70,7 +70,7 @@ PROFILE
 ADMIN
 - data dashboard protected
 - access using session storage
-- gender / country / age from user profiles 
+- gender / country / age from user profiles
 
 
 

@@ -3,7 +3,11 @@
 React app where users can detect the colors of images as well as save and categorize color palettes. <br />
 An "admin" page (made with chart.js) visualizes data from the app's users. <br />
 
+all the components have been unit-tested with Jest and React Testing Library.
+
 API used: color-thief by Lokesh Dhakar
+
+[https://color-spot.space/](visit live app)
 
 ## Features
 
@@ -17,11 +21,15 @@ API used: color-thief by Lokesh Dhakar
     <br />
 -   filter saved color palettes by tag (only for logged in users)
     <br />
+-   share color palettes
+    <br />
 -   admin page that visualizes data about the the app's users (made with chart.js)(protected by password)
     <br />
 -   delete account
     <br />
 -   logout
+
+<br /> all the components have been unit-tested with Jest and React Testing Library.
 
 ## Tech
 
