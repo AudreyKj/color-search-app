@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
 import useStatefulFields from "./customHooks/useStatefulFields.js";
+import { SUCCESS, ERROR } from "./Text.js";
 
 function Login(props) {
     const [form, setForm] = useState(true);
@@ -85,14 +86,12 @@ function Login(props) {
 
             <div className="error-conf-messages">
                 {error && (
-                    <span className="error">
-                        Authentication failed; try again or register.
-                    </span>
+                    <ERROR>Authentication failed; try again or register.</ERROR>
                 )}
                 {confirmation && (
-                    <span className="confirmation" data-testid="confirmation">
+                    <SUCCESS data-testid="confirmation">
                         Success! You're logged in!
-                    </span>
+                    </SUCCESS>
                 )}
             </div>
         </div>

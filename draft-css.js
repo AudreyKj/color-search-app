@@ -1,53 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-
-@import-normalize;
-
-@mixin flexCenter($direction) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
-}
-
-@mixin flexHorizontal() {
-    display: flex;
-    justify-content: center;
-}
-
-$headerColor: #212121;
-$backgroundWhite: #f8f8f8;
-
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    outline: none;
-}
-
-body {
-    background-color: $backgroundWhite;
-    font-family: "Questrial", sans-serif;
-    margin: 0;
-
-    position: relative;
-    min-height: 100vh;
-}
-
-div.container {
-    width: 100%;
-    @include flexCenter(column);
-}
-
 /* HOME */
 header {
     width: 100%;
     height: 80px;
 
-    @include flexHorizontal();
+    display: flex;
+    justify-content: center;
     text-align: center;
 
     margin-bottom: 30px;
     position: fixed;
-    background-color: $headerColor;
+    background-color: #212121;
 }
 
 @media (max-width: 550px) {
@@ -69,7 +31,9 @@ header {
 }
 
 div.title {
-    @include flexCenter(row);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -82,8 +46,9 @@ img.logo {
 div.menu {
     position: absolute;
     right: 20px;
-    @include flexHorizontal();
 
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -133,9 +98,8 @@ div.palette {
 
 div.saved_palettes_container {
     width: 100%;
-
-    @include flexHorizontal();
-
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 100px;
 }
@@ -146,10 +110,9 @@ span.color-name {
 
 div.graber-container {
     list-style-type: none;
-
-    @include flexHorizontal();
+    display: flex;
     flex-wrap: wrap;
-
+    justify-content: center;
     padding: 0;
     width: 100%;
 }
@@ -161,19 +124,25 @@ div.graber-container {
 }
 
 div.color {
-    @include flexCenter(column);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 ul {
-    @include flexHorizontal();
+    display: flex;
+    display: flex;
+    justify-content: center;
 }
 
 li {
     width: 150px;
     height: 150px;
-    @include flexHorizontal();
-    align-items: center;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #cccccc8c;
 }
 
@@ -184,12 +153,14 @@ li {
 }
 
 form.color-spotter {
-    @include flexHorizontal();
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 500px) {
     form.color-spotter {
-        @include flexHorizontal();
+        display: flex;
+        justify-content: center;
         flex-direction: column;
     }
 }
@@ -222,8 +193,9 @@ span.palette_saved_confirmation {
 }
 
 div.palette-save {
-    @include flexHorizontal();
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-top: 40px;
 }
@@ -240,9 +212,9 @@ div.color-graber {
 
 p.drop-graber {
     padding: 50px;
-
-    @include flexCenter(row);
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 1.5rem;
     line-height: 1.2;
@@ -269,7 +241,10 @@ div.saved_instructions {
 
 div.filtering {
     width: 100%;
-    @include flexCenter(column);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 15px;
     margin-bottom: 35px;
 }
@@ -281,12 +256,17 @@ div.filter-part {
 }
 
 form.form-filter {
-    @include flexCenter(row);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 400px) {
     form.form-filter {
-        @include flexCenter(column);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -321,11 +301,11 @@ span.filter_title {
 }
 
 div.saved-palette-container {
-    @include flexHorizontal();
-
+    display: flex;
+    /* flex-direction: column; */
     width: 100%;
     height: 100%;
-
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -341,7 +321,9 @@ div.single-color {
     width: 150px;
     height: 150px;
 
-    @include flexCenter(row);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 0.5px solid #cccccc8c;
 }
 
@@ -350,7 +332,10 @@ div.saved_color {
 }
 
 div.palette-options {
-    @include flexCenter(column);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-right: 15px;
 }
 
@@ -386,7 +371,10 @@ div.auth-google {
     justify-content: center;
 }
 form.auth {
-    @include flexCenter(column);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
@@ -466,7 +454,8 @@ span.title {
 
 div.info-wrapper {
     width: 100%;
-    @include flexHorizontal();
+    display: flex;
+    justify-content: center;
     color: #333;
     margin-bottom: 80px;
 }
@@ -545,10 +534,10 @@ h1 {
 }
 
 div.chart {
+    display: flex;
     padding-top: 40px;
-
-    @include flexCenter(row);
-
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-height: 100%;
     margin-bottom: 80px;
@@ -572,10 +561,10 @@ footer {
     left: 0;
     height: 40px;
     width: 100%;
-    @include flexCenter(row);
-
+    display: flex;
+    align-items: center;
     color: #333;
-
+    justify-content: center;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.9),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);

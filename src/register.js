@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "./axios.js";
 import GoogleAuthLogin from "./google-login.js";
 import useStatefulFields from "./customHooks/useStatefulFields.js";
+import { SUCCESS, ERROR } from "./Text.js";
 
 function Register(props) {
     const [form, setForm] = useState(true);
@@ -41,33 +42,20 @@ function Register(props) {
         console.log("email", email);
 
         if (!username || username.length < 2) {
-            setErrorEmail(false);
-            setErrorPw(false);
-            setErrorNames(false);
-            setErrorUserName(false);
-            setErrorNotUnique_Email(false);
-
-            return setErrorNames(true);
-        }
-
-        if (!password || password.length < 5 || !/[0-9]/g.test(password)) {
-            setErrorEmail(false);
-            setErrorNames(false);
-            setErrorUserName(false);
-            setErrorNotUnique_Email(false);
-            setErrorNames(false);
-
-            return setErrorPw(true);
+            return setError(
+                "Please make sure your username is correctly entered."
+            );
         }
 
         if (!email || email.length < 3 || !email.includes("@")) {
-            setErrorNames(false);
-            setErrorPw(false);
-            setErrorEmail(false);
-            setErrorUserName(false);
-            setErrorNotUnique_Email(false);
+            return setError(
+                "Please make sure you entered your email correctly."
+            );
+        }
 
-            return setErrorEmail(true);
+        if (!password || password.length < 5 || !/[0-9]/g.test(password)) {
+            return setError(`Passwords should be min 5 characters and count at least
+            one number.`);
         }
 
         axios
@@ -75,32 +63,16 @@ function Register(props) {
             .then(data => {
                 console.log("data", data);
                 if (data.data.error) {
-                    setErrorEmail(false);
-                    setErrorPw(false);
-                    setErrorNames(false);
-                    setErrorUserName(false);
-                    setErrorNotUnique_Email(false);
-                    return setError(true);
+                    return setError("Error: please try again.");
                 } else if (data.data.userName_notUnique) {
-                    setErrorEmail(false);
-                    setErrorPw(false);
-                    setErrorNames(false);
-                    setErrorNotUnique_Email(false);
-                    return setErrorUserName(true);
+                    return setError("This username already exists.");
                 } else if (data.data.email_notUnique) {
-                    setErrorEmail(false);
-                    setErrorPw(false);
-                    setErrorNames(false);
-                    setErrorUserName(false);
-                    return setErrorNotUnique_Email(true);
+                    return setError(
+                        "An account for this email address already exists."
+                    );
                 } else {
-                    setErrorUserName(false);
-                    setErrorNotUnique_Email(false);
-                    setForm(false);
                     setError(false);
-                    setErrorNames(false);
-                    setErrorPw(false);
-                    setErrorEmail(false);
+                    setForm(false);
                     setConfirmation(true);
 
                     props.updateAppUserLoggedIn();
@@ -170,43 +142,12 @@ function Register(props) {
             )}
 
             <div className="error-conf-messages">
-                {errorNames && (
-                    <span className="error" data-testid="errorUsername">
-                        Please make sure your username is correctly entered.
-                    </span>
-                )}
-
-                {errorPw && (
-                    <span className="error" data-testid="errorPw">
-                        Passwords should be min 5 characters and count at least
-                        one number.
-                    </span>
-                )}
-
-                {errorEmail && (
-                    <span className="error" data-testid="errorEmail">
-                        Please make sure you entered your email correctly.
-                    </span>
-                )}
-
-                {error && (
-                    <span className="error">Error: please try again.</span>
-                )}
-
-                {userNameError && (
-                    <span className="error">This username already exists.</span>
-                )}
-
-                {errorNotUnique_Email && (
-                    <span className="error">
-                        An account for this email address already exists.
-                    </span>
-                )}
+                {error && <ERROR data-testid="error">{error}</ERROR>}
 
                 {confirmation && (
-                    <span className="confirmation" data-testid="confirmation">
+                    <SUCCESS data-testid="confirmation">
                         Success! You're registered!
-                    </span>
+                    </SUCCESS>
                 )}
             </div>
         </div>

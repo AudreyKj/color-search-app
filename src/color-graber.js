@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Palette, Color } from "color-thief-react";
 import Dropzone from "react-dropzone";
 import axios from "./axios";
+import styled from "styled-components";
+import { SUCCESS } from "./Text.js";
 
 function ColorGraber(props) {
     const [url, setUrl] = useState();
@@ -120,9 +122,9 @@ function ColorGraber(props) {
                                                 </span>
                                             </form>
                                             {confirmation_saved && (
-                                                <span className="palette_saved_confirmation">
+                                                <SUCCESS>
                                                     successfully saved!
-                                                </span>
+                                                </SUCCESS>
                                             )}
                                         </div>
                                     )}

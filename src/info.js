@@ -10,13 +10,15 @@ function Info() {
                 This web app enables users to detect colors in images as well as
                 to save and categorize color palettes.
                 <br /> <br />
-                GET STARTED 🎨 <br />1 - upload an image to the&nbsp;
+                GET STARTED 🎨 <br /> - upload an image to the&nbsp;
                 <Link className="underline" to="/spotter">
                     color spotter&nbsp;
                 </Link>
                 to get its color codes
                 <br />
-                2 - register or login to save palettes and grow collections
+                - register or login to save palettes and grow collections <br />
+                - browse through users' shared palettes in the Shared section{" "}
+                <br />
                 <br /> <br />
                 API used: color-thief by Lokesh Dhakar
                 <br />

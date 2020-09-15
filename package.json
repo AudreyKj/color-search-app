@@ -73,6 +73,8 @@
         "redux-promise": "^0.5.3",
         "socket.io": "^2.2.0",
         "spiced-pg": "^1.0.3",
+        "styled-components": "^5.2.0",
+        "styled-components.macro": "^1.0.0",
         "typeface-codystar": "0.0.72",
         "uid-safe": "^2.1.4",
         "webpack": "^4.29.6",
@@ -88,6 +90,7 @@
     "license": "ISC",
     "devDependencies": {
         "@testing-library/dom": "^7.24.2",
+        "babel-plugin-styled-components": "^1.11.1",
         "dotenv": "^8.2.0",
         "nodemon": "^2.0.4"
     }

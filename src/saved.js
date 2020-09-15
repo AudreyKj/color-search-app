@@ -71,8 +71,8 @@ function Saved(props) {
             <div className="saved_instructions">
                 {!props.loggedIn && (
                     <span className="graber_instructions">
-                        <br /> Please register or login to save palettes and
-                        grow collections.
+                        Please register or login to save palettes and grow
+                        collections.
                     </span>
                 )}
             </div>

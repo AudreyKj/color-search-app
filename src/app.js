@@ -288,7 +288,7 @@ function App() {
                 </Switch>
             </BrowserRouter>
 
-            <footer>COLOR SPOT © 2020</footer>
+            <footer>COLOR SPOT © 2020 </footer>
         </div>
     );
 }
