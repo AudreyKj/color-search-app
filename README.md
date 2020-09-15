@@ -39,6 +39,7 @@ API used: color-thief by Lokesh Dhakar
 
 ## Future improvements
 
+-   Add "Projects" section where users can categorize projects + research ideas
 -   Add color picker (Swatches)
 -   Automate sending of emails to enable users to reset their password
 -   Develop mobile app with React Native
