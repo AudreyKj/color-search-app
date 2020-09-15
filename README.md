@@ -5,8 +5,6 @@ An "admin" page (made with chart.js) visualizes data from the app's users. <br /
 
 API used: color-thief by Lokesh Dhakar
 
-[visit live app](https://color-spot.space/)
-
 ## Features
 
 -   drag and drop/upload image to detect its colors using color-thief API
@@ -39,12 +37,13 @@ API used: color-thief by Lokesh Dhakar
 
 ## Visuals
 
-![screenshot](readMe/screenshot_1.png)
+![screenshot](readMe/img1.png)
 <br />
-![screenshot](readMe/screenshot_2.png)
+![screenshot](readMe/img2.png)
 <br />
-![screenshot](readMe/screenshot_3.png)
+![screenshot](readMe/img3.png)
 <br/>
+![screenshot](readMe/screenshot_3.png)
 
 <p align="center">
 <img width="300" height="595" src="readMe/mobile.png">
