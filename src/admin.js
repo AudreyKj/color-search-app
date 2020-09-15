@@ -5,10 +5,10 @@ import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 function Admin() {
     //password check
     const [pwCheck, setPwCheck] = useState(
-        localStorage.getItem("pwCheck") || true
+        sessionStorage.getItem("pwCheck") || true
     );
     const [pageAccess, setPageAccess] = useState(
-        localStorage.getItem("pageAccess") || "noAccess"
+        sessionStorage.getItem("pageAccess") || "noAccess"
     );
     const [password, setPassword] = useState("");
     const [errorAccess, setErrorAccess] = useState(false);
@@ -27,8 +27,8 @@ function Admin() {
                 if (data.data.error) {
                     setErrorAccess(true);
                 } else if (data.data.passwordVerified) {
-                    localStorage.setItem("pwCheck", "pwVerified");
-                    localStorage.setItem("pageAccess", "accessGranted");
+                    sessionStorage.setItem("pwCheck", "pwVerified");
+                    sessionStorage.setItem("pageAccess", "accessGranted");
                     setPwCheck("pwVerified");
                     setPageAccess("accessGranted");
                     setErrorAccess(false);
@@ -165,24 +165,26 @@ function Admin() {
         <div>
             {pwCheck !== "pwVerified" && (
                 <div className="admin-auth">
-                    Access to the admin page's data dashboard is protected.{" "}
+                    Access to the admin page's data dashboard is protected.
                     <br />
                     Please enter the password to access the page <br />
-                    <label forhtml="password">
-                        PASSWORD
-                        <input
-                            type="password"
-                            name="password"
-                            onChange={e => setPassword(e.target.value)}
-                            className="admin-auth"
-                        />
-                    </label>
-                    <button className="submit" onClick={verifyPassword}>
-                        SUBMIT
-                    </button>
-                    {errorAccess && (
-                        <span className="error"> Authentication failed </span>
-                    )}
+                    <form>
+                        <label forhtml="password">
+                            PASSWORD
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={e => setPassword(e.target.value)}
+                                className="admin-auth"
+                            />
+                        </label>
+                        <button className="submit" onClick={verifyPassword}>
+                            SUBMIT
+                        </button>
+                        {errorAccess && (
+                            <span className="error">Authentication failed</span>
+                        )}
+                    </form>
                 </div>
             )}
 

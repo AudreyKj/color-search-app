@@ -107,182 +107,186 @@ function App() {
                 <meta property="og:image" content="preview.jpg" />
                 <meta property="og:image:url" content="preview.jpg" />
             </Helmet>
-            <AppBar position="static" style={{ background: "#212121" }}>
-                <Toolbar>
-                    <div className="title">
-                        <img
-                            className="logo"
-                            src="color-wheel.png"
-                            alt="color-circle"
-                        />
-                        <Typography
-                            variant="h5"
-                            className="link-header"
-                            component={Link}
-                            to="/spotter"
-                        >
-                            COLOR SPOT
-                        </Typography>
-                    </div>
 
-                    <div className="menu">
-                        <Button
-                            component={NavLink}
-                            to="/info"
-                            color="inherit"
-                            activeStyle={{
-                                borderBottom:
-                                    "solid 3px rgba(248, 248, 248, 0.8)"
-                            }}
-                        >
-                            Info
-                        </Button>
-                        <Button
-                            component={NavLink}
-                            to="/spotter"
-                            color="inherit"
-                            activeStyle={{
-                                borderBottom:
-                                    "solid 3px rgba(248, 248, 248, 0.8)"
-                            }}
-                        >
-                            Color Spotter
-                        </Button>
+            <BrowserRouter>
+                <AppBar position="static" style={{ background: "#212121" }}>
+                    <Toolbar>
+                        <div className="title">
+                            <img
+                                className="logo"
+                                src="color-wheel.png"
+                                alt="color-circle"
+                            />
+                            <Typography
+                                variant="h5"
+                                className="link-header"
+                                component={Link}
+                                to="/spotter"
+                            >
+                                COLOR SPOT
+                            </Typography>
+                        </div>
 
-                        <Button
-                            component={NavLink}
-                            to="/saved"
-                            color="inherit"
-                            activeStyle={{
-                                borderBottom:
-                                    "solid 3px rgba(248, 248, 248, 0.8)"
-                            }}
-                        >
-                            Saved Palettes
-                        </Button>
-
-                        <Button
-                            component={NavLink}
-                            to="/shared"
-                            color="inherit"
-                            activeStyle={{
-                                borderBottom:
-                                    "solid 3px rgba(248, 248, 248, 0.8)"
-                            }}
-                        >
-                            Shared
-                        </Button>
-
-                        {!loggedIn && (
-                            <>
-                                <Button
-                                    component={NavLink}
-                                    to="/login"
-                                    color="inherit"
-                                    activeStyle={{
-                                        borderBottom:
-                                            "solid 3px rgba(248, 248, 248, 0.8)"
-                                    }}
-                                >
-                                    Login
-                                </Button>
-
-                                <Button
-                                    component={NavLink}
-                                    to="/register"
-                                    color="inherit"
-                                    activeStyle={{
-                                        borderBottom:
-                                            "solid 3px rgba(248, 248, 248, 0.8)"
-                                    }}
-                                >
-                                    Register
-                                </Button>
-                            </>
-                        )}
-
-                        {loggedIn && (
-                            <Button onClick={logout} color="inherit">
-                                Logout
-                            </Button>
-                        )}
-
-                        {appUserLoggedIn && (
+                        <div className="menu">
                             <Button
                                 component={NavLink}
-                                to="/profile"
+                                to="/info"
                                 color="inherit"
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
                                 }}
                             >
-                                Edit profile
+                                Info
                             </Button>
+                            <Button
+                                component={NavLink}
+                                to="/spotter"
+                                color="inherit"
+                                activeStyle={{
+                                    borderBottom:
+                                        "solid 3px rgba(248, 248, 248, 0.8)"
+                                }}
+                            >
+                                Color Spotter
+                            </Button>
+
+                            <Button
+                                component={NavLink}
+                                to="/saved"
+                                color="inherit"
+                                activeStyle={{
+                                    borderBottom:
+                                        "solid 3px rgba(248, 248, 248, 0.8)"
+                                }}
+                            >
+                                Saved Palettes
+                            </Button>
+
+                            <Button
+                                component={NavLink}
+                                to="/shared"
+                                color="inherit"
+                                activeStyle={{
+                                    borderBottom:
+                                        "solid 3px rgba(248, 248, 248, 0.8)"
+                                }}
+                            >
+                                Shared
+                            </Button>
+
+                            {!loggedIn && (
+                                <>
+                                    <Button
+                                        component={NavLink}
+                                        to="/login"
+                                        color="inherit"
+                                        activeStyle={{
+                                            borderBottom:
+                                                "solid 3px rgba(248, 248, 248, 0.8)"
+                                        }}
+                                    >
+                                        Login
+                                    </Button>
+
+                                    <Button
+                                        component={NavLink}
+                                        to="/register"
+                                        color="inherit"
+                                        activeStyle={{
+                                            borderBottom:
+                                                "solid 3px rgba(248, 248, 248, 0.8)"
+                                        }}
+                                    >
+                                        Register
+                                    </Button>
+                                </>
+                            )}
+
+                            {loggedIn && (
+                                <Button onClick={logout} color="inherit">
+                                    Logout
+                                </Button>
+                            )}
+
+                            {appUserLoggedIn && (
+                                <Button
+                                    component={NavLink}
+                                    to="/profile"
+                                    color="inherit"
+                                    activeStyle={{
+                                        borderBottom:
+                                            "solid 3px rgba(248, 248, 248, 0.8)"
+                                    }}
+                                >
+                                    Edit profile
+                                </Button>
+                            )}
+
+                            <Button
+                                component={NavLink}
+                                to="/admin"
+                                color="inherit"
+                                activeStyle={{
+                                    borderBottom:
+                                        "solid 3px rgba(248, 248, 248, 0.8)"
+                                }}
+                            >
+                                Admin
+                            </Button>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+
+                <Switch>
+                    <Route path="/profile" component={Profile}></Route>
+                    <Route path="/info" component={Info}></Route>
+                    <Route path="/admin" component={Admin}></Route>
+                    <Route path="/shared" component={Shared}></Route>
+
+                    <Route
+                        path="/register"
+                        render={props => (
+                            <Register
+                                loggedIn={loggedIn}
+                                updateLogged={updateLogged}
+                                updateAppUserLoggedIn={updateAppUserLoggedIn}
+                                updateGoogleLogged={updateGoogleLogged}
+                            />
                         )}
-
-                        <Button
-                            component={NavLink}
-                            to="/admin"
-                            color="inherit"
-                            activeStyle={{
-                                borderBottom:
-                                    "solid 3px rgba(248, 248, 248, 0.8)"
-                            }}
-                        >
-                            Admin
-                        </Button>
-                    </div>
-                </Toolbar>
-            </AppBar>
-            <Switch>
-                <Route path="/profile" component={Profile}></Route>
-                <Route path="/info" component={Info}></Route>
-                <Route path="/admin" component={Admin}></Route>
-                <Route path="/shared" component={Shared}></Route>
-
-                <Route
-                    path="/register"
-                    render={props => (
-                        <Register
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                            updateAppUserLoggedIn={updateAppUserLoggedIn}
-                            updateGoogleLogged={updateGoogleLogged}
-                        />
-                    )}
-                />
-                <Route
-                    path="/login"
-                    render={props => (
-                        <Login
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                            updateGoogleLogged={updateGoogleLogged}
-                            updateAppUserLoggedIn={updateAppUserLoggedIn}
-                        />
-                    )}
-                />
-                <Route
-                    path="/saved"
-                    render={props => (
-                        <Saved
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                            updateAppUserLoggedIn={updateAppUserLoggedIn}
-                        />
-                    )}
-                />
-                <Route
-                    path="/spotter"
-                    render={props => (
-                        <ColorGraber
-                            loggedIn={loggedIn}
-                            updateLogged={updateLogged}
-                        />
-                    )}
-                />
-            </Switch>
+                    />
+                    <Route
+                        path="/login"
+                        render={props => (
+                            <Login
+                                loggedIn={loggedIn}
+                                updateLogged={updateLogged}
+                                updateGoogleLogged={updateGoogleLogged}
+                                updateAppUserLoggedIn={updateAppUserLoggedIn}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/saved"
+                        render={props => (
+                            <Saved
+                                loggedIn={loggedIn}
+                                updateLogged={updateLogged}
+                                updateAppUserLoggedIn={updateAppUserLoggedIn}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/spotter"
+                        render={props => (
+                            <ColorGraber
+                                loggedIn={loggedIn}
+                                updateLogged={updateLogged}
+                            />
+                        )}
+                    />
+                </Switch>
+            </BrowserRouter>
 
             <footer>COLOR SPOT © 2020</footer>
         </div>

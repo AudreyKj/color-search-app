@@ -103,7 +103,9 @@ function Saved(props) {
                 )}
 
                 {successShare && (
-                    <span className="success">palette shared!</span>
+                    <span className="success" data-testid="share-success">
+                        palette shared!
+                    </span>
                 )}
 
                 {error && <span className="error">{error}</span>}
@@ -116,7 +118,10 @@ function Saved(props) {
                         >
                             <div className="color-palette-save">
                                 <div className="palette-options">
-                                    <span className="color-palette">
+                                    <span
+                                        className="color-palette"
+                                        data-testid="color"
+                                    >
                                         tag:{colorSet.tag}
                                     </span>
                                     <button
@@ -129,7 +134,6 @@ function Saved(props) {
                                 {colorSet.palette.map(name => (
                                     <div
                                         className="color"
-                                        data-testid="color"
                                         key={name + Math.random()}
                                     >
                                         <div

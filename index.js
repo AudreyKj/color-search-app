@@ -9,6 +9,7 @@ const csurf = require("csurf");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
+const cors = require("cors");
 
 app.use(compression());
 
@@ -19,6 +20,8 @@ app.use(
         extended: false
     })
 );
+
+app.use(cors());
 
 app.use(express.json());
 
