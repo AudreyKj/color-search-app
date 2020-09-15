@@ -7,16 +7,10 @@ import { SUCCESS, ERROR } from "./Text.js";
 function Register(props) {
     const [form, setForm] = useState(true);
     const [values, handleChange] = useStatefulFields();
-    const [errorNames, setErrorNames] = useState(false);
-    const [userNameError, setErrorUserName] = useState("");
-    const [errorNotUnique_Email, setErrorNotUnique_Email] = useState("");
-    const [errorPw, setErrorPw] = useState(false);
-    const [errorEmail, setErrorEmail] = useState(false);
+
     const [error, setError] = useState(false);
     const [confirmation, setConfirmation] = useState(false);
     const [googleAuth, setGoogleAuth] = useState(true);
-
-    console.log("values", values);
 
     const registerSuccess = () => {
         setConfirmation(true);
@@ -37,9 +31,6 @@ function Register(props) {
         e.preventDefault();
 
         const { username, password, email } = values;
-        console.log("username", username);
-        console.log("password", password);
-        console.log("email", email);
 
         if (!username || username.length < 2) {
             return setError(
@@ -75,7 +66,6 @@ function Register(props) {
                     setForm(false);
                     setConfirmation(true);
 
-                    props.updateAppUserLoggedIn();
                     props.updateLogged();
                     setGoogleAuth(false);
                 }

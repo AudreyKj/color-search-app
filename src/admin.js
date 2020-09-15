@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import { ERROR } from "./Text.js";
 
 function Admin() {
     //password check
@@ -20,7 +21,13 @@ function Admin() {
     const [age, setAge] = useState();
     const [chartReady, setchartReady] = useState(false);
 
-    const verifyPassword = () => {
+    const handleChange = e => {
+        if (errorAccess) setErrorAccess(false);
+        setPassword(e.target.value);
+    };
+
+    const verifyPassword = e => {
+        e.preventDefault();
         axios
             .post("/admin-page-access", { password: password })
             .then(data => {
@@ -174,16 +181,14 @@ function Admin() {
                             <input
                                 type="password"
                                 name="password"
-                                onChange={e => setPassword(e.target.value)}
+                                onChange={handleChange}
                                 className="admin-auth"
                             />
                         </label>
                         <button className="submit" onClick={verifyPassword}>
                             SUBMIT
                         </button>
-                        {errorAccess && (
-                            <span className="error">Authentication failed</span>
-                        )}
+                        {errorAccess && <ERROR>Authentication failed</ERROR>}
                     </form>
                 </div>
             )}

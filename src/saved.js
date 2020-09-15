@@ -150,12 +150,6 @@ function Saved(props) {
                             </div>
                         </div>
                     ))}
-
-                {successShare && (
-                    <span className="success">palette shared!</span>
-                )}
-
-                {error && <span className="error">{error}</span>}
             </div>
         </>
     );

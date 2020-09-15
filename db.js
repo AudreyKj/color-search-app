@@ -5,6 +5,7 @@ const db = spicePg(
         "postgres://postgres:postgres@localhost:5432/color_spot"
 );
 
+//AUTH
 function checkUsername(userName) {
     return db.query(`SELECT * FROM register WHERE userName=$1`, [userName]);
 }
@@ -41,6 +42,7 @@ function addUserFromGoogleAuth(token_id, token_type, username) {
     );
 }
 
+//SAVE PALETTE
 function savePalette(colors, tag, user_id, username) {
     return db.query(
         `INSERT INTO saved (palette, tag, user_id, username) VALUES ($1, $2, $3, $4) RETURNING id`,
@@ -62,6 +64,7 @@ function filter(tag, user_id) {
     ]);
 }
 
+//SHARE PALETTE
 function checkPaletteShared(palette, tag, user_id, savedConf) {
     return db.query(
         `SELECT * FROM saved WHERE palette=$1 AND tag=$2 AND user_id= $3 AND shared=$4`,
@@ -84,6 +87,7 @@ function getUserName(user_id) {
     return db.query("SELECT username FROM register WHERE id=$1", [user_id]);
 }
 
+//PROFILE
 function getProfile(user_id) {
     return db.query(
         `SELECT register.username, register.email, register.password,
@@ -113,6 +117,7 @@ function updateProfile(user_id, age, country, gender) {
     );
 }
 
+//DELETE ACCOUNT
 function deleteSavedPalettes(user_id) {
     return db.query(`DELETE FROM saved WHERE user_id=$1`, [user_id]);
 }
@@ -125,6 +130,7 @@ function deleteUserInfo(user_id) {
     return db.query(`DELETE FROM register WHERE id=$1`, [user_id]);
 }
 
+//DATA DASHBOARD
 function verifyAdminPassword(password) {
     return db.query(`SELECT FROM adminPageAccess WHERE password=$1`, [
         password

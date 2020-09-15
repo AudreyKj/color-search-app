@@ -32,7 +32,7 @@ function Login(props) {
                 return setError(true);
             } else {
                 props.updateLogged();
-                props.updateAppUserLoggedIn();
+
                 setError(false);
                 setForm(false);
                 setGoogleAuth(false);

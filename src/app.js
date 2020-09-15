@@ -42,14 +42,6 @@ function App() {
         }
     };
 
-    const updateAppUserLoggedIn = () => {
-        if (!appUserLoggedIn) {
-            setAppUserLoggedIn(true);
-        } else {
-            setAppUserLoggedIn(false);
-        }
-    };
-
     const updateGoogleLogged = () => {
         if (!googleLoggedIn) {
             setGoogleLoggedIn(true);
@@ -209,7 +201,7 @@ function App() {
                                 </Button>
                             )}
 
-                            {appUserLoggedIn && (
+                            {loggedIn && (
                                 <Button
                                     component={NavLink}
                                     to="/profile"
@@ -250,7 +242,6 @@ function App() {
                             <Register
                                 loggedIn={loggedIn}
                                 updateLogged={updateLogged}
-                                updateAppUserLoggedIn={updateAppUserLoggedIn}
                                 updateGoogleLogged={updateGoogleLogged}
                             />
                         )}
@@ -262,7 +253,6 @@ function App() {
                                 loggedIn={loggedIn}
                                 updateLogged={updateLogged}
                                 updateGoogleLogged={updateGoogleLogged}
-                                updateAppUserLoggedIn={updateAppUserLoggedIn}
                             />
                         )}
                     />
@@ -272,7 +262,6 @@ function App() {
                             <Saved
                                 loggedIn={loggedIn}
                                 updateLogged={updateLogged}
-                                updateAppUserLoggedIn={updateAppUserLoggedIn}
                             />
                         )}
                     />

@@ -145,19 +145,15 @@ app.post("/verifygogleauth", (req, res) => {
     let { token, username } = req.body;
     let type = "Google";
 
-    console.log("req.body google", req.body);
-
     db.verifyGoogleAuth(token)
         .then(result => {
             if (result.rows.length === 0) {
                 db.addUserFromGoogleAuth(token, type, username).then(result => {
-                    console.log("result", result);
                     req.session.userId = result.rows[0].id;
                     return res.json(result);
                 });
             } else {
                 req.session.userId = result.rows[0].id;
-                console.log("req.session.userId", req.session.userId);
 
                 return res.json(result);
             }
@@ -222,7 +218,8 @@ app.get("/savedcolors", (req, res) => {
                 }
             });
 
-            return res.json(result.rows);
+            const reversed = result.rows.reverse();
+            return res.json(reversed);
         })
         .catch(error => {
             console.log("error", error);
@@ -253,11 +250,8 @@ app.post("/filter", (req, res) => {
 //SHARE PALETTE
 app.post("/sharePalette", async (req, res) => {
     const { palette, tag, user_id, created_at, username } = req.body;
-    console.log("req.body", req.body);
 
     const savedConf = "yes";
-
-    console.log("palette", palette);
 
     try {
         const alreadyShared = await db.checkPaletteShared(
@@ -282,9 +276,7 @@ app.post("/sharePalette", async (req, res) => {
                 return res.json({ error: true });
             }
         } else {
-            console.log("already shared");
             return res.json({ error: "already shared" });
-            return;
         }
     } catch (error) {
         console.log("error", error);
@@ -296,7 +288,7 @@ app.get("/getSharedPalettes", async (req, res) => {
     const savedConf = "yes";
     try {
         const getSharedPalettes = await db.getSharedPalettes(savedConf);
-        console.log("getSharedPalettes", getSharedPalettes);
+
         getSharedPalettes.rows.map(elem => {
             if (typeof elem.palette === "string" || elem.palette !== null) {
                 elem.palette = elem.palette.replace(/[{}/"]/g, "");
@@ -305,8 +297,10 @@ app.get("/getSharedPalettes", async (req, res) => {
         });
 
         const { rows } = getSharedPalettes;
-        console.log("shared palettes", rows);
-        return res.json({ rows });
+
+        const reversedRes = rows.reverse();
+
+        return res.json(reversedRes);
     } catch (error) {
         console.log("error", error);
         return res.json({ error: true });
@@ -347,14 +341,17 @@ app.post("/updateprofile", (req, res) => {
                             return res.json(result);
                         })
                         .catch(error => {
+                            console.log("error", error);
                             return res.json({ error: true });
                         });
                 })
                 .catch(error => {
+                    console.log("error", error);
                     return res.json({ error: true });
                 });
         })
         .catch(error => {
+            console.log("error", error);
             return res.json({ error: true });
         });
 });
@@ -382,8 +379,6 @@ app.get("/admin", (req, res) => {
 //VERIFY PASSWORD FOR ADMIN PAGE ACCESS
 app.post("/admin-page-access", (req, res) => {
     const password = req.body["password"];
-
-    console.log("req.body", req.body);
 
     db.verifyAdminPassword(password)
         .then(result => {

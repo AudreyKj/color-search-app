@@ -5,10 +5,12 @@ function Shared() {
     const [sharedPalettes, setSharedPalettes] = useState(false);
 
     useEffect(() => {
-        axios.get("/getSharedPalettes").then(data => {
-            console.log("shared palette data", data.data.rows);
-            setSharedPalettes(data.data.rows);
-        });
+        axios
+            .get("/getSharedPalettes")
+            .then(data => {
+                setSharedPalettes(data.data);
+            })
+            .catch(error => console.log(error));
     }, []);
 
     return (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
+import { SUCCESS, ERROR } from "./Text.js";
 
 function Profile() {
     const [username, setUsername] = useState("");
@@ -43,7 +44,8 @@ function Profile() {
             password.length < 5 ||
             !/[0-9]/g.test(password)
         ) {
-            return setErrorPw(true);
+            setError("Error: the password field is required.");
+            return;
         }
 
         axios
@@ -57,11 +59,9 @@ function Profile() {
             })
             .then(data => {
                 if (data.data.error) {
-                    setErrorPw(false);
-                    setError(true);
+                    setError("Error: something went wrong.");
                 } else {
                     setError(false);
-                    setErrorPw(false);
                     setUpdated(true);
                 }
             })
@@ -177,24 +177,9 @@ function Profile() {
                 </button>
             </form>
 
-            {error && (
-                <span className="error">
-                    Error: something went wrong. <br /> Please try again.
-                </span>
-            )}
+            {error && <ERROR>{error} </ERROR>}
 
-            {errorPw && (
-                <span className="error">
-                    Error: the password field is required. <br /> Passwords
-                    should be min 5 characters and count at least one number.
-                </span>
-            )}
-
-            {updated && (
-                <span className="confirmation">
-                    Success: your profile has been updated!
-                </span>
-            )}
+            {updated && <SUCCESS>Success: profile updated!</SUCCESS>}
 
             <button onClick={deleteAccount} className="submit">
                 DELETE ACCOUNT
