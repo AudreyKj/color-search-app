@@ -17,9 +17,9 @@ function GoogleAuthLogin(props) {
 
         refreshTokenSetup(res);
 
-        let token = res["googleId"];
+        const token = res["googleId"];
 
-        let username = res.rt["Ad"];
+        const username = res.profileObj.name;
 
         axios
             .post("/verifygogleauth", { token, username })
