@@ -37,7 +37,7 @@
         "crypto-random-string": "^3.0.1",
         "csurf": "^1.9.0",
         "define-variable-webpack-plugin": "^1.0.1",
-        "elliptic": "^6.5.3",
+        "elliptic": "^6.5.4",
         "eslint": "^4.19.1",
         "eslint-plugin-react": "^7.12.4",
         "express": "^4.14.0",
