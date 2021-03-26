@@ -100,14 +100,14 @@ div.menu {
 a,
 a:hover,
 a:active {
-    color: #333;
+    color: #999999;
     text-decoration: none;
 }
 
 a.link-header,
 a:hover,
 a:active {
-    color: #fff;
+    color: #999999;
     text-decoration: none;
 }
 

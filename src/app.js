@@ -56,7 +56,7 @@ function App() {
     const logout = () => {
         if (googleLoggedIn) {
             var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
+            auth2.signOut().then(function () {
                 //console.log("User signed out- google");
                 auth2.disconnect();
                 setLoggedIn(false);
@@ -104,7 +104,7 @@ function App() {
             </Helmet>
 
             <BrowserRouter>
-                <AppBar position="static" style={{ background: "#212121" }}>
+                <AppBar position="static" style={{ background: "#f8f8f8" }}>
                     <Toolbar>
                         <div className="title">
                             <img
@@ -127,6 +127,7 @@ function App() {
                                 component={NavLink}
                                 to="/info"
                                 color="inherit"
+                                style={{ color: "#999999" }}
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
@@ -138,6 +139,7 @@ function App() {
                                 component={NavLink}
                                 to="/spotter"
                                 color="inherit"
+                                style={{ color: "#999999" }}
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
@@ -150,6 +152,7 @@ function App() {
                                 component={NavLink}
                                 to="/saved"
                                 color="inherit"
+                                style={{ color: "#999999" }}
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
@@ -162,6 +165,7 @@ function App() {
                                 component={NavLink}
                                 to="/shared"
                                 color="inherit"
+                                style={{ color: "#999999" }}
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
@@ -176,6 +180,7 @@ function App() {
                                         component={NavLink}
                                         to="/login"
                                         color="inherit"
+                                        style={{ color: "#999999" }}
                                         activeStyle={{
                                             borderBottom:
                                                 "solid 3px rgba(248, 248, 248, 0.8)"
@@ -188,6 +193,7 @@ function App() {
                                         component={NavLink}
                                         to="/register"
                                         color="inherit"
+                                        style={{ color: "#999999" }}
                                         activeStyle={{
                                             borderBottom:
                                                 "solid 3px rgba(248, 248, 248, 0.8)"
@@ -199,7 +205,7 @@ function App() {
                             )}
 
                             {loggedIn && (
-                                <Button onClick={logout} color="inherit">
+                                <Button onClick={logout} color="inherit" style={{ color: "#999999" }}>
                                     Logout
                                 </Button>
                             )}
@@ -209,6 +215,7 @@ function App() {
                                     component={NavLink}
                                     to="/profile"
                                     color="inherit"
+                                    style={{ color: "#999999" }}
                                     activeStyle={{
                                         borderBottom:
                                             "solid 3px rgba(248, 248, 248, 0.8)"
@@ -222,6 +229,7 @@ function App() {
                                 component={NavLink}
                                 to="/admin"
                                 color="inherit"
+                                style={{ color: "#999999" }}
                                 activeStyle={{
                                     borderBottom:
                                         "solid 3px rgba(248, 248, 248, 0.8)"
