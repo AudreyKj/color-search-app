@@ -46,7 +46,7 @@
         "jest-environment-jsdom": "^26.3.0",
         "jpeg-js": "^0.4.1",
         "jsdom": "^16.4.0",
-        "lodash": "^4.17.19",
+        "lodash": "^4.17.21",
         "mem": "^6.1.0",
         "moment": "^2.24.0",
         "multer": "^1.4.2",
